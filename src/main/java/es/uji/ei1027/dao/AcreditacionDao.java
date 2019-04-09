@@ -2,6 +2,7 @@ package es.uji.ei1027.dao;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -31,6 +32,11 @@ public class AcreditacionDao {
     public void deleteAcreditacion(Acreditacion acreditacion) {
         jdbcTemplate.update("DELETE from Acreditacion where idcertificado=?", acreditacion.getIdcertificado());
     }
+    
+    public void deleteAcreditacion(int idcertificado) {
+		jdbcTemplate.update("DELETE from Acreditacion where idcertificado=?", idcertificado);
+		
+	}
 
     public void updateAcreditacion(Acreditacion acreditacion) {
         jdbcTemplate.update("UPDATE Acreditacion SET  certificado=?, estado=? WHERE idcertificado=?",

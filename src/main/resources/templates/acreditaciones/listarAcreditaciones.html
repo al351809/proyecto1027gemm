@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar Acreditaciones</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+   <h1>Lista de Acreditaciones</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>Id. Certificado</th>
+         <th>Certificado</th>
+         <th>Estado</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="acreditacion: ${acreditacion}"> 
+         <td th:text="${acreditacion.idcertificado}"></td> 
+         <td th:text="${acreditacion.certificado}"></td>
+         <td th:text="${acreditacion.estado}"></td>
+         <td><a th:href="@{/acreditaciones/update/{idcertificado}(idcertificado=${acreditacion.idcertificado})}">Edita</a> 
+         </td>
+         <td><a th:href="@{/acreditaciones/delete/{idcertificado}(idcertificado=${acreditacion.idcertificado})}">Borrar</a>
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="add">Agregar Acreditacion</a> 
+   <a href="/">volver al indice</a>
+</body>
+</html>

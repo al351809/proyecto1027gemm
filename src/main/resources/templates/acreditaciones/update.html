@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Editar acreditacion</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nuevos datos de la acreditacion</h2>
+    <form action="#" th:action="@{/acreditaciones/update/{idcertificado}(idcertificado=${acreditacion.idcertificado})}" 
+                     th:object="${acreditacion}" method="post"> 
+      <table>
+         <tr>
+            <td><label>Nom certificado</label></td>
+            <td><input type="text" th:field="*{certificado}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Estado</label></td>
+            <td><input type="text" th:field="*{estado}" /></td>
+        </tr>
+        <tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Actualitza acreditacion" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

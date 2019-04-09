@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Agregar actividad</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nueva Actividad</h2>
+    <form action="#" th:action="@{/actividad/add}" 
+                     th:object="${actividad}" method="post"> 
+      <table>
+      <tr>
+            <td><label>Nombre</label></td>
+            <td><input type="text" th:field="*{nombre}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Descripcion</label></td>
+            <td><input type="text" th:field="*{descripcion}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Duracion</label></td>
+            <td><input type="text" th:field="*{duracion}" /></td>
+        </tr>
+        <tr>
+            <td><label>Fecha</label></td>
+            <td><input type="date" th:field="*{fecha}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Precio</label></td>
+            <td><input type="text" th:field="*{precio}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Min.Personas</label></td>
+            <td><input type="text" th:field="*{minPersonas}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Max.Personas</label></td>
+            <td><input type="text" th:field="*{maxPersonas}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Lugar</label></td>
+            <td><input type="text" th:field="*{lugar}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Punto Encuentro</label></td>
+            <td><input type="text" th:field="*{puntoEncuentro}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Imagenes</label></td>
+            <td><input type="text" th:field="*{imagenes}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Texto Cliente</label></td>
+            <td><input type="text" th:field="*{textoCliente}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Tipo</label></td>
+            <td><input type="text" th:field="*{tipo}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Estado</label></td>
+            <td><input type="text" th:field="*{estado}" /></td> 
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Agregar acreditacion" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

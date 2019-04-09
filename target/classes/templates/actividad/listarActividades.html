@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar Actividades</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+   <h1>Lista de Actividades</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>Nombre</th>
+         <th>Descripcion</th>
+         <th>Duracion</th>
+         <th>Fecha</th>
+         <th>Precio</th>
+         <th>Min.Personas</th>
+         <th>Max.Personas</th>
+         <th>Lugar</th>
+         <th>Punto de Encuentro</th>
+         <th>Imagenes</th>
+         <th>Texto cliente</th>
+         <th>Tipo</th>
+         <th>Estado</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="actividad: ${actividad}"> 
+         <td th:text="${actividad.nombre}"></td> 
+         <td th:text="${actividad.descripcion}"></td>
+         <td th:text="${actividad.duracion}"></td>
+         <td th:text="${actividad.fecha}"></td>
+         <td th:text="${actividad.precio}"></td>
+         <td th:text="${actividad.minPersonas}"></td>
+         <td th:text="${actividad.maxPersonas}"></td>
+         <td th:text="${actividad.lugar}"></td>
+         <td th:text="${actividad.puntoEncuentro}"></td>
+         <td th:text="${actividad.imagenes}"></td>
+         <td th:text="${actividad.textoCliente}"></td>
+         <td th:text="${actividad.tipo}"></td>
+         <td th:text="${actividad.estado}"></td>
+         <td><a th:href="@{/actividad/update/{nombre}(nombre=${actividad.nombre})}">Edita</a> 
+         </td>
+         <td><a th:href="@{/actividad/delete/{nombre}(nombre=${actividad.nombre})}">Borrar</a>
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="add">Agregar Actividad</a> 
+   <a href="/">Volver al indice</a>
+</body>
+</html>
