@@ -62,7 +62,7 @@ public class AcreditacionController {
                             BindingResult bindingResult) {
          if (bindingResult.hasErrors()) 
              return "acreditaciones/update";
-         acreditaciondao.updateAcreditacion(acreditacion);;
+         acreditaciondao.updateAcreditacion(acreditacion);
          return "redirect:../listarAcreditaciones"; 
     }
 	

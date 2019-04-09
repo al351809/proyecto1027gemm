@@ -31,7 +31,7 @@ public class ReservaDao {
         jdbcTemplate.update("DELETE from Reserva where idReserva=?", reserva.getIdReserva());
     }
     
-    public void deleteIReserva(int idReserva) {
+    public void deleteReserva(int idReserva) {
 		jdbcTemplate.update("DELETE from Reserva where idReserva=?", idReserva);
 		
 	}
@@ -41,7 +41,7 @@ public class ReservaDao {
         		reserva.getEstadoPago(), reserva.getNumTransaccion(), reserva.getNumAsistentes(), reserva.getPrecioPersona(), reserva.getFecha(), reserva.getDniCliente(), reserva.getNombreActividad(), reserva.getIdReserva());
     }
 
-    public Reserva getReserva(String idReserva) {
+    public Reserva getReserva(int idReserva) {
         try {
             return jdbcTemplate.queryForObject("SELECT * from Reserva WHERE idReserva=?",
                     new ReservaRowMapper(), idReserva);

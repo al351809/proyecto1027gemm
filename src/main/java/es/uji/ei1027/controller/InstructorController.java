@@ -18,7 +18,7 @@ public class InstructorController {
 	
 	private InstructorDao instructordao;
 	@Autowired 
-	public void setClienteDao(InstructorDao instructorDao) { 
+	public void setInstructorDao(InstructorDao instructorDao) { 
 	       this.instructordao=instructorDao;
 	   }
 	
@@ -43,7 +43,7 @@ public class InstructorController {
 	}
 	
 	@RequestMapping(value="/update/{dni}", method = RequestMethod.GET) 
-    public String editCliente(Model model, @PathVariable String dni) { 
+    public String editInstructor(Model model, @PathVariable String dni) { 
         model.addAttribute("instructor", instructordao.getInstructor(dni));
         return "instructor/update"; 
     }
@@ -54,7 +54,7 @@ public class InstructorController {
                             BindingResult bindingResult) {
          if (bindingResult.hasErrors()) 
              return "instructor/update";
-         instructordao.updateInstructor(instructor);;
+         instructordao.updateInstructor(instructor);
          return "redirect:../listarInstructores"; 
     }
 	

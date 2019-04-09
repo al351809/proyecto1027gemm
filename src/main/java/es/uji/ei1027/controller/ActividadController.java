@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.dao.ActividadDao;
-import es.uji.ei1027.model.Acreditacion;
 import es.uji.ei1027.model.Actividad;
 
 
@@ -57,7 +56,7 @@ public class ActividadController {
                             BindingResult bindingResult) {
          if (bindingResult.hasErrors()) 
              return "actividad/update";
-         actividaddao.updateActividad(actividad);;
+         actividaddao.updateActividad(actividad);
          return "redirect:../listarActividades"; 
     }
 	

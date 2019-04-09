@@ -54,7 +54,7 @@ public class ClienteController {
                             BindingResult bindingResult) {
          if (bindingResult.hasErrors()) 
              return "cliente/update";
-         clientedao.updateCliente(cliente);;
+         clientedao.updateCliente(cliente);
          return "redirect:../listarClientes"; 
     }
 	
