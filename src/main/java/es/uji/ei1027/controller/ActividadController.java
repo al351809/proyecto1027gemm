@@ -18,13 +18,7 @@ import es.uji.ei1027.model.Actividad;
 @Controller	
 @RequestMapping("/actividad")
 public class ActividadController {
-	@RequestMapping("/prova") 
-	public String provaWeb(Model model ) {
-		String message = "Provant la Web";
-		model.addAttribute("message", message);
-		return "actividad/prova"; 
-	}
-	
+
 	private ActividadDao actividaddao;
 	@Autowired 
 	public void setActividadDao(ActividadDao actividadDao) { 
@@ -32,7 +26,7 @@ public class ActividadController {
 	   }
 	
 	@RequestMapping("/listarActividades")
-	public String provaUnAcreditacion(Model model) {
+	public String pruevaUnaActividad(Model model) {
 	   model.addAttribute("actividad", actividaddao.getActividad());
 	   return "actividad/listarActividades"; 
 	}
@@ -52,7 +46,7 @@ public class ActividadController {
 	}
 	
 	@RequestMapping(value="/update/{nombre}", method = RequestMethod.GET) 
-    public String editAcreditacion(Model model, @PathVariable String nombre) { 
+    public String editActividad(Model model, @PathVariable String nombre) { 
         model.addAttribute("actividad", actividaddao.getActividad(nombre));
         return "actividad/update"; 
     }
