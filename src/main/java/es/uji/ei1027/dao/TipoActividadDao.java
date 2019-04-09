@@ -8,9 +8,11 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import es.uji.ei1027.model.TipoActividad;
 
+@Repository
 public class TipoActividadDao {
 	
 	private JdbcTemplate jdbcTemplate;

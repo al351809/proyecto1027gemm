@@ -55,7 +55,7 @@ public class ClienteController {
          if (bindingResult.hasErrors()) 
              return "cliente/update";
          clientedao.updateCliente(cliente);;
-         return "redirect:../listarCliente"; 
+         return "redirect:../listarClientes"; 
     }
 	
 	@RequestMapping(value="/delete/{dni}")
