@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Mostrar Tipos de Actividades</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+   <h1>Lista de Tipos de Actividades</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>Nombre</th>
+         <th>Nivel</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="tipoActividad: ${tipoActividad}"> 
+         <td th:text="${tipoActividad.nombre}"></td> 
+         <td th:text="${tipoActividad.nivel}"></td>
+         <td><a th:href="@{/tipoActividad/delete/{nombre}(nombre=${tipoActividad.nombre})}">Borrar</a>
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="add">Agregar</a> 
+   <a href="/">Volver al indice</a>
+</body>
+</html>

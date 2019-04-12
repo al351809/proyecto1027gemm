@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Agregar Tipo de Actividad</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nuevo Tipo de Actividad</h2>
+    <form action="#" th:action="@{/tipoActividad/add}" 
+                     th:object="${tipoActividad}" method="post"> 
+      <table>
+      <tr>
+            <td><label>Nombre</label></td>
+            <td><input type="text" th:field="*{nombre}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Nivel</label></td>
+            <td><input type="text" th:field="*{nivel}" /></td> 
+        </tr>
+                <tr>
+            <td colspan="2"><input type="submit" value="Agregar tipoActividad" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

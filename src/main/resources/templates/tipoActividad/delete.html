@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Eliminar Tipo de Actividad</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Eliminar tipo de actividad</h2>
+    <form action="#" th:action="@{/tipoActividad/delete}" 
+                     th:object="${tipoActividad}" method="post"> 
+      <table>
+      <tr>
+            <td><label>Nombre</label></td>
+            <td><input type="text" th:field="*{nombre}" /></td> 
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="borrar tipoActividad" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>
