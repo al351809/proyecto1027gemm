@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Editar el tipo de actividad</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nuevos datos de la actividad</h2>
+    <form action="#" th:action="@{/clienteTipo/update/{dni}(dni=${clienteTipo.dni})}" 
+                     th:object="${clienteTipo}" method="post"> 
+      <table>
+         <tr>
+            <td><label>Nombre de la actividad</label></td>
+            <td><input type="text" th:field="*{nombreActividad}" /></td> 
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Actualitza el tipo de actividad" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

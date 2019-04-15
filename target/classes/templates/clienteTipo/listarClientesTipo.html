@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar Tipo Clientes</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+   <h1>Lista de tipo Clientes</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>DNI</th>
+         <th>Nombre de la actividad</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="clienteTipo: ${clienteTipo}"> 
+         <td th:text="${clienteTipo.dni}"></td> 
+         <td th:text="${clienteTipo.nombreActividad}"></td>
+         <td><a th:href="@{/clienteTipo/update/{dni}(dni=${clienteTipo.dni})}">Edita</a> 
+         </td>
+         <td><a th:href="@{/clienteTipo/delete/{dni}(dni=${clienteTipo.dni})}">Borrar</a>
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="add">Agregar tipo cliente</a> 
+   <a href="/">volver al indice</a>
+</body>
+</html>

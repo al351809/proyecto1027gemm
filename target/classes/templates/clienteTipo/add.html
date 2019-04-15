@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Agregar tipo cliente</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nuevo tipo cliente</h2>
+    <form action="#" th:action="@{/clienteTipo/add}" 
+                     th:object="${clienteTipo}" method="post"> 
+      <table>
+      <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{dni}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Nombre de la actividad</label></td>
+            <td><input type="text" th:field="*{nombreActividad}" /></td> 
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Agregar tipo cliente" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>
