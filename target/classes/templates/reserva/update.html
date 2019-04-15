@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Editar reserva</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nuevos datos de la reserva</h2>
+    <form action="#" th:action="@{/reserva/update/{idReserva}(dni=${reserva.idReserva})}" 
+                     th:object="${reserva}" method="post"> 
+      <table>
+		 <tr>
+            <td><label>Estado de pago</label></td>
+            <td><input type="text" th:field="*{estadoPago}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Numero de transaccion</label></td>
+            <td><input type="text" th:field="*{numTransaccion}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Numero de asistentes</label></td>
+            <td><input type="text" th:field="*{numAsistentes}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Precio por persona</label></td>
+            <td><input type="text" th:field="*{precioPersona}" /></td> 
+        </tr>
+        <tr>
+            <td><label>fecha</label></td>
+            <td><input type="text" th:field="*{fecha}" /></td> 
+        </tr>
+        <tr>
+            <td><label>DNI del cliente</label></td>
+            <td><input type="text" th:field="*{dniCliente}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Nombre de la actividad</label></td>
+            <td><input type="text" th:field="*{nombreActividad}" /></td> 
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Actualitzar la reserva" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Eliminar reserva</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Eliminar reserva</h2>
+    <form action="#" th:action="@{reserva/delete}" 
+                     th:object="${reserva}" method="post"> 
+      <table>
+        <tr>
+            <td><label>ID Reserva</label></td>
+            <td><input type="text" th:field="*{idReserva}" /></td> 
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Eliminar reserva" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>
