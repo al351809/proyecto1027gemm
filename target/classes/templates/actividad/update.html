@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Editar actividades</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nuevos datos de la actividad</h2>
+    <form action="#" th:action="@{/actividad/update/{nombre}(nombre=${actividad.nombre})}" 
+                     th:object="${actividad}" method="post"> 
+      <table>
+         <tr>
+            <td><label>Nombre</label></td>
+            <td><input type="text" th:field="*{nombre}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Descripcion</label></td>
+            <td><input type="text" th:field="*{descripcion}" /></td>
+        </tr>
+         <tr>
+            <td><label>Duracion</label></td>
+            <td><input type="text" th:field="*{duracion}" /></td>
+        </tr>
+         <tr>
+            <td><label>Fecha</label></td>
+            <td><input type="text" th:field="*{fecha}" /></td>
+        </tr>
+         <tr>
+            <td><label>Precio</label></td>
+            <td><input type="text" th:field="*{precio}" /></td>
+        </tr>
+         <tr>
+            <td><label>Minimo de personas</label></td>
+            <td><input type="text" th:field="*{minPersonas}" /></td>
+        </tr>
+         <tr>
+            <td><label>Maximo de personas</label></td>
+            <td><input type="text" th:field="*{maxPersonas}" /></td>
+        </tr>
+         <tr>
+            <td><label>Lugar</label></td>
+            <td><input type="text" th:field="*{lugar}" /></td>
+        </tr>
+         <tr>
+            <td><label>Punto de encuentro</label></td>
+            <td><input type="text" th:field="*{puntoEncuentro}" /></td>
+        </tr>
+         <tr>
+            <td><label>Imagenes</label></td>
+            <td><input type="text" th:field="*{imagenes}" /></td>
+        </tr>
+         <tr>
+            <td><label>Texto para el cliente</label></td>
+            <td><input type="text" th:field="*{textoCliente}" /></td>
+        </tr>
+         <tr>
+            <td><label>Tipo</label></td>
+            <td><input type="text" th:field="*{tipo}" /></td>
+        </tr>
+         <tr>
+            <td><label>Estado</label></td>
+            <td><input type="text" th:field="*{estado}" /></td>
+        </tr>
+        <tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Actualitza actividades" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>
