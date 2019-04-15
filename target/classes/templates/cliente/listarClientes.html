@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar Clientes</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+   <h1>Lista de Clientes</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>DNI</th>
+         <th>Alias</th>
+         <th>Nombre</th>
+         <th>Email</th>
+         <th>Sexo</th>
+         <th>Fecha de nacimiento</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="cliente: ${cliente}"> 
+         <td th:text="${cliente.dni}"></td> 
+         <td th:text="${cliente.alias}"></td>
+         <td th:text="${cliente.nombre}"></td>
+         <td th:text="${cliente.email}"></td> 
+         <td th:text="${cliente.sexo}"></td>
+         <td th:text="${cliente.fechaNacimiento}"></td>         
+         <td><a th:href="@{/cliente/update/{dni}(dni=${cliente.dni})}">Edita</a> 
+         </td>
+         <td><a th:href="@{/cliente/delete/{dni}(dni=${cliente.dni})}">Borrar</a>
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="add">Agregar Cliente</a> 
+   <a href="/">volver al indice</a>
+</body>
+</html>
