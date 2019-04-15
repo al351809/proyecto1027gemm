@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Editar acreditacion</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nuevos datos del Instructor</h2>
+    <form action="#" th:action="@{/instructor/update/{dni}(dni=${instructor.dni})}" 
+                     th:object="${instructor}" method="post"> 
+      <table>
+      <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{dni}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Alias</label></td>
+            <td><input type="text" th:field="*{alias}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Nombre</label></td>
+            <td><input type="text" th:field="*{nombre}" /></td>
+        </tr>
+        <tr>
+            <td><label>Email</label></td>
+            <td><input type="date" th:field="*{email}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Sexo</label></td>
+            <td><input type="text" th:field="*{sexo}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Fecha de nacimiento</label></td>
+            <td><input type="text" th:field="*{fechaNacimiento}" /></td> 
+        </tr>
+        <tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Actualitza Instructor" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Agregar actividad</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nuevo instructor </h2>
+    <form action="#" th:action="@{/instructor/add}" 
+                     th:object="${instructor}" method="post"> 
+      <table>
+      <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{dni}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Nombre</label></td>
+            <td><input type="text" th:field="*{nombre}" /></td> 
+        </tr>
+        <tr>
+            <td><label>alias</label></td>
+            <td><input type="text" th:field="*{alias}" /></td>
+        </tr>
+        <tr>
+            <td><label>Email</label></td>
+            <td><input type="date" th:field="*{email}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Numero de cuenta</label></td>
+            <td><input type="text" th:field="*{numeroCuenta}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Certificado</label></td>
+            <td><input type="text" th:field="*{idCertificado}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Estado</label></td>
+            <td><input type="text" th:field="*{estado}" /></td> 
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Agregar Instructor" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>
