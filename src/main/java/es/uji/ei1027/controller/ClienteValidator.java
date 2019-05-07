@@ -16,7 +16,7 @@ public class ClienteValidator implements Validator {
 		 Cliente cliente = (Cliente)obj;
 		 if (cliente.getDni().trim().equals(""))
 		       errors.rejectValue("DNI", "obligatorio",
-		                          "Hay que introducir un valor");
+		                          "Hay que introducir un dni");
 		 	   
 	   }
 	}

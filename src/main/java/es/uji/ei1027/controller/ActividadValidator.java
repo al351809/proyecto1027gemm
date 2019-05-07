@@ -17,7 +17,7 @@ package es.uji.ei1027.controller;
 		 Actividad actividad = (Actividad)obj;
 		 if (actividad.getNombre().trim().equals(""))
 		       errors.rejectValue("nombre", "obligatorio",
-		                          "Hay que introducir un valor");
+		                          "Hay que introducir un nombre");
 		 	   
 	   }
 	}
