@@ -1,5 +1,7 @@
 package es.uji.ei1027.model;
 
+import java.sql.Date;
+
 public class Cliente {
 	
 	private String dni;
@@ -7,7 +9,7 @@ public class Cliente {
 	private String nombre;
 	private String email;
 	private String sexo;
-	private String fechaNacimiento;
+	private Date fechaNacimiento;
 	
 	
 	public String getDni() {
@@ -40,10 +42,10 @@ public class Cliente {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public String getFechaNacimiento() {
+	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(String fechaNacimiento) {
+	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	@Override
