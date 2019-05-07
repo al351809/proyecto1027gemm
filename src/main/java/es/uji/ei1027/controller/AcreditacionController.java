@@ -43,7 +43,9 @@ public class AcreditacionController {
     }
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST) 
-	public String processAddSubmit(@ModelAttribute("acreditacion") Acreditacion acreditacion, BindingResult bindingResult) {  
+	public String processAddSubmit(@ModelAttribute("acreditacion") Acreditacion acreditacion, BindingResult bindingResult) { 
+	 AcreditacionValidator acreditacionValidator = new AcreditacionValidator(); 
+	 acreditacionValidator.validate(acreditacion, bindingResult); 
      if (bindingResult.hasErrors()) 
             return "acreditacion/add";
      acreditaciondao.addAcreditacion(acreditacion);
