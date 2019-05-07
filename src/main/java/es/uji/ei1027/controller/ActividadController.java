@@ -38,6 +38,8 @@ public class ActividadController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST) 
 	public String processAddSubmit(@ModelAttribute("actividad") Actividad actividad, BindingResult bindingResult) {  
+	ActividadValidator actividadValidator = new ActividadValidator(); 
+	actividadValidator.validate(actividad, bindingResult);
      if (bindingResult.hasErrors()) 
             return "actividad/add";
      actividaddao.addActividad(actividad);
