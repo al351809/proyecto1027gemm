@@ -36,6 +36,8 @@ public class ClienteTipoController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST) 
 	public String processAddSubmit(@ModelAttribute("clienteTipo") ClienteTipo clienteTipo, BindingResult bindingResult) {  
+	ClienteTipoValidator clientetipoValidator = new ClienteTipoValidator(); 
+	clientetipoValidator.validate(clienteTipo, bindingResult);
      if (bindingResult.hasErrors()) 
             return "clienteTipo/add";
      clienteTipodao.addClienteTipo(clienteTipo);
