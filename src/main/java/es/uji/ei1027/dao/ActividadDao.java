@@ -9,7 +9,11 @@ import org.springframework.stereotype.Repository;
 import es.uji.ei1027.model.Actividad;
 
 import javax.sql.DataSource;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -23,9 +27,13 @@ public class ActividadDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public void addActividad(Actividad actividad) {
+    public void addActividad(Actividad actividad) throws ParseException {
+    	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+    	java.util.Date date = sdf1.parse(actividad.getFecha());
+    	java.sql.Date fecha = new java.sql.Date(date.getTime()); 
+    	
         jdbcTemplate.update("INSERT INTO Actividad VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), actividad.getFecha(), actividad.getPrecio(), actividad.getMinPersonas(), actividad.getMaxPersonas(), actividad.getLugar(),actividad.getPuntoEncuentro(), actividad.getImagenes(), actividad.getTextoCliente(), actividad.getTipo(), actividad.getEstado());
+                actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), fecha, actividad.getPrecio(), actividad.getMinPersonas(), actividad.getMaxPersonas(), actividad.getLugar(),actividad.getPuntoEncuentro(), actividad.getImagenes(), actividad.getTextoCliente(), actividad.getTipo(), actividad.getEstado());
     }
 
     public void deleteActividad(Actividad actividad) {
@@ -60,6 +68,20 @@ public class ActividadDao {
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Actividad>();
         }
+    }
+    
+    public static Date ParseFecha(String fecha)
+    {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date fechaDate = null;
+        try {
+            fechaDate = formato.parse(fecha);
+        } 
+        catch (ParseException ex) 
+        {
+            System.out.println(ex);
+        }
+        return fechaDate;
     }
 	
 }

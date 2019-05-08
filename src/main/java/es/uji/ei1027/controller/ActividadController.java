@@ -1,6 +1,8 @@
 package es.uji.ei1027.controller;
 
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model;
@@ -41,27 +43,26 @@ public class ActividadController {
 	   return "actividad/listarActividades"; 
 	}
 	
-	@RequestMapping(value="/add") 
-    public String addActividad(Model model) {
-        model.addAttribute("actividad", new Actividad());
-        return "actividad/add";
-    }
+	@RequestMapping(value="/add", method=RequestMethod.GET)
+	public String addActiv(Model model) {
+	   model.addAttribute("actividad", new Actividad());
+	   model.addAttribute("nombre", actividadService.getTiposActividad());
+	   return "actividad/add";
+	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST) 
 	public String processAddSubmit(@ModelAttribute("actividad") Actividad actividad, BindingResult bindingResult) {  
 		ActividadValidator actividadValidator = new ActividadValidator(); 
 		actividadValidator.validate(actividad, bindingResult);
-	     if (bindingResult.hasErrors()) 
-	            return "actividad/add";
-	     actividaddao.addActividad(actividad);
+		if (bindingResult.hasErrors()) 
+            return "acreditaciones/add";
+	    System.out.println(actividad.getFecha());
+	     try {
+			actividaddao.addActividad(actividad);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	     return "redirect:listarActividades"; 
-	}
-	
-	@RequestMapping(value="/add", method= RequestMethod.GET)
-	public String addClassif(Model model) {
-	   model.addAttribute("actividad", new Actividad());
-	   model.addAttribute("nombre", actividadService.getTiposActividad());
-	   return "actividad/add";
 	}
 
 	
