@@ -1,5 +1,6 @@
 package es.uji.ei1027.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.dao.ActividadDao;
 import es.uji.ei1027.model.Actividad;
+import es.uji.ei1027.service.ActividadService;
+
 
 
 
@@ -19,6 +22,14 @@ import es.uji.ei1027.model.Actividad;
 public class ActividadController {
 
 	private ActividadDao actividaddao;
+	private ActividadService actividadService;
+	
+	@Autowired
+	public void setActividadService(ActividadService actividadService) {
+		this.actividadService = actividadService;
+	}
+
+	
 	@Autowired 
 	public void setActividadDao(ActividadDao actividadDao) { 
 	       this.actividaddao=actividadDao;
@@ -38,13 +49,21 @@ public class ActividadController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST) 
 	public String processAddSubmit(@ModelAttribute("actividad") Actividad actividad, BindingResult bindingResult) {  
-	ActividadValidator actividadValidator = new ActividadValidator(); 
-	actividadValidator.validate(actividad, bindingResult);
-     if (bindingResult.hasErrors()) 
-            return "actividad/add";
-     actividaddao.addActividad(actividad);
-     return "redirect:listarActividades"; 
+		ActividadValidator actividadValidator = new ActividadValidator(); 
+		actividadValidator.validate(actividad, bindingResult);
+	     if (bindingResult.hasErrors()) 
+	            return "actividad/add";
+	     actividaddao.addActividad(actividad);
+	     return "redirect:listarActividades"; 
 	}
+	
+	@RequestMapping(value="/add", method= RequestMethod.GET)
+	public String addClassif(Model model) {
+	   model.addAttribute("actividad", new Actividad());
+	   model.addAttribute("nombre", actividadService.getTiposActividad());
+	   return "actividad/add";
+	}
+
 	
 	@RequestMapping(value="/update/{nombre}", method = RequestMethod.GET) 
     public String editActividad(Model model, @PathVariable String nombre) { 

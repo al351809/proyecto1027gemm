@@ -13,7 +13,8 @@
       <table>
       <tr>
             <td><label>Nombre</label></td>
-            <td><input type="text" th:field="*{nombre}" /></td> 
+            <td><input type="text" th:field="*{nombre}" /></td>
+            <td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></td> 
         </tr>
         <tr>
             <td><label>Descripcion</label></td>
@@ -56,8 +57,12 @@
             <td><input type="text" th:field="*{textoCliente}" /></td> 
         </tr>
         <tr>
-            <td><label>Tipo</label></td>
-            <td><input type="text" th:field="*{tipo}" /></td> 
+            <td><label>Tipo</label></td> 
+            <td><select id="tipo" th:field="*{tipo}">
+       			<option th:each="tipo : ${nombre}"
+               	th:value="${tipo}"
+               	th:text="${tipo}"></option>
+   			</select></td>
         </tr>
         <tr>
             <td><label>Estado</label></td>
