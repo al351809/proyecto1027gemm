@@ -14,7 +14,7 @@ public class ReservaValidator implements Validator {
 	  @Override
 	  public void validate(Object obj, Errors errors) {
 		 Reserva reserva = (Reserva)obj;
-		 if (Integer.toString(reserva.getIdReserva()).trim().equals(""))
+		 if (reserva.getIdReserva()<=0)
 		       errors.rejectValue("DNI", "obligatorio",
 		                          "Hay que introducir un dni");
 		 	   
