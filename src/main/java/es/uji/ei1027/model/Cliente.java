@@ -9,7 +9,7 @@ public class Cliente {
 	private String nombre;
 	private String email;
 	private String sexo;
-	private Date fechaNacimiento;
+	private String fechaNacimiento;
 	
 	
 	public String getDni() {
@@ -42,10 +42,10 @@ public class Cliente {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public Date getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	@Override

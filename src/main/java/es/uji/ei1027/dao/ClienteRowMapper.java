@@ -15,7 +15,7 @@ public class ClienteRowMapper implements RowMapper<Cliente> {
         cliente.setNombre(rs.getString("nombre"));
         cliente.setEmail(rs.getString("email"));
         cliente.setSexo(rs.getString("sexo"));
-        cliente.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+        cliente.setFechaNacimiento(rs.getString("fechaNacimiento"));
         
         return cliente;
     }

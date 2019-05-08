@@ -1,5 +1,7 @@
 package es.uji.ei1027.controller;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,7 +42,12 @@ public class ClienteController {
 	clienteValidator.validate(cliente, bindingResult);
      if (bindingResult.hasErrors()) 
             return "cliente/add";
-     clientedao.addCliente(cliente);
+     try {
+		clientedao.addCliente(cliente);
+	} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
      return "redirect:listarClientes"; 
 	}
 	
@@ -56,7 +63,12 @@ public class ClienteController {
                             BindingResult bindingResult) {
          if (bindingResult.hasErrors()) 
              return "cliente/update";
-         clientedao.updateCliente(cliente);
+         try {
+			clientedao.updateCliente(cliente);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
          return "redirect:../listarClientes"; 
     }
 	

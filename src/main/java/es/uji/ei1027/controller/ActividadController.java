@@ -70,6 +70,7 @@ public class ActividadController {
 	@RequestMapping(value="/update/{nombre}", method = RequestMethod.GET) 
     public String editActividad(Model model, @PathVariable String nombre) { 
         model.addAttribute("actividad", actividaddao.getActividad(nombre));
+        model.addAttribute("nombre", actividadService.getTiposActividad());
         return "actividad/update"; 
     }
 	

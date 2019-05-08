@@ -12,8 +12,8 @@
                      th:object="${actividad}" method="post"> 
       <table>
          <tr>
-            <td><label>Nombre</label></td>
-            <td><input type="text" th:field="*{nombre}" /></td> 
+            <td><label>Actividad:</label></td>
+            <td><span th:text="${actividad.nombre}"></span></td>
         </tr>
         <tr>
             <td><label>Descripcion</label></td>
@@ -57,11 +57,20 @@
         </tr>
          <tr>
             <td><label>Tipo</label></td>
-            <td><input type="text" th:field="*{tipo}" /></td>
+            <td><select id="tipo" th:field="*{tipo}">
+       			<option th:each="tipo : ${nombre}"
+               	th:value="${tipo}"
+               	th:text="${tipo}"></option>
+   			</select></td>
         </tr>
          <tr>
             <td><label>Estado</label></td>
-            <td><input type="text" th:field="*{estado}" /></td>
+            <td><select class="form_control" type="text" th:field="*{estado}" >
+				<option value="abierta">Abierta</option>
+				<option value="cerrada">Cerrada</option>
+				<option value="completa">Completa</option>
+				<option value="cancelada">Cancelada</option>
+			</td>
         </tr>
         <tr>
         <tr>
