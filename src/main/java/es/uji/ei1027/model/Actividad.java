@@ -1,6 +1,5 @@
 package es.uji.ei1027.model;
 
-import java.util.Date;
 
 public class Actividad {
 

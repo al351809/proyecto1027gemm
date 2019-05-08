@@ -56,7 +56,8 @@ public class ActividadController {
 		actividadValidator.validate(actividad, bindingResult);
 		if (bindingResult.hasErrors()) 
             return "acreditaciones/add";
-	    System.out.println(actividad.getFecha());
+		
+		//Esto es el control de la excepcion de la fecha que lanzamos desde la otra clase.
 	     try {
 			actividaddao.addActividad(actividad);
 		} catch (ParseException e) {
@@ -78,7 +79,11 @@ public class ActividadController {
                             BindingResult bindingResult) {
          if (bindingResult.hasErrors()) 
              return "actividad/update";
-         actividaddao.updateActividad(actividad);
+         try {
+			actividaddao.updateActividad(actividad);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
          return "redirect:../listarActividades"; 
     }
 	

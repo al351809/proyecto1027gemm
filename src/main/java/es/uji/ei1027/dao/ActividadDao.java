@@ -45,14 +45,17 @@ public class ActividadDao {
 		
 	}
 
-    public void updateActividad(Actividad actividad) {
-        jdbcTemplate.update("UPDATE Actividad SET  descripcion=?, duracion=?, fecha=?, precio=?, minPersonas=?, maxPersonas=?, lugar=?, puntoEncuentro=?, imagenes=?, textoCliente=?, tipo=?, estado=? WHERE nombre=?",
-        		actividad.getDescripcion(), actividad.getDuracion(), actividad.getFecha(), actividad.getPrecio(), actividad.getMinPersonas(), actividad.getMaxPersonas(), actividad.getLugar(),actividad.getPuntoEncuentro(), actividad.getImagenes(), actividad.getTextoCliente(), actividad.getTipo(), actividad.getEstado(), actividad.getNombre());
+    public void updateActividad(Actividad actividad) throws ParseException {
+    	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+    	java.util.Date date = sdf1.parse(actividad.getFecha());
+    	java.sql.Date fecha = new java.sql.Date(date.getTime()); 
+        jdbcTemplate.update("UPDATE Actividad SET nombre=?, descripcion=?, duracion=?, fecha=?, precio=?, minPersonas=?, maxPersonas=?, lugar=?, puntoEncuentro=?, imagenes=?, textoCliente=?, tipo=?, estado=? WHERE nombre=?",
+        		actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), fecha, actividad.getPrecio(), actividad.getMinPersonas(), actividad.getMaxPersonas(), actividad.getLugar(),actividad.getPuntoEncuentro(), actividad.getImagenes(), actividad.getTextoCliente(), actividad.getTipo(), actividad.getEstado(), actividad.getNombre());
     }
 
     public Actividad getActividad(String nombre) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * from Acreditacion WHERE nombre=?",
+            return jdbcTemplate.queryForObject("SELECT * from Actividad WHERE nombre=?",
                     new ActividadRowMapper(), nombre);
         }
         catch(EmptyResultDataAccessException e) {
