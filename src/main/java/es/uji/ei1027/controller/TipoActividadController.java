@@ -35,7 +35,9 @@ public class TipoActividadController {
     }
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST) 
-	public String processAddSubmit(@ModelAttribute("tipoActividad") TipoActividad tipoActividad, BindingResult bindingResult) {  
+	public String processAddSubmit(@ModelAttribute("tipoActividad") TipoActividad tipoActividad, BindingResult bindingResult) { 
+	TipoActividadValidator TipoactividadValidator = new TipoActividadValidator(); 
+	TipoactividadValidator.validate(tipoActividad, bindingResult);
      if (bindingResult.hasErrors()) 
             return "tipoActividad/add";
      tipoActividaddao.addTipoActividad(tipoActividad);
