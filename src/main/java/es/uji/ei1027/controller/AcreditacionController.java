@@ -47,7 +47,7 @@ public class AcreditacionController {
 	 AcreditacionValidator acreditacionValidator = new AcreditacionValidator(); 
 	 acreditacionValidator.validate(acreditacion, bindingResult); 
      if (bindingResult.hasErrors()) 
-            return "acreditacion/add";
+            return "acreditaciones/add";
      acreditaciondao.addAcreditacion(acreditacion);
      return "redirect:listarAcreditaciones"; 
 	}

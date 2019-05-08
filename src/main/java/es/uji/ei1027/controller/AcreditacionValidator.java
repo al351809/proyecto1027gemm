@@ -17,8 +17,8 @@ public class AcreditacionValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		// TODO Auto-generated method stub
 		Acreditacion acreditacion = (Acreditacion)target;
-		if (Integer.toString(acreditacion.getIdcertificado()).trim().equals(""))
-			errors.rejectValue("idCertificado", "obligatori", "Hay que introducir un idCertificado");
+		if (acreditacion.getIdcertificado() <=0)
+			errors.rejectValue("idcertificado", "obligatori", "Hay que introducir un idCertificado");
 
 	}
 
