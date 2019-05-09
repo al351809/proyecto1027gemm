@@ -9,7 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute; 
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestMethod; 
-import org.springframework.web.servlet.ModelAndView;
+
 
 import es.uji.ei1027.dao.UsuarioDao;
 import es.uji.ei1027.model.DetallesUsuario;
@@ -67,9 +67,14 @@ public class LoginController {
 		// Autenticats correctament. 
 		// Guardem les dades de l'usuari autenticat a la sessió
 		session.setAttribute("user", user); 
-			
+		String url;
+		if (session.getAttribute("nextUrl") != null)
+			url = (String) session.getAttribute("nextUrl");
+		else
+			url = "/";
+
 		// Torna a la pàgina principal
-		return "redirect:/";
+		return "redirect:/" + url;
 	}
 
 	@RequestMapping("/logout") 
