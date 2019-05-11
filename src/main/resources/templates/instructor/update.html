@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Editar acreditacion</title>
+   <title>Editar Instructor</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
@@ -16,26 +16,34 @@
             <td><input type="text" th:field="*{dni}" /></td> 
         </tr>
         <tr>
-            <td><label>Alias</label></td>
-            <td><input type="text" th:field="*{alias}" /></td> 
-        </tr>
-        <tr>
             <td><label>Nombre</label></td>
             <td><input type="text" th:field="*{nombre}" /></td>
         </tr>
         <tr>
+            <td><label>Alias</label></td>
+            <td><input type="text" th:field="*{alias}" /></td> 
+        </tr>
+
+        <tr>
             <td><label>Email</label></td>
-            <td><input type="date" th:field="*{email}" /></td> 
+            <td><input type="text" th:field="*{email}" /></td> 
         </tr>
         <tr>
-            <td><label>Sexo</label></td>
-            <td><input type="text" th:field="*{sexo}" /></td> 
+            <td><label>Numero de cuenta</label></td>
+            <td><input type="text" th:field="*{numeroCuenta}" /></td> 
         </tr>
         <tr>
-            <td><label>Fecha de nacimiento</label></td>
-            <td><input type="text" th:field="*{fechaNacimiento}" /></td> 
+            <td><label>Certificado</label></td>
+            <td><input type="text" th:field="*{idCertificado}" /></td> 
         </tr>
         <tr>
+            <td><label>Estado</label></td>
+            <td><select class="form_control" type="text" th:field="*{estado}" >
+				<option value="pendiente">Pendiente</option>
+				<option value="aceptada">Aceptada</option>
+				<option value="rechazada">Rechazada</option>
+			</td>
+        </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Actualitza Instructor" /></td>
         </tr>

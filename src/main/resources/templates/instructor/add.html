@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Agregar actividad</title>
+   <title>Agregar Instructor</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
@@ -21,12 +21,12 @@
             <td><input type="text" th:field="*{nombre}" /></td> 
         </tr>
         <tr>
-            <td><label>alias</label></td>
+            <td><label>Alias</label></td>
             <td><input type="text" th:field="*{alias}" /></td>
         </tr>
         <tr>
             <td><label>Email</label></td>
-            <td><input type="date" th:field="*{email}" /></td> 
+            <td><input type="text" th:field="*{email}" /></td> 
         </tr>
         <tr>
             <td><label>Numero de cuenta</label></td>
@@ -38,7 +38,11 @@
         </tr>
         <tr>
             <td><label>Estado</label></td>
-            <td><input type="text" th:field="*{estado}" /></td> 
+            <td><select class="form_control" type="text" th:field="*{estado}" >
+				<option value="pendiente">Pendiente</option>
+				<option value="aceptada">Aceptada</option>
+				<option value="rechazada">Rechazada</option>
+			</td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Agregar Instructor" /></td>
