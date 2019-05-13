@@ -3,6 +3,7 @@ package es.uji.ei1027.model;
 public class Acreditacion {
     private int idcertificado;
     private String certificado;
+    private String dni;
     private String estado;
 	public int getIdcertificado() {
 		return idcertificado;
@@ -16,6 +17,13 @@ public class Acreditacion {
 	public void setCertificado(String certificado) {
 		this.certificado = certificado;
 	}
+	
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
 	public String getEstado() {
 		return estado;
 	}
@@ -24,7 +32,9 @@ public class Acreditacion {
 	}
 	@Override
 	public String toString() {
-		return "Nadador [idcertificado=" + idcertificado + ", certificado=" + certificado + ", estado=" + estado + "]";
+		return "Acreditacion [idcertificado=" + idcertificado + ", certificado=" + certificado + ", dni=" + dni
+				+ ", estado=" + estado + "]";
 	}
+	
     
 }
