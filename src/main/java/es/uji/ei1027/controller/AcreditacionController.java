@@ -62,6 +62,8 @@ public class AcreditacionController {
     public String processUpdateSubmit(@PathVariable Integer idcertificado, 
                             @ModelAttribute("acreditacion") Acreditacion acreditacion, 
                             BindingResult bindingResult) {
+		 AcreditacionValidator acreditacionValidator = new AcreditacionValidator(); 
+		 acreditacionValidator.validate(acreditacion, bindingResult); 
          if (bindingResult.hasErrors()) 
              return "acreditaciones/update";
          acreditaciondao.updateAcreditacion(acreditacion);

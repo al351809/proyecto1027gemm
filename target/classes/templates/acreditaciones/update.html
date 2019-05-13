@@ -5,19 +5,22 @@
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+     <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-    <h2>Nuevos datos de la acreditacion</h2>
+    <h2><b>Nuevos datos de la acreditacion</b></h2>
     <form action="#" th:action="@{/acreditaciones/update/{idcertificado}(idcertificado=${acreditacion.idcertificado})}" 
                      th:object="${acreditacion}" method="post"> 
       <table>
          <tr>
             <td><label>Nom certificado</label></td>
             <td><input type="text" th:field="*{certificado}" /></td> 
+            <td th:if="${#fields.hasErrors('certificado')}" th:errors="*{certificado}" class="error"></td>
         </tr>
          <tr>
             <td><label>DNI</label></td>
             <td><input type="text" th:field="*{dni}" /></td> 
+            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="error"></td>
         </tr>
         <tr>
             <td><label>Estado</label></td>
@@ -29,7 +32,7 @@
         </tr>
         <tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Actualitza acreditacion" /></td>
+            <td colspan="2" style="padding-top:10px"><input type="submit" value="Actualitza Acreditacion" class="btn btn-secondary btn-sm"/><a href="/acreditaciones/listarAcreditaciones" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atras</a></td>
         </tr>
       </table>
     </form>

@@ -4,10 +4,14 @@
    <title>Gestionar Acreditaciones</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
    <h1>Lista de Acreditaciones</h1>
-   <table>
+   <div th:if="${#lists.isEmpty(acreditacion)}">
+         No hay acreditaciones disponibles.
+    </div>
+   <table th:unless="${#lists.isEmpty(acreditacion)}" class="table table-striped">
      <thead>
        <tr>
          <th>Id. Certificado</th>
@@ -22,14 +26,14 @@
          <td th:text="${acreditacion.certificado}"></td>
          <td th:text="${acreditacion.dni}"></td>
          <td th:text="${acreditacion.estado}"></td>
-         <td><a th:href="@{/acreditaciones/update/{idcertificado}(idcertificado=${acreditacion.idcertificado})}">Edita</a> 
+         <td><a th:href="@{/acreditaciones/update/{idcertificado}(idcertificado=${acreditacion.idcertificado})}" class="btn btn-warning btn-sm" role="button">Edita</a> 
          </td>
-         <td><a th:href="@{/acreditaciones/delete/{idcertificado}(idcertificado=${acreditacion.idcertificado})}">Borrar</a>
+         <td><a th:href="@{/acreditaciones/delete/{idcertificado}(idcertificado=${acreditacion.idcertificado})}" class="btn btn-danger btn-sm" role="button">Borrar</a>
          </td>
        </tr>
      </tbody>
    </table>
-   <a href="add">Agregar Acreditacion</a> 
-   <a href="/">volver al indice</a>
+   <a href="add" class="btn btn-primary" role="button">Agregar Acreditacion</a> 
+   <a href="/" class="btn btn-primary" role="button">volver al indice</a>
 </body>
 </html>
