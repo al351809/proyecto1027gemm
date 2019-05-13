@@ -26,12 +26,12 @@ public class ClienteDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public void addCliente(Cliente cliente) throws ParseException {
+    public void addCliente(Cliente cliente) throws ParseException  {
     	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
     	java.util.Date date = sdf1.parse(cliente.getFechaNacimiento());
     	java.sql.Date fecha = new java.sql.Date(date.getTime());
-        jdbcTemplate.update("INSERT INTO Cliente VALUES(?, ?, ?, ?, ?, ?)",
-                cliente.getDni(), cliente.getAlias(), cliente.getNombre(), cliente.getEmail(), cliente.getSexo(), fecha);
+        jdbcTemplate.update("INSERT INTO Cliente VALUES(?, ?, ?, ?, ?)",
+                cliente.getDni(), cliente.getNombre(), cliente.getEmail(), cliente.getSexo(), fecha);
     }
 
     public void deleteCliente(Cliente cliente) {
@@ -47,8 +47,7 @@ public class ClienteDao {
     	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
     	java.util.Date date = sdf1.parse(cliente.getFechaNacimiento());
     	java.sql.Date fecha = new java.sql.Date(date.getTime());
-        jdbcTemplate.update("UPDATE Cliente SET  alias=?, nombre=?, email=?, sexo=?, fechaNacimiento=? WHERE dni=?",
-                cliente.getAlias(),
+        jdbcTemplate.update("UPDATE Cliente SET nombre=?, email=?, sexo=?, fechaNacimiento=? WHERE dni=?",
                 cliente.getNombre(), cliente.getEmail(), cliente.getSexo(), fecha, cliente.getDni());
     }
 

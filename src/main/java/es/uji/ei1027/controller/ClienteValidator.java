@@ -15,8 +15,15 @@ public class ClienteValidator implements Validator {
 	  public void validate(Object obj, Errors errors) {
 		 Cliente cliente = (Cliente)obj;
 		 if (cliente.getDni().trim().equals(""))
-		       errors.rejectValue("DNI", "obligatorio",
+		       errors.rejectValue("dni", "obligatorio",
 		                          "Hay que introducir un dni");
+		 
+		 if (cliente.getEmail().trim().equals(""))
+		       errors.rejectValue("email", "obligatorio",
+		                          "Hay que introducir un email");
+		 if (cliente.getFechaNacimiento().trim().equals(""))
+		       errors.rejectValue("fechaNacimiento", "obligatorio",
+		                          "Selecciona una fecha");
 		 	   
 	   }
 	}

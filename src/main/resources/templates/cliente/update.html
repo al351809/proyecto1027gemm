@@ -5,6 +5,7 @@
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+     <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
     <h2>Nuevos datos del cliente</h2>
@@ -13,11 +14,8 @@
             <table>
       <tr>
             <td><label>DNI</label></td>
-            <td><input type="text" th:field="*{dni}" /></td> 
-        </tr>
-        <tr>
-            <td><label>Alias</label></td>
-            <td><input type="text" th:field="*{alias}" /></td> 
+            <td><input type="text" th:field="*{dni}" /></td>
+            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="error"></td> 
         </tr>
         <tr>
             <td><label>Nombre</label></td>
@@ -25,7 +23,8 @@
         </tr>
         <tr>
             <td><label>Email</label></td>
-            <td><input type="text" th:field="*{email}" /></td> 
+            <td><input type="text" th:field="*{email}" /></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
         </tr>
         <tr>
             <td><label>Sexo</label></td>
@@ -34,9 +33,11 @@
         <tr>
             <td><label>Fecha de nacimiento</label></td>
             <td><input type="date" th:field="*{fechaNacimiento}" /></td> 
+            <td th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}" class="error"></td>
         </tr>
          <tr>
-            <td colspan="2"><input type="submit" value="Actualitza cliente" /></td>
+            <td colspan="2" style="padding-top:10px"><input type="submit" value="Actualizar Cliente" class="btn btn-secondary btn-sm" />
+            <a href="/cliente/listarClientes" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
         </tr>
       </table>
     </form>

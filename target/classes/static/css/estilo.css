@@ -28,7 +28,7 @@ h2 {
 	margin-right: 10pt;
 }
 
-input[type=text]{
+input[type=text], input[type=date]{
 	width: 200px;
 }
 

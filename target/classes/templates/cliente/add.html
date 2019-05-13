@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Agregar actividad</title>
+   <title>Agregar Cliente</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+     <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-    <h2>Nuevo cliente </h2>
+    <h2><b>Nuevo cliente</b> </h2>
     <form action="#" th:action="@{/cliente/add}" 
                      th:object="${cliente}" method="post"> 
       <table>
       <tr>
             <td><label>DNI</label></td>
             <td><input type="text" th:field="*{dni}" /></td> 
-             <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></td>
-        </tr>
-        <tr>
-            <td><label>Alias</label></td>
-            <td><input type="text" th:field="*{alias}" /></td> 
+            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="error"></td>
         </tr>
         <tr>
             <td><label>Nombre</label></td>
@@ -26,7 +23,8 @@
         </tr>
         <tr>
             <td><label>Email</label></td>
-            <td><input type="text" th:field="*{email}" /></td> 
+            <td><input type="text" th:field="*{email}" /></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
         </tr>
         <tr>
             <td><label>Sexo</label></td>
@@ -37,7 +35,8 @@
             <td><input type="date" th:field="*{fechaNacimiento}" /></td> 
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Agregar acreditacion" /></td>
+            <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Cliente" class="btn btn-secondary btn-sm" />
+            <a href="/cliente/listarClientes" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
         </tr>
       </table>
     </form>

@@ -4,14 +4,17 @@
    <title>Gestionar Clientes</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
    <h1>Lista de Clientes</h1>
-   <table>
+   <div th:if="${#lists.isEmpty(cliente)}">
+         No hay instructores en la base de dades
+    </div>
+   <table th:unless="${#lists.isEmpty(cliente)}" class="table table-striped">
      <thead>
        <tr>
          <th>DNI</th>
-         <th>Alias</th>
          <th>Nombre</th>
          <th>Email</th>
          <th>Sexo</th>
@@ -21,19 +24,18 @@
      <tbody>
        <tr th:each="cliente: ${cliente}"> 
          <td th:text="${cliente.dni}"></td> 
-         <td th:text="${cliente.alias}"></td>
          <td th:text="${cliente.nombre}"></td>
          <td th:text="${cliente.email}"></td> 
          <td th:text="${cliente.sexo}"></td>
          <td th:text="${cliente.fechaNacimiento}"></td>         
-         <td><a th:href="@{/cliente/update/{dni}(dni=${cliente.dni})}">Edita</a> 
+         <td><a th:href="@{/cliente/update/{dni}(dni=${cliente.dni})}" class="btn btn-warning btn-sm" role="button">Edita</a> 
          </td>
-         <td><a th:href="@{/cliente/delete/{dni}(dni=${cliente.dni})}">Borrar</a>
+         <td><a th:href="@{/cliente/delete/{dni}(dni=${cliente.dni})}" class="btn btn-danger btn-sm" role="button">Borrar</a>
          </td>
        </tr>
      </tbody>
    </table>
-   <a href="add">Agregar Cliente</a> 
-   <a href="/">volver al indice</a>
+   <a href="add" class="btn btn-primary" role="button">Agregar Cliente</a> 
+   <a href="/"class="btn btn-primary" role="button">Índice</a>
 </body>
 </html>

@@ -3,6 +3,7 @@ package es.uji.ei1027.controller;
 import java.text.ParseException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,10 +44,15 @@ public class ClienteController {
      if (bindingResult.hasErrors()) 
             return "cliente/add";
      try {
-		clientedao.addCliente(cliente);
-	} catch (ParseException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		try {
+			clientedao.addCliente(cliente);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	} catch (DuplicateKeyException e) {
+		bindingResult.rejectValue("dni", "obligatorio","El dni ya existe");
+		return "cliente/add";
 	}
      return "redirect:listarClientes"; 
 	}
@@ -61,14 +67,21 @@ public class ClienteController {
     public String processUpdateSubmit(@PathVariable String dni, 
                             @ModelAttribute("cliente") Cliente cliente, 
                             BindingResult bindingResult) {
+	 	ClienteValidator clienteValidator = new ClienteValidator(); 
+	 	clienteValidator.validate(cliente, bindingResult);
          if (bindingResult.hasErrors()) 
              return "cliente/update";
          try {
-			clientedao.updateCliente(cliente);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+     		try {
+     			clientedao.addCliente(cliente);
+     		} catch (ParseException e) {
+     			// TODO Auto-generated catch block
+     			e.printStackTrace();
+     		}
+     	} catch (DuplicateKeyException e) {
+     		bindingResult.rejectValue("dni", "obligatorio","El dni ya existe");
+     		return "cliente/add";
+     	}
          return "redirect:../listarClientes"; 
     }
 	
