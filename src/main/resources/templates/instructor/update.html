@@ -24,11 +24,13 @@
 
         <tr>
             <td><label>Email</label></td>
-            <td><input type="text" th:field="*{email}" /></td> 
+            <td><input type="text" th:field="*{email}" /></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
         </tr>
         <tr>
             <td><label>Numero de cuenta</label></td>
             <td><input type="text" th:field="*{numeroCuenta}" /></td> 
+            <td th:if="${#fields.hasErrors('numeroCuenta')}" th:errors="*{numeroCuenta}" class="error"></td>
         </tr>
         
         <tr>
