@@ -19,6 +19,7 @@
        <tr th:each="acreditacion: ${acreditacion}"> 
          <td th:text="${acreditacion.idcertificado}"></td> 
          <td th:text="${acreditacion.certificado}"></td>
+         <td th:text="${acreditacion.dni}"></td>
          <td th:text="${acreditacion.estado}"></td>
          <td><a th:href="@{/acreditaciones/update/{idcertificado}(idcertificado=${acreditacion.idcertificado})}">Edita</a> 
          </td>
