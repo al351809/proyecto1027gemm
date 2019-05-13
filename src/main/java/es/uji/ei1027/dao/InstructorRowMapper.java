@@ -12,10 +12,8 @@ public class InstructorRowMapper implements RowMapper<Instructor> {
         Instructor instructor = new Instructor();
         instructor.setDni(rs.getString("dni"));
         instructor.setNombre(rs.getString("nombre"));
-        instructor.setAlias(rs.getString("alias"));
         instructor.setEmail(rs.getString("email"));
         instructor.setNumeroCuenta(rs.getString("numeroCuenta"));
-        instructor.setIdCertificado(rs.getInt("idCertificado"));
         instructor.setEstado(rs.getString("estado"));
     
         return instructor;

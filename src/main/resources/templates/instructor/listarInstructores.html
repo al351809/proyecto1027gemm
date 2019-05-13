@@ -4,18 +4,20 @@
    <title>Gestionar Acreditaciones</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
    <h1>Lista de Instructor</h1>
-   <table>
+    <div th:if="${#lists.isEmpty(instructor)}">
+         No hay instructores en la base de dades
+    </div>
+   <table th:unless="${#lists.isEmpty(instructor)}" class="table table-striped">
      <thead>
        <tr>
          <th>DNI</th>
          <th>Nombre</th>
-         <th>Alias</th>
          <th>Email</th>
          <th>Numero de cuenta</th>
-         <th>Certificado</th>
          <th>Estado</th>
        </tr>
      </thead>
@@ -23,19 +25,17 @@
        <tr th:each="instructor: ${instructor}"> 
          <td th:text="${instructor.dni}"></td> 
          <td th:text="${instructor.nombre}"></td>
-         <td th:text="${instructor.alias}"></td>
          <td th:text="${instructor.email}"></td> 
          <td th:text="${instructor.numeroCuenta}"></td>
-         <td th:text="${instructor.idCertificado}"></td>
          <td th:text="${instructor.estado}"></td> 
-         <td><a th:href="@{/instructor/update/{dni}(dni=${instructor.dni})}">Edita</a> 
+         <td><a th:href="@{/instructor/update/{dni}(dni=${instructor.dni})}" class="btn btn-warning" role="button">Edita</a> 
          </td>
-         <td><a th:href="@{/instructor/delete/{dni}(dni=${instructor.dni})}">Borrar</a>
+         <td><a th:href="@{/instructor/delete/{dni}(dni=${instructor.dni})}" class="btn btn-danger" role="button">Borrar</a>
          </td>
        </tr>
      </tbody>
    </table>
-   <a href="add">Agregar Instructor</a> 
-   <a href="/">volver al indice</a>
+   <a href="add" class="btn btn-primary" role="button">Agregar Instructor</a> 
+   <a href="/" class="btn btn-primary" role="button">volver al indice</a>
 </body>
 </html>

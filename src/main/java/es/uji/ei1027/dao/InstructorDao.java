@@ -6,6 +6,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -23,8 +24,8 @@ public class InstructorDao {
     }
 
     public void addInstructor(Instructor instructor) {
-        jdbcTemplate.update("INSERT INTO Instructor VALUES(?, ?, ?, ?, ?, ?, ?)",
-                instructor.getDni(), instructor.getNombre(), instructor.getAlias(), instructor.getEmail(), instructor.getNumeroCuenta(), instructor.getIdCertificado(), instructor.getEstado());
+        jdbcTemplate.update("INSERT INTO Instructor VALUES(?, ?, ?, ?, ?)",
+                instructor.getDni(), instructor.getNombre(), instructor.getEmail(), instructor.getNumeroCuenta(), instructor.getEstado());
     }
 
     public void deleteInstructor(Instructor instructor) {
@@ -37,14 +38,14 @@ public class InstructorDao {
 	}
 
     public void updateInstructor(Instructor instructor) {
-        jdbcTemplate.update("UPDATE Instructor SET  nombre=?, alias=?, email=?, numeroCuenta=?, idCertificado=?, estado=? WHERE dni=?",
-        		instructor.getNombre(), instructor.getAlias(), instructor.getEmail(), instructor.getNumeroCuenta(), instructor.getIdCertificado(), instructor.getEstado(), instructor.getDni());
+        jdbcTemplate.update("UPDATE Instructor SET  nombre=?, email=?, numeroCuenta=?, estado=? WHERE dni=?",
+        		instructor.getNombre(), instructor.getEmail(), instructor.getNumeroCuenta(), instructor.getEstado(), instructor.getDni());
     }
 
     public Instructor getInstructor(String dni) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * from Instructor WHERE dni=?",
-                    new InstructorRowMapper(), dni);
+				return jdbcTemplate.queryForObject("SELECT * from Instructor WHERE dni=?",
+				        new InstructorRowMapper(), dni);
         }
         catch(EmptyResultDataAccessException e) {
             return null;
@@ -60,4 +61,5 @@ public class InstructorDao {
             return new ArrayList<Instructor>();
         }
     }
+    
 }

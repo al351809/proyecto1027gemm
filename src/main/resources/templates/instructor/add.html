@@ -5,6 +5,7 @@
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+     <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
     <h2>Nuevo instructor </h2>
@@ -14,15 +15,11 @@
       <tr>
             <td><label>DNI</label></td>
             <td><input type="text" th:field="*{dni}" /></td> 
-            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></td>
+            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="error"></td>
         </tr>
         <tr>
             <td><label>Nombre</label></td>
             <td><input type="text" th:field="*{nombre}" /></td> 
-        </tr>
-        <tr>
-            <td><label>Alias</label></td>
-            <td><input type="text" th:field="*{alias}" /></td>
         </tr>
         <tr>
             <td><label>Email</label></td>
@@ -31,10 +28,6 @@
         <tr>
             <td><label>Numero de cuenta</label></td>
             <td><input type="text" th:field="*{numeroCuenta}" /></td> 
-        </tr>
-        <tr>
-            <td><label>Certificado</label></td>
-            <td><input type="text" th:field="*{idCertificado}" /></td> 
         </tr>
         <tr>
             <td><label>Estado</label></td>
