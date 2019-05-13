@@ -21,7 +21,15 @@ public class InstructorValidator implements Validator {
 		 
 		 if (instructor.getDni().trim().equals(""))
 		       errors.rejectValue("dni", "obligatorio",
-		                          "Hay que introducir un dni");			 
+		                          "Hay que introducir un dni");	
+		 
+		 if (instructor.getEmail().trim().equals(""))
+		       errors.rejectValue("email", "obligatorio",
+		                          "Hay que introducir un email");	
+		 
+		 if (instructor.getNumeroCuenta().trim().equals(""))
+		       errors.rejectValue("numeroCuenta", "obligatorio",
+		                          "Hay que introducir un numero de cuenta");	
 		 	   
 	   }
 	}
