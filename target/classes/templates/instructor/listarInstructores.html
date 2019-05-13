@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Gestionar Acreditaciones</title>
+   <title>Gestionar Instructores</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
    <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-   <h1>Lista de Instructor</h1>
+   <h1>Lista de Instructores</h1>
     <div th:if="${#lists.isEmpty(instructor)}">
          No hay instructores en la base de dades
     </div>
