@@ -15,13 +15,16 @@
             <td><label>Nom certificado</label></td>
             <td><input type="text" th:field="*{certificado}" /></td> 
         </tr>
+         <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{dni}" /></td> 
+        </tr>
         <tr>
             <td><label>Estado</label></td>
             <td><select class="form_control" type="text" th:field="*{estado}" >
-				<option value="abierta">Abierta</option>
-				<option value="cerrada">Cerrada</option>
-				<option value="completa">Completa</option>
-				<option value="cancelada">Cancelada</option>
+			<option value="pendiente">Pendiente</option>
+				<option value="aceptada">Aceptada</option>
+				<option value="rechazada">Rechazada</option></select>
 			</td>
         </tr>
         <tr>
