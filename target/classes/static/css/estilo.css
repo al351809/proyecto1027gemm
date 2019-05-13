@@ -27,3 +27,11 @@ h2 {
 	text-align: right;
 	margin-right: 10pt;
 }
+
+input[type=text]{
+	width: 200px;
+}
+
+select {
+	width:200px;
+}

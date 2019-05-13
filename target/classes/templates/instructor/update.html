@@ -8,7 +8,7 @@
      <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-    <h2>Nuevos datos del Instructor</h2>
+    <h2><b>Nuevos datos del Instructor</b></h2>
     <form action="#" th:action="@{/instructor/update/{dni}(dni=${instructor.dni})}" 
                      th:object="${instructor}" method="post"> 
       <table>
@@ -42,7 +42,7 @@
 			</td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Actualitza Instructor" /></td>
+            <td colspan="2" style="padding-top:10px"><input type="submit" value="Actualitza Instructor" class="btn btn-secondary btn-sm"/><a href="/instructor/listarInstructores" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atras</a></td>
         </tr>
       </table>
     </form>
