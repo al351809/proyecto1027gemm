@@ -4,6 +4,7 @@ package es.uji.ei1027.model;
 public class Actividad {
 
 	private String nombre;
+	private String dni;
 	private String descripcion;
 	private String duracion;
 	private String fecha;
@@ -12,7 +13,6 @@ public class Actividad {
 	private int maxPersonas;
 	private String lugar;
 	private String puntoEncuentro;
-	private String imagenes;
 	private String textoCliente;
 	private String tipo;
 	private String estado;
@@ -26,6 +26,16 @@ public class Actividad {
 		this.nombre = nombre;
 	}
 	
+	
+	
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -90,13 +100,6 @@ public class Actividad {
 		this.puntoEncuentro = puntoEncuentro;
 	}
 
-	public String getImagenes() {
-		return imagenes;
-	}
-
-	public void setImagenes(String imagenes) {
-		this.imagenes = imagenes;
-	}
 
 	public String getTextoCliente() {
 		return textoCliente;
@@ -124,11 +127,13 @@ public class Actividad {
 
 	@Override
 	public String toString() {
-		return "Actividad [nombre=" + nombre + ", descripcion=" + descripcion + ", duracion=" + duracion + ", fecha="
-				+ fecha + ", precio=" + precio + ", minPersonas=" + minPersonas + ", maxPersonas=" + maxPersonas
-				+ ", lugar=" + lugar + ", puntoEncuentro=" + puntoEncuentro + ", imagenes=" + imagenes
+		return "Actividad [nombre=" + nombre + ", dni=" + dni + ", descripcion=" + descripcion + ", duracion="
+				+ duracion + ", fecha=" + fecha + ", precio=" + precio + ", minPersonas=" + minPersonas
+				+ ", maxPersonas=" + maxPersonas + ", lugar=" + lugar + ", puntoEncuentro=" + puntoEncuentro
 				+ ", textoCliente=" + textoCliente + ", tipo=" + tipo + ", estado=" + estado + "]";
 	}
+
+	
 
 	
 }

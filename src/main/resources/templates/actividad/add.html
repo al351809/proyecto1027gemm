@@ -17,6 +17,11 @@
             <td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></td> 
         </tr>
         <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{dni}" /></td>
+            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></td> 
+        </tr>
+        <tr>
             <td><label>Descripcion</label></td>
             <td><input type="text" th:field="*{descripcion}" /></td> 
         </tr>
@@ -48,10 +53,7 @@
             <td><label>Punto Encuentro</label></td>
             <td><input type="text" th:field="*{puntoEncuentro}" /></td> 
         </tr>
-        <tr>
-            <td><label>Imagenes</label></td>
-            <td><input type="text" th:field="*{imagenes}" /></td> 
-        </tr>
+        
         <tr>
             <td><label>Texto Cliente</label></td>
             <td><input type="text" th:field="*{textoCliente}" /></td> 
@@ -66,11 +68,11 @@
         </tr>
         <tr>
             <td><label>Estado</label></td>
-            <td><select class="form_control" type="text" th:field="*{estado}" >
+            <td><select name="estados" class="form_control" type="text" th:field="*{estado}" >
 				<option value="abierta">Abierta</option>
-				<option value="cerrada">Cerrada</option>
 				<option value="completa">Completa</option>
 				<option value="cancelada">Cancelada</option>
+				</select>
 			</td> 
         </tr>
         <tr>

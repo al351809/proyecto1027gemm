@@ -13,6 +13,7 @@ public class ActividadRowMapper implements RowMapper<Actividad> {
     public Actividad mapRow(ResultSet rs, int rowNum) throws SQLException {
         Actividad actividad = new Actividad();
         actividad.setNombre(rs.getString("nombre"));
+        actividad.setDni(rs.getString("dni"));
         actividad.setDescripcion(rs.getString("descripcion"));
         actividad.setDuracion(rs.getString("duracion"));
         actividad.setFecha(rs.getString("fecha"));
@@ -21,7 +22,6 @@ public class ActividadRowMapper implements RowMapper<Actividad> {
         actividad.setMaxPersonas(rs.getInt("maxPersonas"));
         actividad.setLugar(rs.getString("lugar"));
         actividad.setPuntoEncuentro(rs.getString("puntoEncuentro"));
-        actividad.setImagenes(rs.getString("imagenes"));
         actividad.setTextoCliente(rs.getString("textoCliente"));
         actividad.setTipo(rs.getString("tipo"));
         actividad.setEstado(rs.getString("estado"));

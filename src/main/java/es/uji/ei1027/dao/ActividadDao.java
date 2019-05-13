@@ -31,9 +31,8 @@ public class ActividadDao {
     	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
     	java.util.Date date = sdf1.parse(actividad.getFecha());
     	java.sql.Date fecha = new java.sql.Date(date.getTime()); 
-    	
         jdbcTemplate.update("INSERT INTO Actividad VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), fecha, actividad.getPrecio(), actividad.getMinPersonas(), actividad.getMaxPersonas(), actividad.getLugar(),actividad.getPuntoEncuentro(), actividad.getImagenes(), actividad.getTextoCliente(), actividad.getTipo(), actividad.getEstado());
+                actividad.getNombre(),actividad.getDni(), actividad.getDescripcion(), actividad.getDuracion(), fecha, actividad.getPrecio(), actividad.getMinPersonas(), actividad.getMaxPersonas(), actividad.getLugar(),actividad.getPuntoEncuentro(), actividad.getTextoCliente(), actividad.getTipo(), actividad.getEstado());
     }
 
     public void deleteActividad(Actividad actividad) {
@@ -49,8 +48,8 @@ public class ActividadDao {
     	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
     	java.util.Date date = sdf1.parse(actividad.getFecha());
     	java.sql.Date fecha = new java.sql.Date(date.getTime()); 
-        jdbcTemplate.update("UPDATE Actividad SET nombre=?, descripcion=?, duracion=?, fecha=?, precio=?, minPersonas=?, maxPersonas=?, lugar=?, puntoEncuentro=?, imagenes=?, textoCliente=?, tipo=?, estado=? WHERE nombre=?",
-        		actividad.getNombre(), actividad.getDescripcion(), actividad.getDuracion(), fecha, actividad.getPrecio(), actividad.getMinPersonas(), actividad.getMaxPersonas(), actividad.getLugar(),actividad.getPuntoEncuentro(), actividad.getImagenes(), actividad.getTextoCliente(), actividad.getTipo(), actividad.getEstado(), actividad.getNombre());
+        jdbcTemplate.update("UPDATE Actividad SET nombre=?, dni=?, descripcion=?, duracion=?, fecha=?, precio=?, minPersonas=?, maxPersonas=?, lugar=?, puntoEncuentro=?, textoCliente=?, tipo=?, estado=? WHERE nombre=?",
+        		actividad.getNombre(),actividad.getDni(), actividad.getDescripcion(), actividad.getDuracion(), fecha, actividad.getPrecio(), actividad.getMinPersonas(), actividad.getMaxPersonas(), actividad.getLugar(),actividad.getPuntoEncuentro(), actividad.getTextoCliente(), actividad.getTipo(), actividad.getEstado(), actividad.getNombre());
     }
 
     public Actividad getActividad(String nombre) {

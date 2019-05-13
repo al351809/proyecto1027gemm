@@ -63,7 +63,7 @@ public class ActividadController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-	     return "redirect:listarActividades"; 
+	     return "redirect:../listarActividades"; 
 	}
 
 	
