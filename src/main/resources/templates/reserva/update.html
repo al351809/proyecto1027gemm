@@ -5,9 +5,10 @@
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+     <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-    <h2>Nuevos datos de la reserva</h2>
+    <h2><b>Nuevos datos de la reserva</b></h2>
     <form action="#" th:action="@{/reserva/update/{idReserva}(dni=${reserva.idReserva})}" 
                      th:object="${reserva}" method="post"> 
       <table>
@@ -30,17 +31,21 @@
         <tr>
             <td><label>fecha</label></td>
             <td><input type="text" th:field="*{fecha}" /></td> 
+            <td th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}" class="error"></td>
         </tr>
         <tr>
             <td><label>DNI del cliente</label></td>
-            <td><input type="text" th:field="*{dniCliente}" /></td> 
+            <td><input type="text" th:field="*{dniCliente}" /></td>
+            <td th:if="${#fields.hasErrors('dniCliente')}" th:errors="*{dniCliente}" class="error"></td> 
         </tr>
         <tr>
             <td><label>Nombre de la actividad</label></td>
             <td><input type="text" th:field="*{nombreActividad}" /></td> 
+            <td th:if="${#fields.hasErrors('nombreActividad')}" th:errors="*{nombreActividad}" class="error"></td> 
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Actualitzar la reserva" /></td>
+            <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Reserva" class="btn btn-secondary btn-sm" />
+            <a href="/reserva/listarReserva" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
         </tr>
       </table>
     </form>
