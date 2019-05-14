@@ -4,10 +4,14 @@
    <title>Mostrar Tipos de Actividades</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
    <h1>Lista de Tipos de Actividades</h1>
-   <table>
+   <div th:if="${#lists.isEmpty(tipoActividad)}">
+         No hay datos disponibles.
+    </div>
+   <table th:unless="${#lists.isEmpty(tipoActividad)}" class="table table-striped">
      <thead>
        <tr>
          <th>Nombre</th>
@@ -18,12 +22,12 @@
        <tr th:each="tipoActividad: ${tipoActividad}"> 
          <td th:text="${tipoActividad.nombre}"></td> 
          <td th:text="${tipoActividad.nivel}"></td>
-         <td><a th:href="@{/tipoActividad/delete/{nombre}(nombre=${tipoActividad.nombre})}">Borrar</a>
+         <td><a th:href="@{/tipoActividad/delete/{nombre}(nombre=${tipoActividad.nombre})}" class="btn btn-danger btn-sm" role="button">Borrar</a>
          </td>
        </tr>
      </tbody>
    </table>
-   <a href="add">Agregar</a> 
-   <a href="/">Volver al indice</a>
+   <a href="add" class="btn btn-primary" role="button">Agregar</a> 
+   <a href="/" class="btn btn-primary" role="button">Índice</a>
 </body>
 </html>

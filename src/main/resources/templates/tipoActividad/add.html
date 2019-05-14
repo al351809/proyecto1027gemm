@@ -7,18 +7,19 @@
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-    <h2>Nuevo Tipo de Actividad</h2>
+    <h2><b>Nuevo Tipo de Actividad</b></h2>
     <form action="#" th:action="@{/tipoActividad/add}" 
                      th:object="${tipoActividad}" method="post"> 
       <table>
       <tr>
             <td><label>Nombre</label></td>
             <td><input type="text" th:field="*{nombre}" /></td> 
-             <td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></td>
+             <td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error"></td>
         </tr>
         <tr>
             <td><label>Nivel</label></td>
             <td><input type="text" th:field="*{nivel}" /></td> 
+            <td th:if="${#fields.hasErrors('nivel')}" th:errors="*{nivel}" class="error"></td>
         </tr>
                 <tr>
             <td colspan="2"><input type="submit" value="Agregar tipoActividad" /></td>

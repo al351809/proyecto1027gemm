@@ -17,6 +17,8 @@ public class TipoActividadValidator implements Validator {
 	 if (Tipoactividad.getNombre().trim().equals(""))
 	       errors.rejectValue("nombre", "obligatorio",
 	                          "Hay que introducir un nombre");
+	 if (Tipoactividad.getNivel().trim().equals(""))
+		 errors.rejectValue("nivel", "obligatorio", "Hay que introducir un nivel");
 	 	   
    }
 }
