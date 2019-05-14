@@ -55,7 +55,7 @@ public class ActividadController {
 		ActividadValidator actividadValidator = new ActividadValidator(); 
 		actividadValidator.validate(actividad, bindingResult);
 		if (bindingResult.hasErrors()) 
-            return "acreditaciones/add";
+            return "actividad/add";
 		
 		//Esto es el control de la excepcion de la fecha que lanzamos desde la otra clase.
 	     try {

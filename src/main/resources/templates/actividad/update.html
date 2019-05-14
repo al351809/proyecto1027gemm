@@ -19,7 +19,7 @@
         <tr>
             <td><label>DNI</label></td>
             <td><input type="text" th:field="*{dni}" /></td>
-            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></td> 
+            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="error"></td> 
         </tr>
         <tr>
             <td><label>Descripcion</label></td>
@@ -32,22 +32,22 @@
          <tr>
             <td><label>Fecha</label></td>
             <td><input type="text" th:field="*{fecha}" /></td>
-            <td th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></td> 
+            <td th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}" class="error"></td> 
         </tr>
          <tr>
             <td><label>Precio</label></td>
             <td><input type="text" th:field="*{precio}" /></td>
-            <td th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></td> 
+            <td th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}" class="error"></td> 
         </tr>
          <tr>
             <td><label>Minimo de personas</label></td>
             <td><input type="text" th:field="*{minPersonas}" /></td>
-            <td th:if="${#fields.hasErrors('minPersonas')}" th:errors="*{minPersonas}"></td> 
+            <td th:if="${#fields.hasErrors('minPersonas')}" th:errors="*{minPersonas}" class="error"></td> 
         </tr>
          <tr>
             <td><label>Maximo de personas</label></td>
             <td><input type="text" th:field="*{maxPersonas}" /></td>
-            <td th:if="${#fields.hasErrors('maxPersonas')}" th:errors="*{maxPersonas}"></td>  
+            <td th:if="${#fields.hasErrors('maxPersonas')}" th:errors="*{maxPersonas}" class="error"></td>  
         </tr>
          <tr>
             <td><label>Lugar</label></td>
@@ -79,7 +79,7 @@
         </tr>
         <tr>
         <tr>
-            <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Actividad" class="btn btn-secondary btn-sm" />
+            <td colspan="2" style="padding-top:10px"><input type="submit" value="Actualizar Actividad" class="btn btn-secondary btn-sm" />
             <a href="/actividad/listarActividades" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
         </tr>
       </table>

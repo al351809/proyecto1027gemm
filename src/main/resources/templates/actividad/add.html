@@ -15,12 +15,12 @@
       <tr>
             <td><label>Nombre</label></td>
             <td><input type="text" th:field="*{nombre}" /></td>
-            <td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></td> 
+            <td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error"></td> 
         </tr>
         <tr>
             <td><label>DNI</label></td>
             <td><input type="text" th:field="*{dni}" /></td>
-            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></td> 
+            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="error"></td> 
         </tr>
         <tr>
             <td><label>Descripcion</label></td>
@@ -33,22 +33,22 @@
         <tr>
             <td><label>Fecha</label></td>
             <td><input type="date" th:field="*{fecha}" /></td>
-            <td th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></td> 
+            <td th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}" class="error"></td> 
         </tr>
         <tr>
             <td><label>Precio</label></td>
             <td><input type="text" th:field="*{precio}" /></td> 
-            <td th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></td> 
+            <td th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}" class="error"></td> 
         </tr>
         <tr>
             <td><label>Min.Personas</label></td>
             <td><input type="text" th:field="*{minPersonas}" /></td>
-            <td th:if="${#fields.hasErrors('minPersonas')}" th:errors="*{minPersonas}"></td>  
+            <td th:if="${#fields.hasErrors('minPersonas')}" th:errors="*{minPersonas}" class="error"></td>  
         </tr>
         <tr>
             <td><label>Max.Personas</label></td>
             <td><input type="text" th:field="*{maxPersonas}" /></td>
-            <td th:if="${#fields.hasErrors('maxPersonas')}" th:errors="*{maxPersonas}"></td>  
+            <td th:if="${#fields.hasErrors('maxPersonas')}" th:errors="*{maxPersonas}" class="error"></td>  
         </tr>
         <tr>
             <td><label>Lugar</label></td>
