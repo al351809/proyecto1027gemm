@@ -25,7 +25,7 @@ public class ClienteTipoDao {
 
     public void addClienteTipo(ClienteTipo clienteTipo) {
         jdbcTemplate.update("INSERT INTO ClienteTipo VALUES(?, ?)",
-                Integer.parseInt(clienteTipo.getDni()), clienteTipo.getNombreActividad());
+                clienteTipo.getDni(), clienteTipo.getNombreActividad());
     }
 
     public void deleteClienteTipo(ClienteTipo clienteTipo) {

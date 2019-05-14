@@ -15,8 +15,11 @@ public class ClienteTipoValidator implements Validator {
 	  public void validate(Object obj, Errors errors) {
 		 ClienteTipo clientetipo = (ClienteTipo)obj;
 		 if (clientetipo.getDni().trim().equals(""))
-		       errors.rejectValue("DNI", "obligatorio",
+		       errors.rejectValue("dni", "obligatorio",
 		                          "Hay que introducir un dni");
+		 
+		 if (clientetipo.getNombreActividad().trim().equals(""))
+			 errors.rejectValue("nombreActividad", "obligatorio", "Hay que introducir un nombre");
 		 	   
 	   }
 	}

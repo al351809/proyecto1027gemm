@@ -8,7 +8,7 @@
      <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-    <h2>Nuevos datos del cliente</h2>
+    <h2><b>Nuevos datos del cliente</b></h2>
     <form action="#" th:action="@{/cliente/update/{dni}(dni=${cliente.dni})}" 
                      th:object="${cliente}" method="post"> 
             <table>

@@ -54,6 +54,8 @@ public class ClienteTipoController {
     public String processUpdateSubmit(@PathVariable String dni, 
                             @ModelAttribute("clienteTipo") ClienteTipo clienteTipo, 
                             BindingResult bindingResult) {
+	 ClienteTipoValidator clientetipoValidator = new ClienteTipoValidator(); 
+		clientetipoValidator.validate(clienteTipo, bindingResult);
          if (bindingResult.hasErrors()) 
              return "clienteTipo/update";
          clienteTipodao.updateClienteTipo(clienteTipo);
