@@ -12,15 +12,15 @@
 
 </head>
 <body>
-<div layout:fragment="content">
+<div >
 	<h2>Acceso</h2>
 	<form action="#" th:action="@{/login}" 
 	      th:object="${user}" method="post">
-		  <p>
-		   	<label>Nombre de usuario:</label>
+		<p>
+		   		<label>Nombre de usuario:</label>
             <input class="form_control" type="text" th:field="*{usuario}"/>
             <div class="error" th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"></div>
-		  </p>
+		</p>
 		<p>
 		   	<label>Contraseña:</label>
             <input class="form_control" type="password" th:field="*{contraseña}"/>

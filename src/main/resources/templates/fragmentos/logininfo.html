@@ -1,5 +1,6 @@
+
 <div class="loggeduser" th:object="${session}"> 
-    <p th:if="*{user == null}"> ②
+    <p th:if="*{user == null}"> 
 	  No autenticado <a href="/login" th:href="@{/login}">Entrar</a> 
     </p>
     <p th:unless="*{user == null}">

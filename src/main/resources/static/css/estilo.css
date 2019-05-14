@@ -7,13 +7,13 @@ body {
 
 h1 {
    font-size: x-large; 
-   color: #000000;
+   color: orange;
 }
 
 
 h2 {
    font-size: large; 
-   color: black;
+   color: blue;
 }
 
 
@@ -22,9 +22,21 @@ h2 {
      font-size:80%
 }
 
+.needcorrection {
+     color: red;
+     background-color:yellow;
+}
+
 .loggeduser { 
 	color: gray;				
 	text-align: right;
+	margin-right: 10pt;
+}
+
+
+.nav { 
+    color: black;                
+    text-align: left;
 	margin-right: 10pt;
 }
 
