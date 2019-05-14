@@ -1,5 +1,7 @@
 package es.uji.ei1027.dao;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,28 +24,34 @@ public class ReservaDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public void addReserva(Reserva reserva) {
-        jdbcTemplate.update("INSERT INTO Reserva VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
-                reserva.getIdReserva(), reserva.getEstadoPago(), reserva.getNumTransaccion(), reserva.getNumAsistentes(), reserva.getPrecioPersona(), reserva.getFecha(), reserva.getDniCliente(), reserva.getNombreActividad());
+    public void addReserva(Reserva reserva) throws ParseException {
+    	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+    	java.util.Date date = sdf1.parse(reserva.getFecha());
+    	java.sql.Date fecha = new java.sql.Date(date.getTime()); 
+        jdbcTemplate.update("INSERT INTO Reserva VALUES(NEXTVAL('reserva_idreserva_seq'), ?, ?, ?, ?, ?, ?, ?)",
+                reserva.getEstadoPago(), reserva.getNumTransaccion(), reserva.getNumAsistentes(), reserva.getPrecioPersona(), fecha, reserva.getDniCliente(), reserva.getNombreActividad());
     }
 
     public void deleteReserva(Reserva reserva) {
-        jdbcTemplate.update("DELETE from Reserva where idReserva=?", reserva.getIdReserva());
+        jdbcTemplate.update("DELETE from Reserva where idreserva=?", reserva.getIdReserva());
     }
     
     public void deleteReserva(int idReserva) {
-		jdbcTemplate.update("DELETE from Reserva where idReserva=?", idReserva);
+		jdbcTemplate.update("DELETE from Reserva where idreserva=?", idReserva);
 		
 	}
 
-    public void updateReserva(Reserva reserva) {
-        jdbcTemplate.update("UPDATE Reserva SET  estadoPago=?, numTransaccion=?, numAsistentes=?, precioPersona=?, fecha=?, dniCliente=?, nombreActividad=? WHERE idReserva=?",
-        		reserva.getEstadoPago(), reserva.getNumTransaccion(), reserva.getNumAsistentes(), reserva.getPrecioPersona(), reserva.getFecha(), reserva.getDniCliente(), reserva.getNombreActividad(), reserva.getIdReserva());
+    public void updateReserva(Reserva reserva) throws ParseException {
+    	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+    	java.util.Date date = sdf1.parse(reserva.getFecha());
+    	java.sql.Date fecha = new java.sql.Date(date.getTime()); 
+        jdbcTemplate.update("UPDATE Reserva SET  estadoPago=?, numTransaccion=?, numAsistentes=?, precioPersona=?, fecha=?, dniCliente=?, nombreActividad=? WHERE idreserva=?",
+        		reserva.getEstadoPago(), reserva.getNumTransaccion(), reserva.getNumAsistentes(), reserva.getPrecioPersona(), fecha, reserva.getDniCliente(), reserva.getNombreActividad(), reserva.getIdReserva());
     }
 
     public Reserva getReserva(int idReserva) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * from Reserva WHERE idReserva=?",
+            return jdbcTemplate.queryForObject("SELECT * from Reserva WHERE idreserva=?",
                     new ReservaRowMapper(), idReserva);
         }
         catch(EmptyResultDataAccessException e) {

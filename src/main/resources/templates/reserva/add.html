@@ -12,14 +12,12 @@
     <form action="#" th:action="@{/reserva/add}" 
                      th:object="${reserva}" method="post"> 
       <table>
-      <tr>
-            <td><label>ID Reserva</label></td>
-            <td><input type="text" th:field="*{idReserva}" /></td> 
-            <td th:if="${#fields.hasErrors('id reserva')}" th:errors="*{idReserva}" class="error"></td>
-        </tr>
         <tr>
             <td><label>Estado de pago</label></td>
-            <td><input type="text" th:field="*{estadoPago}" /></td> 
+            <td><select class="form_control" type="text" th:field="*{estadoPago}" >
+				<option value="pendiente">Pendiente</option>
+				<option value="pagado">Pagado</option>
+				</select></td> 
         </tr>
         <tr>
             <td><label>Numero de transaccion</label></td>
@@ -34,8 +32,8 @@
             <td><input type="text" th:field="*{precioPersona}" /></td> 
         </tr>
         <tr>
-            <td><label>fecha</label></td>
-            <td><input type="text" th:field="*{fecha}" /></td> 
+            <td><label>Fecha</label></td>
+            <td><input type="date" th:field="*{fecha}" /></td> 
             <td th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}" class="error"></td>
         </tr>
         <tr>

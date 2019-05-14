@@ -9,12 +9,15 @@
 </head>
 <body>
     <h2><b>Nuevos datos de la reserva</b></h2>
-    <form action="#" th:action="@{/reserva/update/{idReserva}(dni=${reserva.idReserva})}" 
+    <form action="#" th:action="@{/reserva/update/{idReserva}(idReserva=${reserva.idReserva})}" 
                      th:object="${reserva}" method="post"> 
       <table>
 		 <tr>
             <td><label>Estado de pago</label></td>
-            <td><input type="text" th:field="*{estadoPago}" /></td> 
+            <td><select class="form_control" type="text" th:field="*{estadoPago}" >
+				<option value="pendiente">Pendiente</option>
+				<option value="pagado">Pagado</option>
+				</select></td> 
         </tr>
         <tr>
             <td><label>Numero de transaccion</label></td>
@@ -30,7 +33,7 @@
         </tr>
         <tr>
             <td><label>fecha</label></td>
-            <td><input type="text" th:field="*{fecha}" /></td> 
+            <td><input type="date" th:field="*{fecha}" /></td> 
             <td th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}" class="error"></td>
         </tr>
         <tr>

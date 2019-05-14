@@ -4,9 +4,9 @@ public class Reserva {
 
 	private int idReserva;
 	private String estadoPago;
-	private String numTransaccion;
-	private String numAsistentes;
-	private String precioPersona;
+	private int numTransaccion;
+	private int numAsistentes;
+	private int precioPersona;
 	private String fecha;
 	private String dniCliente;
 	private String nombreActividad;
@@ -23,22 +23,22 @@ public class Reserva {
 	public void setEstadoPago(String estadoPago) {
 		this.estadoPago = estadoPago;
 	}
-	public String getNumTransaccion() {
+	public int getNumTransaccion() {
 		return numTransaccion;
 	}
-	public void setNumTransaccion(String numTransaccion) {
+	public void setNumTransaccion(int numTransaccion) {
 		this.numTransaccion = numTransaccion;
 	}
-	public String getNumAsistentes() {
+	public int getNumAsistentes() {
 		return numAsistentes;
 	}
-	public void setNumAsistentes(String numAsistentes) {
+	public void setNumAsistentes(int numAsistentes) {
 		this.numAsistentes = numAsistentes;
 	}
-	public String getPrecioPersona() {
+	public int getPrecioPersona() {
 		return precioPersona;
 	}
-	public void setPrecioPersona(String precioPersona) {
+	public void setPrecioPersona(int precioPersona) {
 		this.precioPersona = precioPersona;
 	}
 	public String getFecha() {

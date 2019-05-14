@@ -13,7 +13,7 @@
                      th:object="${acreditacion}" method="post"> 
       <table>
         <tr>
-            <td><label>Nom certificado</label></td>
+            <td><label>Nombre certificado</label></td>
             <td><input type="text" th:field="*{certificado}" /></td> 
             <td th:if="${#fields.hasErrors('certificado')}" th:errors="*{certificado}" class="error"></td>
         </tr>

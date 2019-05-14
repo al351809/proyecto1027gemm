@@ -1,5 +1,7 @@
 package es.uji.ei1027.controller;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +40,11 @@ public class ReservaController {
 	public String processAddSubmit(@ModelAttribute("reserva") Reserva reserva, BindingResult bindingResult) {  
      if (bindingResult.hasErrors()) 
             return "reserva/add";
-     reservadao.addReserva(reserva);
+     try {
+		reservadao.addReserva(reserva);
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
      return "redirect:listarReservas"; 
 	}
 	
@@ -54,7 +60,11 @@ public class ReservaController {
                             BindingResult bindingResult) {
          if (bindingResult.hasErrors()) 
              return "reserva/update";
-         reservadao.updateReserva(reserva);
+         try {
+			reservadao.updateReserva(reserva);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
          return "redirect:../listarReservas"; 
     }
 	
