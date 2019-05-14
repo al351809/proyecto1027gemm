@@ -4,10 +4,14 @@
    <title>Gestionar Actividades</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
    <h1>Lista de Actividades</h1>
-   <table>
+   <div th:if="${#lists.isEmpty(actividad)}">
+         No hay actividades en la base de dades
+    </div>
+   <table  th:unless="${#lists.isEmpty(actividad)}" class="table table-striped">
      <thead>
        <tr>
          <th>Nombre</th>
@@ -40,14 +44,14 @@
          <td th:text="${actividad.textoCliente}"></td>
          <td th:text="${actividad.tipo}"></td>
          <td th:text="${actividad.estado}"></td>
-         <td><a th:href="@{/actividad/update/{nombre}(nombre=${actividad.nombre})}">Edita</a> 
+         <td><a th:href="@{/actividad/update/{nombre}(nombre=${actividad.nombre})}" class="btn btn-warning btn-sm" role="button">Edita</a> 
          </td>
-         <td><a th:href="@{/actividad/delete/{nombre}(nombre=${actividad.nombre})}">Borrar</a>
+         <td><a th:href="@{/actividad/delete/{nombre}(nombre=${actividad.nombre})}" class="btn btn-danger btn-sm" role="button">Borrar</a>
          </td>
        </tr>
      </tbody>
    </table>
-   <a href="add">Agregar Actividad</a> 
-   <a href="/">Volver al indice</a>
+   <a href="add" class="btn btn-primary" role="button">Agregar Actividad</a> 
+   <a href="/" class="btn btn-primary" role="button">Volver al indice</a>
 </body>
 </html>

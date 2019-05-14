@@ -5,9 +5,10 @@
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+     <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-    <h2>Nueva Actividad</h2>
+    <h2><b>Nueva Actividad</b></h2>
     <form action="#" th:action="@{/actividad/add}" 
                      th:object="${actividad}" method="post"> 
       <table>
@@ -31,19 +32,23 @@
         </tr>
         <tr>
             <td><label>Fecha</label></td>
-            <td><input type="date" th:field="*{fecha}" /></td> 
+            <td><input type="date" th:field="*{fecha}" /></td>
+            <td th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></td> 
         </tr>
         <tr>
             <td><label>Precio</label></td>
             <td><input type="text" th:field="*{precio}" /></td> 
+            <td th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></td> 
         </tr>
         <tr>
             <td><label>Min.Personas</label></td>
-            <td><input type="text" th:field="*{minPersonas}" /></td> 
+            <td><input type="text" th:field="*{minPersonas}" /></td>
+            <td th:if="${#fields.hasErrors('minPersonas')}" th:errors="*{minPersonas}"></td>  
         </tr>
         <tr>
             <td><label>Max.Personas</label></td>
-            <td><input type="text" th:field="*{maxPersonas}" /></td> 
+            <td><input type="text" th:field="*{maxPersonas}" /></td>
+            <td th:if="${#fields.hasErrors('maxPersonas')}" th:errors="*{maxPersonas}"></td>  
         </tr>
         <tr>
             <td><label>Lugar</label></td>
@@ -76,7 +81,8 @@
 			</td> 
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Agregar acreditacion" /></td>
+             <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Actividad" class="btn btn-secondary btn-sm" />
+            <a href="/actividad/listarActividades" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
         </tr>
       </table>
     </form>

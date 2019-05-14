@@ -78,6 +78,8 @@ public class ActividadController {
     public String processUpdateSubmit(@PathVariable String nombre, 
                             @ModelAttribute("actividad") Actividad actividad, 
                             BindingResult bindingResult) {
+		ActividadValidator actividadValidator = new ActividadValidator(); 
+		actividadValidator.validate(actividad, bindingResult);
          if (bindingResult.hasErrors()) 
              return "actividad/update";
          try {

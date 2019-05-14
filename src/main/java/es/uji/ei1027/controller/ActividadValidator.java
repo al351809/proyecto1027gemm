@@ -18,7 +18,21 @@ package es.uji.ei1027.controller;
 		 if (actividad.getNombre().trim().equals(""))
 		       errors.rejectValue("nombre", "obligatorio",
 		                          "Hay que introducir un nombre");
-		 	   
+		 
+		 if(actividad.getDni().trim().equals(""))
+			 errors.rejectValue("dni", "obligatorio", "Hay que introducir un dni");
+		 
+		 if(actividad.getFecha().trim().equals(""))
+			 errors.rejectValue("fecha", "obligatorio","Introduce una fecha válida");
+		 
+		 if(actividad.getPrecio().trim().equals(""))
+			 errors.rejectValue("precio", "obligatorio", "Introduce un precio");
+		 
+		 if(actividad.getMinPersonas()<=0)
+			 errors.rejectValue("minPersonas", "obligatorio", "Introduce un número");
+		 
+		 if(actividad.getMaxPersonas()<=0)
+			 errors.rejectValue("maxPersonas", "obligatorio", "Introduce un número");
 	   }
 	}
 
