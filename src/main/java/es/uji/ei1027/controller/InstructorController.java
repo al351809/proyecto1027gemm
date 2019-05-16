@@ -1,5 +1,7 @@
 package es.uji.ei1027.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.dao.InstructorDao;
+import es.uji.ei1027.model.DetallesUsuario;
 import es.uji.ei1027.model.Instructor;
 
 @Controller	
@@ -24,7 +27,13 @@ public class InstructorController {
 	   }
 	
 	@RequestMapping("/listarInstructores")
-	public String pruevaUnInstructor(Model model) {
+	public String pruevaUnInstructor(HttpSession session, Model model) {
+		if (session.getAttribute("user") == null){ 
+	          model.addAttribute("user", new DetallesUsuario()); 
+	          session.setAttribute("nextUrl", "instructor/listarInstructores");
+	          return "login";
+	       }
+		
 	   model.addAttribute("instructor", instructordao.getInstructor());
 	   return "instructor/listarInstructores"; 
 	}

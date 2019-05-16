@@ -3,31 +3,37 @@
      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
      layout:decorate="~{fragmentos/base}">
 <head>
-<link rel="stylesheet" type="text/css"  
-      href="/css/estilo.css" 
-      th:href="@{/css/estilo.css}"/>
+<link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 <title>Login</title>
 <meta charset="UTF-8"/>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-
 </head>
 <body>
-<div layout:fragment="content">
-	<h2>Acceso</h2>
+
+<div class="containerlogTitle">
+    <h1 class="titlelog">TooPots</h1>
+</div>
+
+<div layout:fragment="content" class="wrapper">
+  <div id="formContent">
+	
+	<div>
+      <h2 class="subLog">Login in</h2>
+    </div>
+	
 	<form action="#" th:action="@{/login}" 
 	      th:object="${user}" method="post">
 		<p>
-		   		<label>Nombre de usuario:</label>
-            <input class="form_control" type="text" th:field="*{usuario}"/>
+            <input type="text" th:field="*{usuario}" id="login" class="login" name="login" placeholder="Login"/>
             <div class="error" th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"></div>
 		</p>
 		<p>
-		   	<label>Contraseña:</label>
-            <input class="form_control" type="password" th:field="*{contraseña}"/>
+            <input type="password" th:field="*{contraseña}" id="password" class="login" name="login" placeholder="Password"/>
             <div class="error" th:if="${#fields.hasErrors('contraseña')}" th:errors="*{contraseña}"></div>
 		</p>		
-		<input type="submit" value="Acceder" />
+		<input type="submit" value="Acceder" class="logButton" />
 	</form>
+ </div>
 </div>
 </body>
 </html>
