@@ -20,9 +20,6 @@ public class UsuarioDao {
 	  }
 
 	  public void addUsuario(DetallesUsuario usuario) {
-		  System.out.println(usuario.getUsuario());
-	    	System.out.println(usuario.getPassword());
-	    	System.out.println(usuario.getRol());
 	      jdbcTemplate.update("INSERT INTO usuario VALUES(?, ?, ?)",
 	              usuario.getUsuario(), usuario.getRol(), usuario.getPassword());
 	  }
