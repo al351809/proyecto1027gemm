@@ -23,8 +23,8 @@ public class InstructorDao {
     }
 
     public void addInstructor(Instructor instructor) {
-        jdbcTemplate.update("INSERT INTO Instructor VALUES(?, ?, ?, ?, ?)",
-                instructor.getDni(), instructor.getNombre(), instructor.getEmail(), instructor.getNumeroCuenta(), instructor.getEstado());
+        jdbcTemplate.update("INSERT INTO Instructor VALUES(?, ?, ?, ?, ?, ?)",
+                instructor.getDni(), instructor.getAlias(), instructor.getNombre(), instructor.getEmail(), instructor.getNumeroCuenta(), instructor.getEstado());
     }
 
     public void deleteInstructor(Instructor instructor) {

@@ -54,12 +54,16 @@ public class InstructorController {
     }
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST) 
-	public String processAddSubmit(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult) { 
+	public String processAddSubmit(@ModelAttribute("instructor") Instructor instructor, @ModelAttribute("usuario") DetallesUsuario usuario, BindingResult bindingResult) { 
 	InstructorValidator instructorValidator = new InstructorValidator(); 
 	instructorValidator.validate(instructor, bindingResult);
      if (bindingResult.hasErrors()) 
             return "instructor/add";
      try {
+    	usuario.setRol("instructor");
+    	
+    	usuariodao.addUsuario(usuario);
+    	instructor.setAlias(usuario.getUsuario());
 		instructordao.addInstructor(instructor);
 	} catch (DuplicateKeyException e) {
 		bindingResult.rejectValue("dni", "obligatorio","El dni ya existe");

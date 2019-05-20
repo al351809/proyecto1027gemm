@@ -16,7 +16,7 @@
        <div style="width:400px; float:left;" th:object="${usuario}">         
 	       <table>
 	      <tr>
-	            <td><label>Alias</label></td>
+	            <td><label>Usuario</label></td>
 	            <td><input type="text" th:field="*{usuario}" /></td> 
 	            <td th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}" class="error"></td>
 	        </tr>
