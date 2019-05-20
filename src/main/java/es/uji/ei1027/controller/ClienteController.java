@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.dao.ClienteDao;
 import es.uji.ei1027.model.Cliente;
+import es.uji.ei1027.model.DetallesUsuario;
 
 @Controller	
 @RequestMapping("/cliente")
@@ -34,13 +35,16 @@ public class ClienteController {
 	@RequestMapping(value="/add") 
     public String addCliente(Model model) {
         model.addAttribute("cliente", new Cliente());
+        model.addAttribute("usuario", new DetallesUsuario());
         return "cliente/add";
     }
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST) 
-	public String processAddSubmit(@ModelAttribute("cliente") Cliente cliente, BindingResult bindingResult) {  
+	public String processAddSubmit(@ModelAttribute("cliente") Cliente cliente, @ModelAttribute("usuario") DetallesUsuario usuario, BindingResult bindingResult) {  
 	ClienteValidator clienteValidator = new ClienteValidator(); 
+	UsuarioValidator usuarioValidator = new UsuarioValidator();
 	clienteValidator.validate(cliente, bindingResult);
+	usuarioValidator.validate(usuario, bindingResult);
      if (bindingResult.hasErrors()) 
             return "cliente/add";
      try {
