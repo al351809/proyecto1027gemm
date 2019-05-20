@@ -20,7 +20,7 @@ public class UsuarioDao {
 
 	  public void addUsuario(DetallesUsuario usuario) {
 	      jdbcTemplate.update("INSERT INTO Usuario VALUES(?, ?, ?)",
-	              usuario.getUsuario(), usuario.getContraseña(), usuario.getRol());
+	              usuario.getUsuario(), usuario.getPassword(), usuario.getRol());
 	  }
 
 	  public void deleteUsuario(DetallesUsuario usuario) {
@@ -33,7 +33,7 @@ public class UsuarioDao {
 	  
 	  public void updateUsuario(DetallesUsuario usuario) {
 	      jdbcTemplate.update("UPDATE Usuario SET  contrasenya=?, alias=? WHERE Usuario=?",
-	    		  usuario.getUsuario(), usuario.getContraseña(), usuario.getRol());
+	    		  usuario.getUsuario(), usuario.getPassword(), usuario.getRol());
 	  }
 	    public DetallesUsuario getUsuario(String usuario) {
 	        try {

@@ -31,8 +31,8 @@ class UserValidator implements Validator {
 		  errors.rejectValue("Usuario", "obligatorio",
                   "Hay que introducir un nombre usuario");
 	  }
-	  if(detallesUsuario.getContraseña().isEmpty()) {
-		  errors.rejectValue("Contraseña", "obligatorio",
+	  if(detallesUsuario.getPassword().isEmpty()) {
+		  errors.rejectValue("Password", "obligatorio",
                   "Hay que introducir una contraseña");
 	  }
 	}
@@ -59,7 +59,7 @@ public class LoginController {
 		}
 	       // Comprova que el login siga correcte 
 		// intentant carregar les dades de l'usuari 
-		if (user.getContraseña() == null) {
+		if (user.getPassword() == null) {
 			bindingResult.rejectValue("contraseña", "badpw", "Contraseña incorrecta"); 
 			return "login";
 		}

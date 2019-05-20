@@ -8,11 +8,12 @@
      <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-    <h2><b>Registrarse como instructor</b></h2>    
+    <h2 class="titlelog"><b>Registrarse como instructor</b></h2>    
     <form action="#" th:action="@{/instructor/add}" 
                      th:object="${instructor}" method="post">
-            
-       <div th:object="${usuario}">         
+                     
+      <div style="width:800px; padding-top:50px;">     
+       <div style="width:400px; float:left;" th:object="${usuario}">         
 	       <table>
 	      <tr>
 	            <td><label>Alias</label></td>
@@ -24,45 +25,43 @@
 	            <td><input type="password" th:field="*{password}" /></td>
 	            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td> 
 	        </tr>
-	        <tr>
-	            <td><label>Confirmar password</label></td>
-	            <td><input type="password"  /></td>
-	            <td th:if="${#fields.hasErrors('confirm')}" th:errors="*{confirm}" class="error"></td>
-	        </tr>
 	       </table>
 	    </div>
-      <table>
-      <tr>
-            <td><label>DNI</label></td>
-            <td><input type="text" th:field="*{dni}" /></td> 
-            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Nombre</label></td>
-            <td><input type="text" th:field="*{nombre}" /></td> 
-        </tr>
-        <tr>
-            <td><label>Email</label></td>
-            <td><input type="text" th:field="*{email}" /></td>
-            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Numero de cuenta</label></td>
-            <td><input type="text" th:field="*{numeroCuenta}" /></td> 
-            <td th:if="${#fields.hasErrors('numeroCuenta')}" th:errors="*{numeroCuenta}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Estado</label></td>
-            <td><select class="form_control" type="text" th:field="*{estado}" >
-				<option value="pendiente">Pendiente</option>
-				<option value="aceptada">Aceptada</option>
-				<option value="rechazada">Rechazada</option></select>
-			</td>
-        </tr>
-        <tr>
-            <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Instructor" class="btn btn-secondary btn-sm" /><a href="/instructor/listarInstructores" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
-        </tr>
-      </table>
+	    <div style="width:400px; float:right;">
+	      <table>
+	      <tr>
+	            <td><label>DNI</label></td>
+	            <td><input type="text" th:field="*{dni}" /></td> 
+	            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="error"></td>
+	        </tr>
+	        <tr>
+	            <td><label>Nombre</label></td>
+	            <td><input type="text" th:field="*{nombre}" /></td> 
+	        </tr>
+	        <tr>
+	            <td><label>Email</label></td>
+	            <td><input type="text" th:field="*{email}" /></td>
+	            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
+	        </tr>
+	        <tr>
+	            <td><label>Numero de cuenta</label></td>
+	            <td><input type="text" th:field="*{numeroCuenta}" /></td> 
+	            <td th:if="${#fields.hasErrors('numeroCuenta')}" th:errors="*{numeroCuenta}" class="error"></td>
+	        </tr>
+	        <tr>
+	            <td><label>Estado</label></td>
+	            <td><select class="form_control" type="text" th:field="*{estado}" >
+					<option value="pendiente">Pendiente</option>
+					<option value="aceptada">Aceptada</option>
+					<option value="rechazada">Rechazada</option></select>
+				</td>
+	        </tr>
+	        <tr>
+	            <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Instructor" class="btn btn-secondary btn-sm" /><a href="/instructor/listarInstructores" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
+	        </tr>
+	      </table>
+	      </div>
+	   </div>
     </form>
 </body>
 </html>

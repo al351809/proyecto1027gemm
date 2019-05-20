@@ -12,7 +12,7 @@ public class UsuarioRowMapper implements RowMapper<DetallesUsuario> {
     public DetallesUsuario mapRow(ResultSet rs, int rowNum) throws SQLException {
     	DetallesUsuario usuario = new DetallesUsuario();
         usuario.setUsuario(rs.getString("Usuario"));
-        usuario.setContraseña(rs.getString("Contraseña"));
+        usuario.setPassword(rs.getString("Password"));
         usuario.setRol(rs.getString("Rol"));
         
     

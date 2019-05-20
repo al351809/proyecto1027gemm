@@ -40,7 +40,7 @@ h2 {
 	margin-right: 10pt;
 }
 
-input[type=text], input[type=date]{
+input[type=text], input[type=date], input[type=password]{
 	width: 200px;
 }
 

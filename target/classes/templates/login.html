@@ -28,8 +28,8 @@
             <div class="error" th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"></div>
 		</p>
 		<p>
-            <input type="password" th:field="*{contraseña}" id="password" class="login" name="login" placeholder="Password"/>
-            <div class="error" th:if="${#fields.hasErrors('contraseña')}" th:errors="*{contraseña}"></div>
+            <input type="password" th:field="*{password}" id="password" class="login" name="login" placeholder="Password"/>
+            <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 		</p>		
 		<input type="submit" value="Acceder" class="logButton" />
 	</form>
