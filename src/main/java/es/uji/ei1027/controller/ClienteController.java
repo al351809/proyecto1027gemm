@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.dao.ClienteDao;
+import es.uji.ei1027.dao.UsuarioDao;
 import es.uji.ei1027.model.Cliente;
 import es.uji.ei1027.model.DetallesUsuario;
 
@@ -21,10 +22,15 @@ import es.uji.ei1027.model.DetallesUsuario;
 public class ClienteController {
 	
 	private ClienteDao clientedao;
+	private UsuarioDao usuariodao;
 	@Autowired 
 	public void setClienteDao(ClienteDao clienteDao) { 
 	       this.clientedao=clienteDao;
 	   }
+	@Autowired
+	public void setUsuarioDao(UsuarioDao usuarioDao) {
+		this.usuariodao = usuarioDao;
+	}
 	
 	@RequestMapping("/listarClientes")
 	public String pruevaUnCliente(Model model) {
@@ -49,6 +55,9 @@ public class ClienteController {
             return "cliente/add";
      try {
 		try {
+			usuario.setRol("cliente");
+			usuariodao.addUsuario(usuario);
+			cliente.setAlias(usuario.getUsuario());
 			clientedao.addCliente(cliente);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

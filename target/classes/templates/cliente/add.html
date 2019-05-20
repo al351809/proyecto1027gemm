@@ -11,6 +11,24 @@
     <h2><b>Nuevo cliente</b> </h2>
     <form action="#" th:action="@{/cliente/add}" 
                      th:object="${cliente}" method="post"> 
+                     
+      <div style="width:800px; padding-top:50px;">     
+       <div style="width:400px; float:left;" th:object="${usuario}">         
+	       <table>
+	      <tr>
+	            <td><label>Usuario</label></td>
+	            <td><input type="text" th:field="*{usuario}" /></td> 
+	            <td th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}" class="error"></td>
+	        </tr>
+	        <tr>
+	            <td><label>Password</label></td>
+	            <td><input type="password" th:field="*{password}" /></td>
+	            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td> 
+	        </tr>
+	       </table>
+	    </div>
+	    <div style="width:400px; float:right;">               
+                     
       <table>
       <tr>
             <td><label>DNI</label></td>
@@ -39,6 +57,7 @@
             <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Cliente" class="btn btn-secondary btn-sm" />
             <a href="/cliente/listarClientes" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
         </tr>
+        </div>
       </table>
     </form>
 </body>

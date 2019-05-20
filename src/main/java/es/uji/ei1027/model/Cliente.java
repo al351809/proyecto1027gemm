@@ -4,6 +4,7 @@ package es.uji.ei1027.model;
 public class Cliente {
 	
 	private String dni;
+	private String alias;
 	private String nombre;
 	private String email;
 	private String sexo;
@@ -16,7 +17,12 @@ public class Cliente {
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
-	
+	public String getAlias() {
+		return alias;
+	}
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
 	public String getNombre() {
 		return nombre;
 	}
