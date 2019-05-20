@@ -11,6 +11,7 @@ public class InstructorRowMapper implements RowMapper<Instructor> {
     public Instructor mapRow(ResultSet rs, int rowNum) throws SQLException {
         Instructor instructor = new Instructor();
         instructor.setDni(rs.getString("dni"));
+        instructor.setAlias(rs.getString("alias"));
         instructor.setNombre(rs.getString("nombre"));
         instructor.setEmail(rs.getString("email"));
         instructor.setNumeroCuenta(rs.getString("numeroCuenta"));

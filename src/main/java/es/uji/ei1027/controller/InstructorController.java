@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.dao.InstructorDao;
+import es.uji.ei1027.dao.UsuarioDao;
 import es.uji.ei1027.model.DetallesUsuario;
 import es.uji.ei1027.model.Instructor;
 
@@ -21,9 +22,15 @@ import es.uji.ei1027.model.Instructor;
 public class InstructorController {
 	
 	private InstructorDao instructordao;
+	private UsuarioDao usuariodao;
 	@Autowired 
 	public void setInstructorDao(InstructorDao instructorDao) { 
 	       this.instructordao=instructorDao;
+	   }
+	
+	@Autowired 
+	public void setUsuarioDao(UsuarioDao usuarioDao) { 
+	       this.usuariodao=usuarioDao;
 	   }
 	
 	@RequestMapping("/listarInstructores")
@@ -35,6 +42,7 @@ public class InstructorController {
 	       }
 		
 	   model.addAttribute("instructor", instructordao.getInstructor());
+	   model.addAttribute("usuario", usuariodao.getUsuario());
 	   return "instructor/listarInstructores"; 
 	}
 	

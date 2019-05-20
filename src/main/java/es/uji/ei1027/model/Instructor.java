@@ -3,6 +3,7 @@ package es.uji.ei1027.model;
 public class Instructor {
 	
 	private String dni;
+	private String alias;
 	private String nombre;
 	private String email;
 	private String numeroCuenta;
@@ -18,6 +19,15 @@ public class Instructor {
 		this.dni = dni;
 	}
 	
+	
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
