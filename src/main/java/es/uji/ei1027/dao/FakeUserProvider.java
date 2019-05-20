@@ -3,16 +3,23 @@ package es.uji.ei1027.dao;
 import java.util.Collection;
 import java.util.HashMap; 
 import java.util.Map;
-import org.jasypt.util.password.BasicPasswordEncryptor; 
+
+import javax.sql.DataSource;
+
+import org.jasypt.util.password.BasicPasswordEncryptor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei1027.model.DetallesUsuario;
+import es.uji.ei1027.model.Instructor;
 
 
 @Repository
 public class FakeUserProvider implements UsuarioDao {
-  final Map<String, DetallesUsuario> knownUsers = new HashMap<String, DetallesUsuario>();
 
+  final Map<String, DetallesUsuario> knownUsers = new HashMap<String, DetallesUsuario>();
+  @Autowired
   public FakeUserProvider() {
 	BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor(); 
 	DetallesUsuario usuarioAlice = new DetallesUsuario(); 
@@ -25,6 +32,7 @@ public class FakeUserProvider implements UsuarioDao {
        usuarioBob.setContraseña(passwordEncryptor.encryptPassword("bob")); 
        knownUsers.put("bob", usuarioBob);
   }
+  
 
   @Override
   public DetallesUsuario loadUserByUsername(String usuario, String contraseña) { 

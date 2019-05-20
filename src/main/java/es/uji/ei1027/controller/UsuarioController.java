@@ -30,7 +30,7 @@ public class UsuarioController {
           session.setAttribute("nextUrl", "user/list");
           return "login";
        } 
-       model.addAttribute("users", usuarioDao.listAllUsers());
+       model.addAttribute("users", usuarioDao.getUsuarios());
        return "user/list";
    }
 }
