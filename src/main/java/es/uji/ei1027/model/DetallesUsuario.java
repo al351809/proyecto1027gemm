@@ -3,7 +3,8 @@ package es.uji.ei1027.model;
 public class DetallesUsuario {
 	
 	String usuario;
-	String contraseña;
+	String contrasenya;
+	String rol;
 	
 	public String getUsuario() {
 		
@@ -14,12 +15,25 @@ public class DetallesUsuario {
 	}
 
 	public String getContraseña() {
-	   return contraseña; 
+	   return contrasenya; 
 	}
 
 	public void setContraseña(String contraseña) {
-	   this.contraseña = contraseña;
+	   this.contrasenya = contraseña;
+	}
+	
+	public String getRol() {
+		return rol;
+	}
+	
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+	
+	@Override
+	public String toString() {
+		return "DetallesUsuario [usuario=" + usuario + ", contrasenya=" + contrasenya + ", rol=" + rol + "]";
 	}
 
-
+	
 }
