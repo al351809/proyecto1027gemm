@@ -54,19 +54,32 @@ public class InstructorController {
     }
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST) 
-	public String processAddSubmit(@ModelAttribute("instructor") Instructor instructor, @ModelAttribute("usuario") DetallesUsuario usuario, BindingResult bindingResult) { 
-	InstructorValidator instructorValidator = new InstructorValidator(); 
+	public String processAddSubmit(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, @ModelAttribute("usuario") DetallesUsuario usuario, BindingResult bindingResult2) { 
+	InstructorValidator instructorValidator = new InstructorValidator();
+	UsuarioValidator usuarioValidator = new UsuarioValidator();
 	instructorValidator.validate(instructor, bindingResult);
-     if (bindingResult.hasErrors()) 
+	usuarioValidator.validate(usuario, bindingResult2);
+	
+     if (bindingResult.hasErrors() || bindingResult2.hasErrors()) 
             return "instructor/add";
+     
+    usuario.setRol("instructor");
+    
+    
+ 	try {
+		usuariodao.addUsuario(usuario);
+	} catch (DuplicateKeyException e1) {
+		bindingResult2.rejectValue("usuario", "obligatorio", "El usuario ya existe");
+		return "instructor/add";
+	}
+ 	
+     
      try {
-    	usuario.setRol("instructor");
-    	
-    	usuariodao.addUsuario(usuario);
     	instructor.setAlias(usuario.getUsuario());
 		instructordao.addInstructor(instructor);
 	} catch (DuplicateKeyException e) {
 		bindingResult.rejectValue("dni", "obligatorio","El dni ya existe");
+		usuariodao.deleteUsuario(usuario);
 		return "instructor/add";
 	}
      return "redirect:listarInstructores"; 

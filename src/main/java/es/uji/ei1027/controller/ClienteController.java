@@ -46,17 +46,24 @@ public class ClienteController {
     }
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST) 
-	public String processAddSubmit(@ModelAttribute("cliente") Cliente cliente, @ModelAttribute("usuario") DetallesUsuario usuario, BindingResult bindingResult) {  
+	public String processAddSubmit(@ModelAttribute("cliente") Cliente cliente, BindingResult bindingResult, @ModelAttribute("usuario") DetallesUsuario usuario,  BindingResult bindingResult2) {  
 	ClienteValidator clienteValidator = new ClienteValidator(); 
 	UsuarioValidator usuarioValidator = new UsuarioValidator();
 	clienteValidator.validate(cliente, bindingResult);
-	usuarioValidator.validate(usuario, bindingResult);
-     if (bindingResult.hasErrors()) 
+	usuarioValidator.validate(usuario, bindingResult2);
+     if (bindingResult.hasErrors() || bindingResult2.hasErrors()) 
             return "cliente/add";
+     
+     usuario.setRol("cliente");
+	 try {
+		usuariodao.addUsuario(usuario);
+	} catch (DuplicateKeyException e1) {
+		bindingResult2.rejectValue("usuario", "obligatorio","El usuario ya existe");
+		return "cliente/add";
+	}
      try {
 		try {
-			usuario.setRol("cliente");
-			usuariodao.addUsuario(usuario);
+			
 			cliente.setAlias(usuario.getUsuario());
 			clientedao.addCliente(cliente);
 		} catch (ParseException e) {
@@ -65,6 +72,7 @@ public class ClienteController {
 		}
 	} catch (DuplicateKeyException e) {
 		bindingResult.rejectValue("dni", "obligatorio","El dni ya existe");
+		usuariodao.deleteUsuario(usuario);
 		return "cliente/add";
 	}
      return "redirect:listarClientes"; 

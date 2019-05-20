@@ -26,39 +26,39 @@
 	            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td> 
 	        </tr>
 	       </table>
-	    </div>
-	    <div style="width:400px; float:right;">               
-                     
-      <table>
-      <tr>
-            <td><label>DNI</label></td>
-            <td><input type="text" th:field="*{dni}" /></td> 
-            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Nombre</label></td>
-            <td><input type="text" th:field="*{nombre}" /></td>
-        </tr>
-        <tr>
-            <td><label>Email</label></td>
-            <td><input type="text" th:field="*{email}" /></td>
-            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Sexo</label></td>
-            <td><input type="text" th:field="*{sexo}" /></td> 
-        </tr>
-        <tr>
-            <td><label>Fecha de nacimiento</label></td>
-            <td><input type="date" th:field="*{fechaNacimiento}" /></td> 
-            <td th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}" class="error"></td>
-        </tr>
-        <tr>
-            <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Cliente" class="btn btn-secondary btn-sm" />
-            <a href="/cliente/listarClientes" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
-        </tr>
-        </div>
-      </table>
+	   	</div>
+	   	<div style="width:400px; float:right;">                            
+	      <table>
+	      <tr>
+	            <td><label>DNI</label></td>
+	            <td><input type="text" th:field="*{dni}" /></td> 
+	            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="error"></td>
+	        </tr>
+	        <tr>
+	            <td><label>Nombre</label></td>
+	            <td><input type="text" th:field="*{nombre}" /></td>
+	        </tr>
+	        <tr>
+	            <td><label>Email</label></td>
+	            <td><input type="text" th:field="*{email}" /></td>
+	            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
+	        </tr>
+	        <tr>
+	            <td><label>Sexo</label></td>
+	            <td><input type="text" th:field="*{sexo}" /></td> 
+	        </tr>
+	        <tr>
+	            <td><label>Fecha de nacimiento</label></td>
+	            <td><input type="date" th:field="*{fechaNacimiento}" /></td> 
+	            <td th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}" class="error"></td>
+	        </tr>
+	        <tr>
+	            <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Cliente" class="btn btn-secondary btn-sm" />
+	            <a href="/cliente/listarClientes" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
+	        </tr>
+     	 </table>
+       </div>
+     </div>
     </form>
 </body>
 </html>
