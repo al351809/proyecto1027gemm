@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: clubesportiu
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Miguel
+Implementation-Vendor-Id: es.uji.ei1027
+Build-Jdk: 1.8.0_73
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/clubesportiu
+Created-By: Maven Integration for Eclipse
+
