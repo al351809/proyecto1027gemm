@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,13 +14,17 @@ import es.uji.ei1027.model.DetallesUsuario;
 @Repository
 public class UsuarioDao {
 	 private JdbcTemplate jdbcTemplate;
+	 @Autowired
 	 public void setDataSource(DataSource dataSource) {
 	      jdbcTemplate = new JdbcTemplate(dataSource);
 	  }
 
 	  public void addUsuario(DetallesUsuario usuario) {
-	      jdbcTemplate.update("INSERT INTO Usuario VALUES(?, ?, ?)",
-	              usuario.getUsuario(), usuario.getPassword(), usuario.getRol());
+		  System.out.println(usuario.getUsuario());
+	    	System.out.println(usuario.getPassword());
+	    	System.out.println(usuario.getRol());
+	      jdbcTemplate.update("INSERT INTO usuario VALUES(?, ?, ?)",
+	              usuario.getUsuario(), usuario.getRol(), usuario.getPassword());
 	  }
 
 	  public void deleteUsuario(DetallesUsuario usuario) {
