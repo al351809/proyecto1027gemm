@@ -42,13 +42,14 @@ public class InstructorController {
 	       }
 		
 	   model.addAttribute("instructor", instructordao.getInstructor());
-	   model.addAttribute("usuario", usuariodao.getUsuarios());
+	   
 	   return "instructor/listarInstructores"; 
 	}
 	
 	@RequestMapping(value="/add") 
     public String addInstructor(Model model) {
         model.addAttribute("instructor", new Instructor());
+        model.addAttribute("usuario", new DetallesUsuario());
         return "instructor/add";
     }
 	

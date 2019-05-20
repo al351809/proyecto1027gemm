@@ -7,11 +7,11 @@ import javax.sql.DataSource;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-
+import org.springframework.stereotype.Repository;
 
 import es.uji.ei1027.model.DetallesUsuario;
 
-
+@Repository
 public class UsuarioDao {
 	 private JdbcTemplate jdbcTemplate;
 	 public void setDataSource(DataSource dataSource) {

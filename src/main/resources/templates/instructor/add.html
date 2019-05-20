@@ -10,25 +10,27 @@
 <body>
     <h2><b>Registrarse como instructor</b></h2>    
     <form action="#" th:action="@{/instructor/add}" 
-                     th:object="${instructor}" th:object="${usuario}" method="post">
-                     
-       <table>
-      <tr>
-            <td><label>Alias</label></td>
-            <td><input type="text" th:field="*{alias}" /></td> 
-            <td th:if="${#fields.hasErrors('alias')}" th:errors="*{alias}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>Password</label></td>
-            <td><input type="password" th:field="*{password}" /></td>
-            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td> 
-        </tr>
-        <tr>
-            <td><label>Confirmar password</label></td>
-            <td><input type="password" th:field="*{confirm}" /></td>
-            <td th:if="${#fields.hasErrors('confirm')}" th:errors="*{confirm}" class="error"></td>
-        </tr>
-       </table>
+                     th:object="${instructor}" method="post">
+            
+       <div th:object="${usuario}">         
+	       <table>
+	      <tr>
+	            <td><label>Alias</label></td>
+	            <td><input type="text" th:field="*{usuario}" /></td> 
+	            <td th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}" class="error"></td>
+	        </tr>
+	        <tr>
+	            <td><label>Password</label></td>
+	            <td><input type="password" th:field="*{password}" /></td>
+	            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td> 
+	        </tr>
+	        <tr>
+	            <td><label>Confirmar password</label></td>
+	            <td><input type="password"  /></td>
+	            <td th:if="${#fields.hasErrors('confirm')}" th:errors="*{confirm}" class="error"></td>
+	        </tr>
+	       </table>
+	    </div>
       <table>
       <tr>
             <td><label>DNI</label></td>
