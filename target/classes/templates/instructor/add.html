@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Agregar Instructor</title>
+   <title>Registro de instructor</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
      <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-    <h2><b>Nuevo instructor</b></h2>
+    <h2><b>Registrarse como instructor</b></h2>    
     <form action="#" th:action="@{/instructor/add}" 
-                     th:object="${instructor}" method="post"> 
+                     th:object="${instructor}" th:object="${usuario}" method="post">
+                     
+       <table>
+      <tr>
+            <td><label>Alias</label></td>
+            <td><input type="text" th:field="*{alias}" /></td> 
+            <td th:if="${#fields.hasErrors('alias')}" th:errors="*{alias}" class="error"></td>
+        </tr>
+        <tr>
+            <td><label>Password</label></td>
+            <td><input type="password" th:field="*{password}" /></td>
+            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></td> 
+        </tr>
+        <tr>
+            <td><label>Confirmar password</label></td>
+            <td><input type="password" th:field="*{confirm}" /></td>
+            <td th:if="${#fields.hasErrors('confirm')}" th:errors="*{confirm}" class="error"></td>
+        </tr>
+       </table>
       <table>
       <tr>
             <td><label>DNI</label></td>
