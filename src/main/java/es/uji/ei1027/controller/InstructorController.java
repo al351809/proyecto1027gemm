@@ -42,7 +42,7 @@ public class InstructorController {
 	       }
 		
 	   model.addAttribute("instructor", instructordao.getInstructor());
-	   model.addAttribute("usuario", usuariodao.getUsuario());
+	   model.addAttribute("usuario", usuariodao.getUsuarios());
 	   return "instructor/listarInstructores"; 
 	}
 	
