@@ -2,6 +2,8 @@ package es.uji.ei1027.controller;
 
 import java.text.ParseException;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
@@ -33,7 +35,16 @@ public class ClienteController {
 	}
 	
 	@RequestMapping("/listarClientes")
-	public String pruevaUnCliente(Model model) {
+	public String pruevaUnCliente(HttpSession session, Model model) {
+	   if (session.getAttribute("user") == null){ 
+	          model.addAttribute("user", new DetallesUsuario()); 
+	          session.setAttribute("nextUrl", "cliente/listarClientes");
+	          return "login";
+	   }
+	   System.out.println(session.getAttribute("user"));
+	   System.out.println(session.getAttribute("rol"));
+	   if (session.getAttribute("rol").equals("admin"))
+		   System.out.println("patata");
 	   model.addAttribute("cliente", clientedao.getCliente());
 	   return "cliente/listarClientes"; 
 	}

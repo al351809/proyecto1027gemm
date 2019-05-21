@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Agregar Cliente</title>
+   <title>Registrarse como cliente</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
      <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-    <h2><b>Nuevo cliente</b> </h2>
+    <h2 class="titlelog"><b>Registrarse como cliente</b> </h2>
     <form action="#" th:action="@{/cliente/add}" 
                      th:object="${cliente}" method="post"> 
                      

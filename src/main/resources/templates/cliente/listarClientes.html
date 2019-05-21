@@ -7,7 +7,10 @@
    <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-   <h1>Lista de Clientes</h1>
+  <h1>Lista de Clientes</h1>
+   <div th:replace="fragmentos/nav" >...</div>
+   <div th:replace="fragmentos/logininfo" >...</div>
+   
    <div th:if="${#lists.isEmpty(cliente)}">
          No hay instructores en la base de dades
     </div>
