@@ -117,7 +117,7 @@ public class InstructorController {
      		bindingResult.rejectValue("dni", "obligatorio","El dni ya existe");
      		return "instructor/add";
      	}
-         return "redirect:../listarInstructores"; 
+         return "redirect:../perfil"; 
     }
  
 	 @RequestMapping(value="/updateEstado/{dni}/{estado}", method = RequestMethod.GET) 
@@ -147,5 +147,15 @@ public class InstructorController {
      usuariodao.deleteUsuario(usuarioInstructor);
      return "redirect:../listarInstructores"; 
 	}
+	
+	@RequestMapping("/perfil")
+    public String processPerfil(HttpSession session, Model model) {
+		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+		Instructor instructor = instructordao.getInstructorAlias(usuario.getUsuario());
+		System.out.println(instructor);
+		System.out.println(instructor.getDni());
+		model.addAttribute("instructor", instructor );
+        return "instructor/perfil"; 
+    }
 
 }

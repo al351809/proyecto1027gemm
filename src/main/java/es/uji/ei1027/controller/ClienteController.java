@@ -138,7 +138,7 @@ public class ClienteController {
      return "redirect:../listarClientes"; 
 	}
 	
-	@RequestMapping("/perfil/{dni}")
+	@RequestMapping("/perfil")
     public String processPerfil(HttpSession session, @PathVariable String dni, Model model) {
 		model.addAttribute("cliente", clientedao.getCliente(dni));
         return "cliente/perfil"; 

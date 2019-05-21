@@ -66,7 +66,7 @@ public class LoginController {
 		}
 		// Autenticats correctament. 
 		// Guardem les dades de l'usuari autenticat a la sessió
-		user.setRol(usuarioDao.getUsuario(user.getUsuario()).getRol());;
+		user.setRol(usuarioDao.getUsuario(user.getUsuario()).getRol());
 		session.setAttribute("user", user); 
 		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
 		System.out.println(session.getAttribute("user"));
@@ -87,7 +87,7 @@ public class LoginController {
 	@RequestMapping("/logout") 
 	public String logout(HttpSession session) {
 		session.invalidate(); 
-		return "redirect:/paginaprincipal";
+		return "redirect:/";
 	}
 }
 

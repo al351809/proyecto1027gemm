@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar Instructores</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
+</head>
+<body>
+   <h1>Lista de Instructores</h1>
+   <div><div th:replace="fragmentos/nav">...</div></div>
+   <div th:replace="fragmentos/logininfo" >...</div>
+    <div th:if="${#lists.isEmpty(instructor)}">
+         No hay instructores en la base de dades
+    </div>
+   <table class="table table-striped">
+     <thead>
+     	<tr th:if="${session.user.rol != 'instructor'}">
+     		<th>No tienes permiso para ver esta pagina.</th>
+     	</tr>
+       <tr>
+         <th>DNI</th>
+         <th>Nombre</th>
+         <th>Email</th>
+         <th >Numero de cuenta</th>
+         <th>Estado</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="instructor: ${instructor}"> 
+         <td th:text="${instructor.dni}"></td> 
+         <td th:text="${instructor.nombre}"></td>
+         <td th:text="${instructor.email}"></td> 
+         <td th:text="${instructor.numeroCuenta}"></td>
+         <td style="text-transform:capitalize;" th:text="${instructor.estado}"></td> 
+         <td><a th:href="@{/instructor/update/{dni}(dni=${instructor.dni})}" class="btn btn-warning btn-sm" role="button">Editar perfil</a> 
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="/paginaprincipal" class="btn btn-primary" role="button">Índice</a>
+</body>
+</html>

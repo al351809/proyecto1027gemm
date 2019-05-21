@@ -65,4 +65,14 @@ public class InstructorDao {
         }
     }
     
+    public Instructor getInstructorAlias(String alias) {
+        try {
+				return jdbcTemplate.queryForObject("SELECT * from Instructor WHERE alias=?",
+				        new InstructorRowMapper(), alias);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+    
 }
