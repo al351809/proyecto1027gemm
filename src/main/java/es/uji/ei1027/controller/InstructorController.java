@@ -52,6 +52,8 @@ public class InstructorController {
 	    	case "cliente":
 	    		System.out.println("Soy una patata cliente");break;
 	    }
+	    
+	    session.setAttribute("nextUrl", null);
 	   
 	   return "instructor/listarInstructores"; 
 	}
@@ -117,6 +119,14 @@ public class InstructorController {
      	}
          return "redirect:../listarInstructores"; 
     }
+ 
+	 @RequestMapping(value="/updateEstado/{dni}/{estado}", method = RequestMethod.GET) 
+	 public String editEstadoInstructor(Model model, @PathVariable String dni, @PathVariable String estado) { 
+	     model.addAttribute("instructor", instructordao.getInstructor(dni));
+	     instructordao.updateEstado(dni, estado);
+	     return "redirect:../../listarInstructores"; 
+	 }
+  
 	
 	@RequestMapping(value="/delete/{dni}")
     public String processDelete(@PathVariable String dni) {

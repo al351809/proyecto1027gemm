@@ -33,9 +33,9 @@
          <td th:text="${instructor.email}"></td> 
          <td th:if="${session.user.rol == 'admin'}" th:text="${instructor.numeroCuenta}"></td>
          <td th:text="${instructor.estado}"></td> 
-         <td><a th:href="@{/instructor/update/{dni}(dni=${instructor.dni})}" class="btn btn-warning btn-sm" role="button">Edita</a> 
+         <td><a th:href="@{/instructor/updateEstado/{dni}/{estado}(dni=${instructor.dni},estado='aceptada')}" class="btn btn-warning btn-sm" role="button">Aceptar</a> 
          </td>
-         <td><a th:href="@{/instructor/delete/{dni}(dni=${instructor.dni})}" class="btn btn-danger btn-sm" role="button">Borrar</a>
+         <td><a th:href="@{/instructor/updateEstado/{dni}/{estado}(dni=${instructor.dni},estado='rechazada')}" class="btn btn-danger btn-sm" role="button">Rechazar</a>
          </td>
        </tr>
      </tbody>

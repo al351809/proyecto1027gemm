@@ -40,6 +40,10 @@ public class InstructorDao {
         jdbcTemplate.update("UPDATE Instructor SET  nombre=?, email=?, numeroCuenta=?, estado=? WHERE dni=?",
         		instructor.getNombre(), instructor.getEmail(), instructor.getNumeroCuenta(), instructor.getEstado(), instructor.getDni());
     }
+    
+    public void updateEstado(String dni, String estado) {
+    	jdbcTemplate.update("UPDATE Instructor SET estado=? WHERE dni=?", estado, dni);
+    }
 
     public Instructor getInstructor(String dni) {
         try {
