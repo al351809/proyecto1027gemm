@@ -19,7 +19,7 @@
          <th>DNI</th>
          <th>Nombre</th>
          <th>Email</th>
-         <th>Numero de cuenta</th>
+         <th th:if="${session.user.rol == 'admin'}">Numero de cuenta</th>
          <th>Estado</th>
        </tr>
      </thead>
@@ -28,7 +28,7 @@
          <td th:text="${instructor.dni}"></td> 
          <td th:text="${instructor.nombre}"></td>
          <td th:text="${instructor.email}"></td> 
-         <td th:text="${instructor.numeroCuenta}"></td>
+         <td th:if="${session.user.rol == 'admin'}" th:text="${instructor.numeroCuenta}"></td>
          <td th:text="${instructor.estado}"></td> 
          <td><a th:href="@{/instructor/update/{dni}(dni=${instructor.dni})}" class="btn btn-warning btn-sm" role="button">Edita</a> 
          </td>
