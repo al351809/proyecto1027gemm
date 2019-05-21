@@ -19,6 +19,7 @@
 		<li th:if="${session==null}"><a href="login">Login</a></li>
 		<li th:if="${session==null}"><a href="cliente/add">Registro cliente</a></li>
 		<li th:if="${session==null}"><a href="instructor/add">Registro instructor</a></li>
+		<li th:if="${session.user.rol=='cliente'}"><a href="cliente/perfil">Mi perfil</a></li>
 	</ul>
 		<h1>Gestion de usuario</h1>
 

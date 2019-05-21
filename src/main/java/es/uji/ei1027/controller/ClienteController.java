@@ -138,12 +138,12 @@ public class ClienteController {
      return "redirect:../listarClientes"; 
 	}
 	
-	@RequestMapping("/perfil")
-    public String processPerfil(HttpSession session, Model model) {
-		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
-		String alias = usuario.getUsuario();
-		model.addAttribute("cliente", clientedao.getCliente(alias));
+	@RequestMapping("/perfil/{dni}")
+    public String processPerfil(HttpSession session, @PathVariable String dni, Model model) {
+		model.addAttribute("cliente", clientedao.getCliente(dni));
         return "cliente/perfil"; 
     }
+	
+	
 
 }

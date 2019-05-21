@@ -51,10 +51,10 @@ public class ClienteDao {
                 cliente.getNombre(), cliente.getEmail(), cliente.getSexo(), fecha, cliente.getDni());
     }
 
-    public Cliente getCliente(String alias) {
+    public Cliente getCliente(String dni) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * from Cliente WHERE alias=?",
-                    new ClienteRowMapper(), alias);
+            return jdbcTemplate.queryForObject("SELECT * from Cliente WHERE dni=?",
+                    new ClienteRowMapper(), dni);
         }
         catch(EmptyResultDataAccessException e) {
             return null;
