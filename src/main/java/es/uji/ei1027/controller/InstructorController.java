@@ -41,7 +41,17 @@ public class InstructorController {
 	          return "login";
 	       }
 		
-	   model.addAttribute("instructor", instructordao.getInstructor());
+		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+	    model.addAttribute("instructor", instructordao.getInstructor());
+	    
+	    switch(usuario.getRol()) {
+	    	case "admin":
+	    		System.out.println("Soy una patata admin");break;
+	    	case "instructor":
+	    		System.out.println("Soy una patata instructor");break;
+	    	case "cliente":
+	    		System.out.println("Soy una patata cliente");break;
+	    }
 	   
 	   return "instructor/listarInstructores"; 
 	}
