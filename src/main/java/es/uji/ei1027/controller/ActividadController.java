@@ -47,9 +47,21 @@ public class ActividadController {
 	          session.setAttribute("nextUrl", "actividad/listarActividades");
 	          return "login";
 	   }
-	   session.setAttribute("nextUrl", null);
-	   model.addAttribute("actividad", actividaddao.getActividad());
-	   return "actividad/listarActividades"; 
+		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+		
+		switch(usuario.getRol()) {
+    	case "admin":
+    		System.out.println("Soy una patata admin");break;
+    	case "instructor":
+    		System.out.println("Soy una patata instructor");break;
+    	case "cliente":
+    		System.out.println("Soy una patata cliente");break;
+    }
+		
+		session.setAttribute("nextUrl", null);
+		model.addAttribute("actividad", actividaddao.getActividad());
+		
+	return "actividad/listarActividades"; 
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
