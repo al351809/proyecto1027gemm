@@ -137,5 +137,13 @@ public class ClienteController {
      usuariodao.deleteUsuario(usuarioCliente);
      return "redirect:../listarClientes"; 
 	}
+	
+	@RequestMapping("/perfil")
+    public String processPerfil(HttpSession session, Model model) {
+		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+		String alias = usuario.getUsuario();
+		model.addAttribute("cliente", clientedao.getCliente(alias));
+        return "cliente/perfil"; 
+    }
 
 }
