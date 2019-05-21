@@ -110,7 +110,9 @@ public class InstructorController {
 	
 	@RequestMapping(value="/delete/{dni}")
     public String processDelete(@PathVariable String dni) {
+		DetallesUsuario usuarioInstructor = usuariodao.getUsuario(instructordao.getInstructor(dni).getAlias());
 		instructordao.deleteInstructor(dni);
+		usuariodao.deleteUsuario(usuarioInstructor);
            return "redirect:../listarInstructores"; 
     }
 	
@@ -119,7 +121,10 @@ public class InstructorController {
 			BindingResult bindingResult) {  
      if (bindingResult.hasErrors()) 
             return "instructor/delete";
+     
+     DetallesUsuario usuarioInstructor = usuariodao.getUsuario(instructor.getAlias());
      instructordao.deleteInstructor(instructor);
+     usuariodao.deleteUsuario(usuarioInstructor);
      return "redirect:../listarInstructores"; 
 	}
 

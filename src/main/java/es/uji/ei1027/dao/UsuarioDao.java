@@ -25,20 +25,20 @@ public class UsuarioDao {
 	  }
 
 	  public void deleteUsuario(DetallesUsuario usuario) {
-	      jdbcTemplate.update("DELETE from Usuario where Usuario=?", usuario.getUsuario());
+	      jdbcTemplate.update("DELETE from Usuario where alias=?", usuario.getUsuario());
 	  }
 	  
 	  public void deleteUsuario(String usuario) {
-	      jdbcTemplate.update("DELETE from Usuario where Usuario=?", usuario);
+	      jdbcTemplate.update("DELETE from Usuario where alias=?", usuario);
 	  }
 	  
 	  public void updateUsuario(DetallesUsuario usuario) {
-	      jdbcTemplate.update("UPDATE Usuario SET  contrasenya=?, alias=? WHERE Usuario=?",
+	      jdbcTemplate.update("UPDATE Usuario SET  contrasenya=?, alias=? WHERE alias=?",
 	    		  usuario.getUsuario(), usuario.getPassword(), usuario.getRol());
 	  }
 	    public DetallesUsuario getUsuario(String usuario) {
 	        try {
-					return jdbcTemplate.queryForObject("SELECT * from Usuario WHERE usuario=?",
+					return jdbcTemplate.queryForObject("SELECT * from Usuario WHERE alias=?",
 					        new UsuarioRowMapper(), usuario);
 	        }
 	        catch(EmptyResultDataAccessException e) {

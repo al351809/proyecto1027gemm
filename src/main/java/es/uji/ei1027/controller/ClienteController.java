@@ -108,8 +108,10 @@ public class ClienteController {
 	
 	@RequestMapping(value="/delete/{dni}")
     public String processDelete(@PathVariable String dni) {
+		DetallesUsuario usuarioCliente= usuariodao.getUsuario(clientedao.getCliente(dni).getAlias());
 		clientedao.deleteCliente(dni);
-           return "redirect:../listarClientes"; 
+		usuariodao.deleteUsuario(usuarioCliente);
+        return "redirect:../listarClientes"; 
     }
 	
 	@RequestMapping(value="/delete/{dni}", method=RequestMethod.POST) 
@@ -117,7 +119,9 @@ public class ClienteController {
 			BindingResult bindingResult) {  
      if (bindingResult.hasErrors()) 
             return "cliente/delete";
+     DetallesUsuario usuarioCliente = usuariodao.getUsuario(cliente.getAlias());     
      clientedao.deleteCliente(cliente);
+     usuariodao.deleteUsuario(usuarioCliente);
      return "redirect:../listarClientes"; 
 	}
 

@@ -11,8 +11,8 @@ import es.uji.ei1027.model.DetallesUsuario;
 public class UsuarioRowMapper implements RowMapper<DetallesUsuario> {
     public DetallesUsuario mapRow(ResultSet rs, int rowNum) throws SQLException {
     	DetallesUsuario usuario = new DetallesUsuario();
-        usuario.setUsuario(rs.getString("Usuario"));
-        usuario.setPassword(rs.getString("Password"));
+        usuario.setUsuario(rs.getString("alias"));
+        usuario.setPassword(rs.getString("contrasenya"));
         usuario.setRol(rs.getString("Rol"));
         
     
