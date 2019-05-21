@@ -15,7 +15,10 @@
     </div>
    <table th:unless="${#lists.isEmpty(instructor)}" class="table table-striped">
      <thead>
-       <tr>
+     	<tr th:if="${session.user.rol == 'cliente'}">
+     		<th>No tienes permiso para ver esta pagina.</th>
+     	</tr>
+       <tr th:if="${session.user.rol != 'cliente'}">
          <th>DNI</th>
          <th>Nombre</th>
          <th>Email</th>
@@ -23,7 +26,7 @@
          <th>Estado</th>
        </tr>
      </thead>
-     <tbody>
+     <tbody th:if="${session.user.rol != 'cliente'}">
        <tr th:each="instructor: ${instructor}"> 
          <td th:text="${instructor.dni}"></td> 
          <td th:text="${instructor.nombre}"></td>
@@ -37,7 +40,7 @@
        </tr>
      </tbody>
    </table>
-   <a href="add" class="btn btn-primary" role="button">Agregar Instructor</a> 
+   <a href="add" class="btn btn-primary" role="button" th:if="${session.user.rol != 'cliente'}">Agregar Instructor</a> 
    <a href="/" class="btn btn-primary" role="button">Índice</a>
 </body>
 </html>
