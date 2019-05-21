@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>EI1027</title>
 <meta charset="UTF-8"/>
@@ -10,12 +10,14 @@
 </head>
 <body>
 	<h1>EI1027 - Spring MVC</h1>
+	<div th:replace="fragmentos/nav">...</div>
+    <div th:replace="fragmentos/logininfo">...</div>
 	<h2>Proves de l'aplicació</h2>
 	<ul>
 		<li><a href="actividad/listarActividades">Listar Actividades</a></li>
-		<li><a href="login">Login</a></li>
-		<li><a href="cliente/add">Registro cliente</a></li>
-		<li><a href="instructor/add">Registro instructor</a></li>
+		<li th:if="${session==null}"><a href="login">Login</a></li>
+		<li th:if="${session==null}"><a href="cliente/add">Registro cliente</a></li>
+		<li th:if="${session==null}"><a href="instructor/add">Registro instructor</a></li>
 	</ul>
 		<h1>Gestion de usuario</h1>
 

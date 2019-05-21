@@ -78,7 +78,7 @@ public class LoginController {
 			url = "";
 		}*/
 		else
-			url = "";
+			url = "paginaprincipal";
 
 		// Torna a la pàgina principal
 		return "redirect:/" + url;
@@ -87,7 +87,7 @@ public class LoginController {
 	@RequestMapping("/logout") 
 	public String logout(HttpSession session) {
 		session.invalidate(); 
-		return "redirect:/";
+		return "redirect:/paginaprincipal";
 	}
 }
 
