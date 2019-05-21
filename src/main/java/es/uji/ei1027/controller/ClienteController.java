@@ -42,8 +42,10 @@ public class ClienteController {
 	          return "login";
 	   }
 	   System.out.println(session.getAttribute("user"));
-	   System.out.println(session.getAttribute("rol"));
-	   if (session.getAttribute("rol").equals("admin"))
+	   DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+	   System.out.println(usuario.getUsuario());
+
+	   if (usuario.getRol().equals("admin"))
 		   System.out.println("patata");
 	   model.addAttribute("cliente", clientedao.getCliente());
 	   return "cliente/listarClientes"; 

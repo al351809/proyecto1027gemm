@@ -66,10 +66,9 @@ public class LoginController {
 		}
 		// Autenticats correctament. 
 		// Guardem les dades de l'usuari autenticat a la sessió
-		session.setAttribute("rol", usuarioDao.getUsuario(user.getUsuario()).getRol());
+		user.setRol(usuarioDao.getUsuario(user.getUsuario()).getRol());;
 		session.setAttribute("user", user); 
 		System.out.println(session.getAttribute("user"));
-		System.out.println(session.getAttribute("rol"));
 		String url;
 		if (session.getAttribute("nextUrl") != null)
 			url = (String) session.getAttribute("nextUrl");
