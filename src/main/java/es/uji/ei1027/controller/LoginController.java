@@ -68,12 +68,17 @@ public class LoginController {
 		// Guardem les dades de l'usuari autenticat a la sessió
 		user.setRol(usuarioDao.getUsuario(user.getUsuario()).getRol());;
 		session.setAttribute("user", user); 
+		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
 		System.out.println(session.getAttribute("user"));
 		String url;
-		if (session.getAttribute("nextUrl") != null)
+		//String nextUrl = (String) session.getAttribute("nextUrl");
+		if (session.getAttribute("nextUrl") != null )
 			url = (String) session.getAttribute("nextUrl");
+	/*	else if (usuario.getRol().trim().equals("cliente")){
+			url = "";
+		}*/
 		else
-			url = "/";
+			url = "";
 
 		// Torna a la pàgina principal
 		return "redirect:/" + url;

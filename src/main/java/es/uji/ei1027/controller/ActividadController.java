@@ -3,6 +3,8 @@ package es.uji.ei1027.controller;
 
 import java.text.ParseException;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.dao.ActividadDao;
 import es.uji.ei1027.model.Actividad;
+import es.uji.ei1027.model.DetallesUsuario;
 import es.uji.ei1027.service.ActividadService;
 
 
@@ -38,7 +41,13 @@ public class ActividadController {
 	   }
 	
 	@RequestMapping("/listarActividades")
-	public String pruevaUnaActividad(Model model) {
+	public String pruevaUnaActividad(HttpSession session, Model model) {
+		if (session.getAttribute("user") == null){ 
+	          model.addAttribute("user", new DetallesUsuario()); 
+	          session.setAttribute("nextUrl", "actividad/listarActividades");
+	          return "login";
+	   }
+	   session.setAttribute("nextUrl", null);
 	   model.addAttribute("actividad", actividaddao.getActividad());
 	   return "actividad/listarActividades"; 
 	}
