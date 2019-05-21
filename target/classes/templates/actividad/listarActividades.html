@@ -8,6 +8,8 @@
 </head>
 <body>
    <h1>Lista de Actividades</h1>
+   <div th:replace="fragmentos/nav" >...</div>
+   <div th:replace="fragmentos/logininfo" >...</div>
    <div th:if="${#lists.isEmpty(actividad)}">
          No hay actividades en la base de dades
     </div>
