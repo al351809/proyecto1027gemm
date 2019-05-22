@@ -14,10 +14,7 @@
       <table>
 		 <tr>
             <td><label>Estado de pago</label></td>
-            <td><select class="form_control" type="text" th:field="*{estadoPago}" >
-				<option value="pendiente">Pendiente</option>
-				<option value="pagado">Pagado</option>
-				</select></td> 
+            <td th:text="${reserva.estadoPago}"></td> 
         </tr>
         <tr>
             <td><label>Numero de transaccion</label></td>
@@ -29,7 +26,7 @@
         </tr>
         <tr>
             <td><label>Precio por persona</label></td>
-            <td><input type="text" th:field="*{precioPersona}" /></td> 
+            <td th:text="${reserva.precioPersona}"></td> 
         </tr>
         <tr>
             <td><label>fecha</label></td>
@@ -38,16 +35,14 @@
         </tr>
         <tr>
             <td><label>DNI del cliente</label></td>
-            <td><input type="text" th:field="*{dniCliente}" /></td>
-            <td th:if="${#fields.hasErrors('dniCliente')}" th:errors="*{dniCliente}" class="error"></td> 
+            <td th:text="${reserva.dniCliente}"></td>
         </tr>
         <tr>
             <td><label>Nombre de la actividad</label></td>
-            <td><input type="text" th:field="*{nombreActividad}" /></td> 
-            <td th:if="${#fields.hasErrors('nombreActividad')}" th:errors="*{nombreActividad}" class="error"></td> 
+            <td th:text="${reserva.nombreActividad}"></td> 
         </tr>
         <tr>
-            <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Reserva" class="btn btn-secondary btn-sm" />
+            <td colspan="2" style="padding-top:10px"><input type="submit" value="Editar Reserva" class="btn btn-secondary btn-sm" />
             <a href="/reserva/reservasCliente" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
         </tr>
       </table>

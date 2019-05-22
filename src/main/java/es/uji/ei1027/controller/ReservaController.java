@@ -78,7 +78,7 @@ public class ReservaController {
 	@RequestMapping(value="/delete/{idReserva}")
     public String processDelete(@PathVariable Integer idReserva) {
 		reservadao.deleteReserva(idReserva);
-           return "redirect:../listarReservas"; 
+           return "redirect:../reservasCliente"; 
     }
 	
 	@RequestMapping(value="/delete/{idReserva}", method=RequestMethod.POST) 
@@ -87,7 +87,7 @@ public class ReservaController {
      if (bindingResult.hasErrors()) 
             return "reserva/delete";
      reservadao.deleteReserva(reserva);
-     return "redirect:../listarReservas"; 
+     return "redirect:../reservasCliente"; 
 	}
 	
 	@RequestMapping("/reservasCliente")
