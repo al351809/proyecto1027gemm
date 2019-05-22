@@ -60,18 +60,28 @@ public class ReservaController {
 	}
 	
 	@RequestMapping(value="/add/{nombre}") 
-    public String addReservaActividad(@PathVariable String nombre, Model model) {
+    public String addReservaActividad(HttpSession session, @PathVariable String nombre, Model model) {
+		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+		Cliente cliente = clientedao.getClienteAlias(usuario.getUsuario());
 		Actividad actividad = actividaddao.getActividad(nombre);
+		model.addAttribute("dni", cliente.getDni());
 		model.addAttribute("actividad", actividad);
         model.addAttribute("reserva", new Reserva());
         return "reserva/add";
     }
 	
 	@RequestMapping(value="/add/{nombre}", method=RequestMethod.POST) 
-	public String processAddReservaActividadSubmit(@PathVariable String nombre, @ModelAttribute("reserva") Reserva reserva, BindingResult bindingResult) {  
+	public String processAddReservaActividadSubmit(HttpSession session, @PathVariable String nombre, @ModelAttribute("reserva") Reserva reserva, BindingResult bindingResult) {  
      if (bindingResult.hasErrors()) 
             return "reserva/add";
      try {
+    	DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+ 		Cliente cliente = clientedao.getClienteAlias(usuario.getUsuario());
+    	Actividad actividad = actividaddao.getActividad(nombre);
+    	reserva.setDniCliente(cliente.getDni());
+    	reserva.setEstadoPago("pendiente");
+    	reserva.setNombreActividad(actividad.getNombre());
+    	reserva.setPrecioPersona(Integer.parseInt(actividad.getPrecio()));
 		reservadao.addReserva(reserva);
 	} catch (ParseException e) {
 		e.printStackTrace();
@@ -93,6 +103,10 @@ public class ReservaController {
          if (bindingResult.hasErrors()) 
              return "reserva/update";
          try {
+        	 Reserva reservaVieja = reservadao.getReserva(idReserva);
+        	 reserva.setDniCliente(reservaVieja.getDniCliente());
+        	 reserva.setEstadoPago(reservaVieja.getEstadoPago());
+        	 reserva.setNombreActividad(reservaVieja.getNombreActividad());
 			reservadao.updateReserva(reserva);
 		} catch (ParseException e) {
 			e.printStackTrace();
