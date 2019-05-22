@@ -116,7 +116,7 @@ public class InstructorController {
      		instructordao.updateInstructor(instructor);
      	} catch (DuplicateKeyException e) {
      		bindingResult.rejectValue("dni", "obligatorio","El dni ya existe");
-     		return "instructor/add";
+     		return "instructor/update";
      	}
          return "redirect:../perfil"; 
     }
