@@ -62,9 +62,9 @@ public class ActividadDao {
         }
     }
     
-    public Actividad getActividadInstructor(String dni) {
+    public List<Actividad> getActividadInstructor(String dni) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * from Actividad WHERE dni=?",
+            return jdbcTemplate.query("SELECT * from Actividad WHERE dni=?",
                     new ActividadRowMapper(), dni);
         }
         catch(EmptyResultDataAccessException e) {

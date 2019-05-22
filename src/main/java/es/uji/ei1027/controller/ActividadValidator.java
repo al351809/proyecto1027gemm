@@ -19,9 +19,6 @@ package es.uji.ei1027.controller;
 		       errors.rejectValue("nombre", "obligatorio",
 		                          "Hay que introducir un nombre");
 		 
-		 if(actividad.getDni().trim().equals(""))
-			 errors.rejectValue("dni", "obligatorio", "Hay que introducir un dni");
-		 
 		 if(actividad.getFecha().trim().equals(""))
 			 errors.rejectValue("fecha", "obligatorio","Introduce una fecha válida");
 		 

@@ -98,20 +98,16 @@ public class ActividadController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addActiv(HttpSession session, Model model) {
-		System.out.println("patata");
-		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
-		Instructor instructor = instructordao.getInstructorAlias(usuario.getUsuario());
-		System.out.println(instructor.getDni());
-		model.addAttribute("dni", instructor.getDni());
 		model.addAttribute("actividad", new Actividad());
 		model.addAttribute("nombre", actividadService.getTiposActividad());
 	   return "actividad/add";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST) 
-	public String processAddSubmit(@ModelAttribute("actividad") Actividad actividad, BindingResult bindingResult, @ModelAttribute("dni") String dni) {
-		actividad.setDni(dni);
-		System.out.println(actividad.getDni());
+	public String processAddSubmit(HttpSession session, @ModelAttribute("actividad") Actividad actividad, BindingResult bindingResult, @ModelAttribute("dni") String dni) {
+		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+		Instructor instructor = instructordao.getInstructorAlias(usuario.getUsuario());
+		actividad.setDni(instructor.getDni());
 		ActividadValidator actividadValidator = new ActividadValidator(); 
 		actividadValidator.validate(actividad, bindingResult);
 		if (bindingResult.hasErrors()) 
@@ -119,13 +115,13 @@ public class ActividadController {
 		
 		//Esto es el control de la excepcion de la fecha que lanzamos desde la otra clase.
 	     try {
-	    	System.out.println(actividad);
+	    	
 			actividaddao.addActividad(actividad);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-	     System.out.println("patata");
-	     return "redirect:../listarActividades"; 
+	    
+	  return "actividad/listarActividadesInstructor"; 
 	}
 
 	
@@ -149,13 +145,13 @@ public class ActividadController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-         return "redirect:../listarActividades"; 
+      return "redirect:../listarActividadesInstructor"; 
     }
 	
 	@RequestMapping(value="/delete/{nombre}")
     public String processDelete(@PathVariable String nombre) {
 		actividaddao.deleteActividad(nombre);
-           return "redirect:../listarActividades"; 
+           return "redirect:../listarActividadesInstructor"; 
     }
 	
 	@RequestMapping(value="/delete/{nombre}", method=RequestMethod.POST) 
@@ -164,7 +160,7 @@ public class ActividadController {
      if (bindingResult.hasErrors()) 
             return "actividad/delete";
      actividaddao.deleteActividad(actividad);
-     return "redirect:../listarActividades"; 
+     return "redirect:../listarActividadesInstructor"; 
 	}
 
 }
