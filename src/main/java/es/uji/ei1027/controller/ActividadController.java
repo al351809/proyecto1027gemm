@@ -18,6 +18,7 @@ import es.uji.ei1027.dao.ActividadDao;
 import es.uji.ei1027.dao.InstructorDao;
 import es.uji.ei1027.model.Actividad;
 import es.uji.ei1027.model.DetallesUsuario;
+import es.uji.ei1027.model.Instructor;
 import es.uji.ei1027.service.ActividadService;
 
 
@@ -88,22 +89,29 @@ public class ActividadController {
     	case "cliente":
     		System.out.println("Soy una patata cliente");break;
     }*/
-		Instructor instructor = instructordao.getInstructor(dni)
+		Instructor instructor = instructordao.getInstructorAlias(usuario.getUsuario());
 		session.setAttribute("nextUrl", null);
-		model.addAttribute("actividad", actividaddao.getActividadInstructor(dni));
+		model.addAttribute("actividad", actividaddao.getActividadInstructor(instructor.getDni()));
 		
 	return "actividad/listarActividadesInstructor"; 
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public String addActiv(Model model) {
-	   model.addAttribute("actividad", new Actividad());
-	   model.addAttribute("nombre", actividadService.getTiposActividad());
+	public String addActiv(HttpSession session, Model model) {
+		System.out.println("patata");
+		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+		Instructor instructor = instructordao.getInstructorAlias(usuario.getUsuario());
+		System.out.println(instructor.getDni());
+		model.addAttribute("dni", instructor.getDni());
+		model.addAttribute("actividad", new Actividad());
+		model.addAttribute("nombre", actividadService.getTiposActividad());
 	   return "actividad/add";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST) 
-	public String processAddSubmit(@ModelAttribute("actividad") Actividad actividad, BindingResult bindingResult) {  
+	public String processAddSubmit(@ModelAttribute("actividad") Actividad actividad, BindingResult bindingResult, @ModelAttribute("dni") String dni) {
+		actividad.setDni(dni);
+		System.out.println(actividad.getDni());
 		ActividadValidator actividadValidator = new ActividadValidator(); 
 		actividadValidator.validate(actividad, bindingResult);
 		if (bindingResult.hasErrors()) 
@@ -111,10 +119,12 @@ public class ActividadController {
 		
 		//Esto es el control de la excepcion de la fecha que lanzamos desde la otra clase.
 	     try {
+	    	System.out.println(actividad);
 			actividaddao.addActividad(actividad);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+	     System.out.println("patata");
 	     return "redirect:../listarActividades"; 
 	}
 
