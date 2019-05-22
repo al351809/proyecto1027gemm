@@ -9,7 +9,7 @@
 </head>
 <body>
     <h2><b>Nueva reserva</b></h2>
-    <form action="#" th:action="@{/reserva/add}" 
+    <form action="#" th:action="@{/reserva/add/{nombre}(nombre=${actividad.nombre})}" 
                      th:object="${reserva}" method="post"> 
       <table>
         <tr>
@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <td><label>Precio por persona</label></td>
-            <td><input type="text" th:field="*{precioPersona}" /></td> 
+            <td th:text="${actividad.precio}"></td> 
         </tr>
         <tr>
             <td><label>Fecha</label></td>
@@ -43,12 +43,11 @@
         </tr>
         <tr>
             <td><label>Nombre de la actividad</label></td>
-            <td><input type="text" th:field="*{nombreActividad}" /></td>
-            <td th:if="${#fields.hasErrors('nombreActividad')}" th:errors="*{nombreActividad}" class="error"></td> 
+            <td th:text="${actividad.nombre}"></td>
         </tr>
         <tr>
             <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Reserva" class="btn btn-secondary btn-sm" />
-            <a href="/reserva/listarReserva" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
+            <a href="/reserva/listarActividades" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
         </tr>
       </table>
     </form>

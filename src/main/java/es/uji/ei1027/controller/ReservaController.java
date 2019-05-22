@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import es.uji.ei1027.dao.ActividadDao;
 import es.uji.ei1027.dao.ClienteDao;
 import es.uji.ei1027.dao.ReservaDao;
+import es.uji.ei1027.model.Actividad;
 import es.uji.ei1027.model.Cliente;
 import es.uji.ei1027.model.DetallesUsuario;
 import es.uji.ei1027.model.Reserva;
@@ -25,10 +27,12 @@ public class ReservaController {
 	
 	private ReservaDao reservadao;
 	private ClienteDao clientedao;
+	private ActividadDao actividaddao;
 	@Autowired 
-	public void setReservaDao(ReservaDao reservaDao, ClienteDao clientedao) { 
+	public void setReservaDao(ReservaDao reservaDao, ClienteDao clientedao, ActividadDao actividaddao) { 
 	       this.reservadao=reservaDao;
 	       this.clientedao=clientedao;
+	       this.actividaddao=actividaddao;
 	   }
 	
 	@RequestMapping("/listarReservas")
@@ -54,6 +58,27 @@ public class ReservaController {
 	}
      return "redirect:listarReservas"; 
 	}
+	
+	@RequestMapping(value="/add/{nombre}") 
+    public String addReservaActividad(@PathVariable String nombre, Model model) {
+		Actividad actividad = actividaddao.getActividad(nombre);
+		model.addAttribute("actividad", actividad);
+        model.addAttribute("reserva", new Reserva());
+        return "reserva/add";
+    }
+	
+	@RequestMapping(value="/add/{nombre}", method=RequestMethod.POST) 
+	public String processAddReservaActividadSubmit(@PathVariable String nombre, @ModelAttribute("reserva") Reserva reserva, BindingResult bindingResult) {  
+     if (bindingResult.hasErrors()) 
+            return "reserva/add";
+     try {
+		reservadao.addReserva(reserva);
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
+     return "redirect:listarReservas"; 
+	}
+	
 	
 	@RequestMapping(value="/update/{idReserva}", method = RequestMethod.GET) 
     public String editReserva(Model model, @PathVariable Integer idReserva) { 
