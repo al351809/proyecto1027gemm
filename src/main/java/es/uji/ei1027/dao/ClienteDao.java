@@ -47,8 +47,8 @@ public class ClienteDao {
     	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
     	java.util.Date date = sdf1.parse(cliente.getFechaNacimiento());
     	java.sql.Date fecha = new java.sql.Date(date.getTime());
-        jdbcTemplate.update("UPDATE Cliente SET nombre=?, email=?, sexo=?, fechaNacimiento=? WHERE dni=?",
-                cliente.getNombre(), cliente.getEmail(), cliente.getSexo(), fecha, cliente.getDni());
+        jdbcTemplate.update("UPDATE Cliente SET nombre=?, alias=?, email=?, sexo=?, fechaNacimiento=? WHERE dni=?",
+                cliente.getNombre(), cliente.getAlias(), cliente.getEmail(), cliente.getSexo(), fecha, cliente.getDni());
     }
 
     public Cliente getCliente(String dni) {
@@ -69,6 +69,19 @@ public class ClienteDao {
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Cliente>();
         }
+    }
+    
+    public Cliente getClienteAlias(String alias) {
+    	
+    	 try {
+             return jdbcTemplate.queryForObject("SELECT * from Cliente WHERE alias=?",
+                     new ClienteRowMapper(), alias);
+         }
+         catch(EmptyResultDataAccessException e) {
+             return null;
+         }
+    	
+    	
     }
 
 }

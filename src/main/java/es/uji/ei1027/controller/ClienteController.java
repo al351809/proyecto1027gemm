@@ -97,7 +97,7 @@ public class ClienteController {
         return "cliente/update"; 
     }
 	
- @RequestMapping(value="/update/{dni}", method = RequestMethod.POST) 
+    @RequestMapping(value="/update/{dni}", method = RequestMethod.POST) 
     public String processUpdateSubmit(@PathVariable String dni, 
                             @ModelAttribute("cliente") Cliente cliente, 
                             BindingResult bindingResult) {
@@ -107,16 +107,16 @@ public class ClienteController {
              return "cliente/update";
          try {
      		try {
-     			clientedao.addCliente(cliente);
+     			clientedao.updateCliente(cliente);
      		} catch (ParseException e) {
      			// TODO Auto-generated catch block
      			e.printStackTrace();
      		}
      	} catch (DuplicateKeyException e) {
      		bindingResult.rejectValue("dni", "obligatorio","El dni ya existe");
-     		return "cliente/add";
+     		return "cliente/update";
      	}
-         return "redirect:../listarClientes"; 
+         return "redirect:../perfil"; 
     }
 	
 	@RequestMapping(value="/delete/{dni}")
@@ -139,8 +139,10 @@ public class ClienteController {
 	}
 	
 	@RequestMapping("/perfil")
-    public String processPerfil(HttpSession session, @PathVariable String dni, Model model) {
-		model.addAttribute("cliente", clientedao.getCliente(dni));
+    public String processPerfil(HttpSession session, Model model) {
+		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+		Cliente cliente = clientedao.getClienteAlias(usuario.getUsuario());
+		model.addAttribute("cliente", cliente);
         return "cliente/perfil"; 
     }
 	
