@@ -7,9 +7,13 @@
    <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-   <h1>Lista de Actividades</h1>
-   <div th:if="${session.user.rol=='admin'}"><div th:replace="fragmentos/nav" >...</div></div>
+   
+   <div  th:if="${session.user.rol=='admin'}"><div th:replace="fragmentos/nav" >...</div></div>
    <div th:if="${session.user.rol=='instructor'}"><div th:replace="fragmentos/navInstructor" >...</div></div>
+   <div  th:if="${session.user.rol=='cliente'}"><div th:replace="fragmentos/navCliente" >...</div></div>
+   <div  th:if="${session.user.rol==''}"><div th:replace="fragmentos/navNoLogged" >...</div></div>
+   
+   <h2>Lista de Actividades</h2>
    <div th:if="${#lists.isEmpty(actividad)}">
          No hay actividades en la base de dades
     </div>
@@ -19,6 +23,9 @@
   	</li>
   	<li th:if="${session.user.rol=='instructor'}" class="nav-item">
    		<a class="nav-link" style="color:black;" href="/actividad/listarActividadesInstructor">Mis Actividades</a>
+  	</li>
+  	<li th:if="${session.user.rol=='cliente'}" class="nav-item">
+   		<a class="nav-link" style="color:black;" href="/reserva/reservasCliente">Mis Reservas</a>
   	</li>
 	</ul>
    <div>

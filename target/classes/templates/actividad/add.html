@@ -9,6 +9,7 @@
 </head>
 <body>
     <h2><b>Nueva Actividad</b></h2>
+    <div th:replace="fragmentos/navInstructor" >...</div>
     <form action="#" th:action="@{/actividad/add}" 
                      th:object="${actividad}" method="post"> 
       <table>

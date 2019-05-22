@@ -7,8 +7,9 @@
    <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-   <h1>Lista de mis actividades</h1>
-   <div th:replace="fragmentos/navInstructor" >...</div>
+	<div th:replace="fragmentos/navInstructor" >...</div>
+    <h2>Lista de mis actividades</h2>
+   
    <div th:if="${#lists.isEmpty(actividad)}">
          No hay actividades en la base de dades
     </div>

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Gestionar Clientes</title>
+   <title>Editar perfil</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
    <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-  <h1>Lista de Clientes</h1>
-   <div th:replace="fragmentos/nav" >...</div>
-   <div th:replace="fragmentos/logininfo" >...</div>
+	<div th:replace="fragmentos/navCliente" >...</div>
+  	<h2>Mi perfil</h2>
+   
    <table th:unless="${#lists.isEmpty(cliente)}" class="table table-striped">
      <thead>
        <tr>

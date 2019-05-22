@@ -2,16 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
    <title>Editar perfil</title>
-   <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
-   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   <meta charset="UTF-8" /> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-    <h2><b>Editar perfil</b></h2>
+	<div th:replace="fragmentos/navInstructor">...</div>
+    <h2>Editar perfil</h2>
     <div style="width:800px; padding-top:50px;">
 	    <div style="width:400px; float:left;">
 	    	<img style="width:350px" src="../static/imagenes/instructor_icono.png" th:src="@{/imagenes/instructor_icono.png}" />

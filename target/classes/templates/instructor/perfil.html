@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Gestionar Instructores</title>
+   <title>Perfil Instructor</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
    <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-   <h1>Lista de Instructores</h1>
-   <div><div th:replace="fragmentos/navInstructor">...</div></div>
-   <div th:replace="fragmentos/logininfo" >...</div>
+	<div th:replace="fragmentos/navInstructor">...</div>
+    <h2>Mi perfil</h2>
     <div th:if="${#lists.isEmpty(instructor)}">
          No hay instructores en la base de dades
     </div>

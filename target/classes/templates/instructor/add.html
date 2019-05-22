@@ -8,7 +8,8 @@
      <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-    <h2 class="titlelog"><b>Registrarse como instructor</b></h2>    
+	<div th:replace="fragmentos/navNoLogged" >...</div>
+    <h2>Registrarse como instructor</h2>    
     <form action="#" th:action="@{/instructor/add}" 
                      th:object="${instructor}" method="post">
                      

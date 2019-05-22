@@ -7,12 +7,21 @@
    <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-   <h1>Lista de reservas</h1>
+	<div th:replace="fragmentos/navCliente" >...</div>	
+    <h2>Lista de reservas</h2>
+   
    <div th:if="${#lists.isEmpty(reserva)}">
          No hay reservas en la base de dades
     </div>
-   <div th:replace="fragmentos/nav" >...</div>
-   <div th:replace="fragmentos/logininfo" >...</div>
+    <ul class="nav nav-tabs">
+  	<li class="nav-item">
+    	<a class="nav-link" style="color:black;" href="/actividad/listarActividades">Actividades</a>
+  	</li>
+  	<li class="nav-item">
+   		<a class="nav-link active" style="color:black;" href="/reserva/reservasCliente">Mis Reservas</a>
+  	</li>
+	</ul>
+
    <table th:unless="${#lists.isEmpty(reserva)}" class="table table-striped">
      <thead>
        <tr>
