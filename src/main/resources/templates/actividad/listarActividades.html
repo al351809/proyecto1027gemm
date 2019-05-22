@@ -13,6 +13,7 @@
    <div th:if="${#lists.isEmpty(actividad)}">
          No hay actividades en la base de dades
     </div>
+   <a href="/actividad/listarActividadesInstructor">Mis actividades.</a>
    <table  th:unless="${#lists.isEmpty(actividad)}" class="table table-striped">
      <thead>
        <tr>

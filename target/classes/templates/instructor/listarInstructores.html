@@ -19,6 +19,7 @@
      		<th>No tienes permiso para ver esta pagina.</th>
      	</tr>
        <tr th:if="${session.user.rol == 'admin'}">
+         <th></th>
          <th>DNI</th>
          <th>Nombre</th>
          <th>Email</th>
@@ -28,6 +29,9 @@
      </thead>
      <tbody th:if="${session.user.rol == 'admin'}">
        <tr th:each="instructor: ${instructor}"> 
+       	 <td><img style="width:40px" src="../static/imagenes/instructor_icono.png"
+     th:src="@{/imagenes/instructor_icono.png}" />
+       	 </td>
          <td th:text="${instructor.dni}"></td> 
          <td th:text="${instructor.nombre}"></td>
          <td th:text="${instructor.email}"></td> 

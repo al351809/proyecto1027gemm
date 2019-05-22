@@ -19,7 +19,9 @@
      		<th>No tienes permiso para ver esta pagina.</th>
      	</tr>
        <tr>
+       	 <th></th>
          <th>DNI</th>
+         <th>Alias</th>
          <th>Nombre</th>
          <th>Email</th>
          <th >Numero de cuenta</th>
@@ -28,7 +30,11 @@
      </thead>
      <tbody>
        <tr th:each="instructor: ${instructor}"> 
-         <td th:text="${instructor.dni}"></td> 
+       <td><img style="width:40px" src="../static/imagenes/instructor_icono.png"
+     th:src="@{/imagenes/instructor_icono.png}" />
+       	 </td>
+         <td th:text="${instructor.dni}"></td>
+          <td th:text="${instructor.alias}"></td>
          <td th:text="${instructor.nombre}"></td>
          <td th:text="${instructor.email}"></td> 
          <td th:text="${instructor.numeroCuenta}"></td>
