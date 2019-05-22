@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.dao.ActividadDao;
+import es.uji.ei1027.dao.InstructorDao;
 import es.uji.ei1027.model.Actividad;
 import es.uji.ei1027.model.DetallesUsuario;
 import es.uji.ei1027.service.ActividadService;
@@ -28,6 +29,7 @@ public class ActividadController {
 
 	private ActividadDao actividaddao;
 	private ActividadService actividadService;
+	private InstructorDao instructordao;
 	
 	@Autowired
 	public void setActividadService(ActividadService actividadService) {
@@ -39,6 +41,11 @@ public class ActividadController {
 	public void setActividadDao(ActividadDao actividadDao) { 
 	       this.actividaddao=actividadDao;
 	   }
+	
+	@Autowired
+	public void setInstructorDao(InstructorDao instructorDao) {
+		this.instructordao = instructorDao;
+	}
 	
 	@RequestMapping("/listarActividades")
 	public String pruevaUnaActividad(HttpSession session, Model model) {
@@ -81,9 +88,9 @@ public class ActividadController {
     	case "cliente":
     		System.out.println("Soy una patata cliente");break;
     }*/
-		
+		Instructor instructor = instructordao.getInstructor(dni)
 		session.setAttribute("nextUrl", null);
-		model.addAttribute("actividad", actividaddao.getActividad());
+		model.addAttribute("actividad", actividaddao.getActividadInstructor(dni));
 		
 	return "actividad/listarActividadesInstructor"; 
 	}

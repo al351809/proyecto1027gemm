@@ -61,6 +61,16 @@ public class ActividadDao {
             return null;
         }
     }
+    
+    public Actividad getActividadInstructor(String dni) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * from Actividad WHERE dni=?",
+                    new ActividadRowMapper(), dni);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
 
     public List<Actividad> getActividad() {
         try {

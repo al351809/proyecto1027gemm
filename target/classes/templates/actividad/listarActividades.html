@@ -14,6 +14,7 @@
          No hay actividades en la base de dades
     </div>
    <a href="/actividad/listarActividadesInstructor">Mis actividades.</a>
+   <div>
    <table  th:unless="${#lists.isEmpty(actividad)}" class="table table-striped">
      <thead>
        <tr>
@@ -47,13 +48,14 @@
          <td th:text="${actividad.textoCliente}"></td>
          <td th:text="${actividad.tipo}"></td>
          <td th:text="${actividad.estado}"></td>
-         <td><a th:href="@{/actividad/update/{nombre}(nombre=${actividad.nombre})}" class="btn btn-warning btn-sm" role="button">Edita</a> 
+         <td><a th:href="@{/actividad/update/{nombre}(nombre=${actividad.nombre})}" th:if="${session.user.rol=='admin'}" class="btn btn-warning btn-sm" role="button">Edita</a> 
          </td>
-         <td><a th:href="@{/actividad/delete/{nombre}(nombre=${actividad.nombre})}" class="btn btn-danger btn-sm" role="button">Borrar</a>
+         <td><a th:href="@{/actividad/delete/{nombre}(nombre=${actividad.nombre})}" th:if="${session.user.rol=='admin'}" class="btn btn-danger btn-sm" role="button">Borrar</a>
          </td>
        </tr>
      </tbody>
    </table>
+   </div>
    <a href="add" class="btn btn-primary" role="button">Agregar Actividad</a> 
    <a href="/paginaprincipal" class="btn btn-primary" role="button">Índice</a>
 </body>
