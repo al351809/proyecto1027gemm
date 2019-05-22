@@ -76,7 +76,7 @@ public class ReservaController {
 	} catch (ParseException e) {
 		e.printStackTrace();
 	}
-     return "redirect:listarReservas"; 
+     return "redirect:../reservasCliente"; 
 	}
 	
 	
