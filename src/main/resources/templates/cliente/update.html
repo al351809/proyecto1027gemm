@@ -14,12 +14,11 @@
             <table>
       <tr>
             <td><label>DNI</label></td>
-            <td><input type="text" th:field="*{dni}" /></td>
-            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="error"></td> 
+            <td th:text="${cliente.dni}"></td>
         </tr>
         <tr>
             <td><label>Alias</label></td>
-            <td><input type="text" th:field="*{alias}" /></td>
+            <td th:text="${cliente.alias}"></td>
         </tr>
         <tr>
             <td><label>Nombre</label></td>
@@ -36,8 +35,7 @@
         </tr>
         <tr>
             <td><label>Fecha de nacimiento</label></td>
-            <td><input type="date" th:field="*{fechaNacimiento}" /></td> 
-            <td th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}" class="error"></td>
+            <td th:text="${cliente.fechaNacimiento}"></td> 
         </tr>
          <tr>
             <td colspan="2" style="padding-top:10px"><input type="submit" value="Actualizar Cliente" class="btn btn-secondary btn-sm" />

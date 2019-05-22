@@ -36,13 +36,13 @@
          <td th:text="${reserva.fecha}"></td>
          <td th:text="${reserva.dniCliente}"></td>
          <td th:text="${reserva.nombreActividad}"></td>
-         <td><a th:href="@{/reserva/update/{idReserva}(idReserva=${reserva.idReserva})}" class="btn btn-warning btn-sm" role="button">Edita</a> 
+         <td><a th:href="@{/reserva/update/{idReserva}(idReserva=${reserva.idReserva})}" class="btn btn-warning btn-sm" role="button">Editar mi reserva</a> 
          </td>
-         <td><a th:href="@{/reserva/delete/{idReserva}(idReserva=${reserva.idReserva})}" class="btn btn-danger btn-sm" role="button">Borrar</a>
+         <td><a th:href="@{/reserva/delete/{idReserva}(idReserva=${reserva.idReserva})}" class="btn btn-danger btn-sm" role="button">Cancelar</a>
          </td>
        </tr>
      </tbody>
    </table>
-   <a href="/paginaprincipal" class="btn btn-primary" role="button">Índice</a>
+   <a href="/paginaprincipal" class="btn btn-primary" role="button">Indice</a>
 </body>
 </html>
