@@ -68,4 +68,15 @@ public class ReservaDao {
             return new ArrayList<Reserva>();
         }
     }
+    
+    public List<Reserva> getReservaDni(String dni) {
+        try {
+        	System.out.println(dni);
+            return jdbcTemplate.query("SELECT * from Reserva WHERE dniCliente=?",
+                    new ReservaRowMapper(), dni);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Reserva>();
+        }
+    }
 }

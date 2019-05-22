@@ -16,12 +16,13 @@
 	<h2>Proves de l'aplicació</h2>
 	<ul>
 		<li><a href="actividad/listarActividades">Listar Actividades</a></li>
-		<li><a href="instructor/listarInstructores">Listar Instructores</a></li>
+		<li th:if="${session.user.rol=='admin'}"><a href="instructor/listarInstructores">Listar Instructores</a></li>
 		<li th:if="${session==null}"><a href="login">Login</a></li>
 		<li th:if="${session==null}"><a href="cliente/add">Registro cliente</a></li>
 		<li th:if="${session==null}"><a href="instructor/add">Registro instructor</a></li>
 		<li th:if="${session.user.rol=='cliente'}"><a href="cliente/perfil">Mi perfil</a></li>
 		<li th:if="${session.user.rol=='instructor'}"><a href="instructor/perfil">Mi perfil</a></li>
+		<li th:if="${session.user.rol=='cliente'}"><a href="reserva/reservasCliente">Mis reservas</a></li>
 	</ul>
 		<h1>Gestion de usuario</h1>
 

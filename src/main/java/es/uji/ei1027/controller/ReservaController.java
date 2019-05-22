@@ -2,6 +2,8 @@ package es.uji.ei1027.controller;
 
 import java.text.ParseException;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import es.uji.ei1027.dao.ClienteDao;
 import es.uji.ei1027.dao.ReservaDao;
+import es.uji.ei1027.model.Cliente;
+import es.uji.ei1027.model.DetallesUsuario;
 import es.uji.ei1027.model.Reserva;
 
 @Controller	
@@ -19,9 +24,11 @@ import es.uji.ei1027.model.Reserva;
 public class ReservaController {
 	
 	private ReservaDao reservadao;
+	private ClienteDao clientedao;
 	@Autowired 
-	public void setReservaDao(ReservaDao reservaDao) { 
+	public void setReservaDao(ReservaDao reservaDao, ClienteDao clientedao) { 
 	       this.reservadao=reservaDao;
+	       this.clientedao=clientedao;
 	   }
 	
 	@RequestMapping("/listarReservas")
@@ -81,6 +88,15 @@ public class ReservaController {
             return "reserva/delete";
      reservadao.deleteReserva(reserva);
      return "redirect:../listarReservas"; 
+	}
+	
+	@RequestMapping("/reservasCliente")
+	public String pruebaReserva(HttpSession session, Model model) {
+	   DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+	   String alias = usuario.getUsuario();
+	   Cliente cliente = clientedao.getClienteAlias(alias);
+	   model.addAttribute("reserva", reservadao.getReservaDni(cliente.getDni()));
+	   return "reserva/reservasCliente"; 
 	}
 
 }
