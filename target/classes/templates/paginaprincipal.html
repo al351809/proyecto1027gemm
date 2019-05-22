@@ -12,7 +12,6 @@
 	<h1>EI1027 - Spring MVC</h1>
 	<div th:if="${session.user.rol=='admin'}"><div th:replace="fragmentos/nav">...</div></div>
 	<div th:if="${session.user.rol=='instructor'}"><div th:replace="fragmentos/navInstructor">...</div></div>
-    <div th:replace="fragmentos/logininfo">...</div>
 	<h2>Proves de l'aplicació</h2>
 	<ul>
 		<li><a href="actividad/listarActividades">Listar Actividades</a></li>

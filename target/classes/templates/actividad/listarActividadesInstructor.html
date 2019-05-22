@@ -9,10 +9,17 @@
 <body>
    <h1>Lista de mis actividades</h1>
    <div th:replace="fragmentos/navInstructor" >...</div>
-   <div th:replace="fragmentos/logininfo" >...</div>
    <div th:if="${#lists.isEmpty(actividad)}">
          No hay actividades en la base de dades
     </div>
+    <ul class="nav nav-tabs">
+  	<li class="nav-item">
+    	<a class="nav-link" style="color:black;" href="/actividad/listarActividades">Actividades</a>
+  	</li>
+  	<li class="nav-item">
+   		<a class="nav-link active" style="color:black;" href="/actividad/listarActividadesInstructor">Mis Actividades</a>
+  	</li>
+	</ul>
    <div>
 	   <table  th:unless="${#lists.isEmpty(actividad)}" class="table table-striped">
 	     <thead>

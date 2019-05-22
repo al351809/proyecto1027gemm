@@ -7,4 +7,13 @@
 
 		</ul>
 	</div>
+	<div class="loggeduser" th:object="${session}"> 
+    <p th:if="*{user == null}"> 
+	  <a href="/login" th:href="@{/login}">Iniciar sesion</a> 
+    </p>
+    <p th:unless="*{user == null}">
+	  <span th:text="*{user.usuario}"></span> <a
+			href="/logout" th:href="@{/logout}">Salir</a>
+    </p>
+</div>
 </nav>

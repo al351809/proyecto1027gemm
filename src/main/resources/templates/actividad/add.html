@@ -13,10 +13,6 @@
                      th:object="${actividad}" method="post"> 
       <table>
       <tr>
-            <td><label>Instructor con dni:</label></td>
-            <td th:text="${actividad.dni}"></td>
-        </tr>
-      <tr>
             <td><label>Nombre</label></td>
             <td><input type="text" th:field="*{nombre}" /></td>
             <td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error"></td> 
