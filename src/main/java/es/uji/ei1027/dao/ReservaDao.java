@@ -71,7 +71,6 @@ public class ReservaDao {
     
     public List<Reserva> getReservaDni(String dni) {
         try {
-        	System.out.println(dni);
             return jdbcTemplate.query("SELECT * from Reserva WHERE dniCliente=?",
                     new ReservaRowMapper(), dni);
         }

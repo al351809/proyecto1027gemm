@@ -74,7 +74,6 @@ public class ClienteDao {
     public Cliente getClienteAlias(String alias) {
     	
     	 try {
-    		 System.out.println("SEGUNDO ALIAS:"+alias);
              return jdbcTemplate.queryForObject("SELECT * from Cliente WHERE alias=?",
                      new ClienteRowMapper(), alias);
          }
