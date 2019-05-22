@@ -49,14 +49,14 @@ public class ActividadController {
 	   }
 		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
 		
-		switch(usuario.getRol()) {
+		/*switch(usuario.getRol()) {
     	case "admin":
     		System.out.println("Soy una patata admin");break;
     	case "instructor":
     		System.out.println("Soy una patata instructor");break;
     	case "cliente":
     		System.out.println("Soy una patata cliente");break;
-    }
+    }*/
 		
 		session.setAttribute("nextUrl", null);
 		model.addAttribute("actividad", actividaddao.getActividad());

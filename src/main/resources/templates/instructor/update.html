@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Editar Instructor</title>
+   <title>Editar perfil</title>
    <meta charset="UTF-8" />
-   <link rel="stylesheet"       
-     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-     <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
+   
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h2><b>Nuevos datos del Instructor</b></h2>
+    <h2><b>Editar perfil</b></h2>
     <form action="#" th:action="@{/instructor/update/{dni}(dni=${instructor.dni})}" 
                      th:object="${instructor}" method="post"> 
       <table>
@@ -32,19 +35,41 @@
             <td><input type="text" th:field="*{numeroCuenta}" /></td> 
             <td th:if="${#fields.hasErrors('numeroCuenta')}" th:errors="*{numeroCuenta}" class="error"></td>
         </tr>
-        
         <tr>
-            <td><label>Estado</label></td>
-            <td><select class="form_control" type="text" th:field="*{estado}" >
-				<option value="pendiente">Pendiente</option>
-				<option value="aceptada">Aceptada</option>
-				<option value="rechazada">Rechazada</option></select>
-			</td>
-        </tr>
-        <tr>
-            <td colspan="2" style="padding-top:10px"><input type="submit" value="Actualitza Instructor" class="btn btn-secondary btn-sm"/><a href="/instructor/perfil" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atras</a></td>
+            <td colspan="2" style="padding-top:10px"><input type="submit" value="Actualitza Instructor" class="btn btn-secondary btn-sm"/>
+            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#myModal">Atras</button></td>
         </tr>
       </table>
     </form>
+    
+   <!-- <a href="/instructor/perfil" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atras</a>  -->
+    
+    <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+    
+    
+    
 </body>
 </html>

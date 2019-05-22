@@ -49,15 +49,7 @@
 	            <td th:if="${#fields.hasErrors('numeroCuenta')}" th:errors="*{numeroCuenta}" class="error"></td>
 	        </tr>
 	        <tr>
-	            <td><label>Estado</label></td>
-	            <td><select class="form_control" type="text" th:field="*{estado}" >
-					<option value="pendiente">Pendiente</option>
-					<option value="aceptada">Aceptada</option>
-					<option value="rechazada">Rechazada</option></select>
-				</td>
-	        </tr>
-	        <tr>
-	            <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Instructor" class="btn btn-secondary btn-sm" /><a href="/instructor/listarInstructores" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
+	            <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Instructor" class="btn btn-secondary btn-sm" /><a href="/" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
 	        </tr>
 	      </table>
 	      </div>

@@ -69,7 +69,7 @@ public class LoginController {
 		user.setRol(usuarioDao.getUsuario(user.getUsuario()).getRol());
 		session.setAttribute("user", user); 
 		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
-		System.out.println(session.getAttribute("user"));
+		
 		String url;
 		//String nextUrl = (String) session.getAttribute("nextUrl");
 		if (session.getAttribute("nextUrl") != null )

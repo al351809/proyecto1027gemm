@@ -44,14 +44,14 @@ public class InstructorController {
 		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
 	    model.addAttribute("instructor", instructordao.getInstructor());
 	    
-	    switch(usuario.getRol()) {
+	    /*switch(usuario.getRol()) {
 	    	case "admin":
 	    		System.out.println("Soy una patata admin");break;
 	    	case "instructor":
 	    		System.out.println("Soy una patata instructor");break;
 	    	case "cliente":
-	    		System.out.println("Soy una patata cliente");break;
-	    }
+	    		return "/paginaprincipal";
+	    }*/
 	    
 	    session.setAttribute("nextUrl", null);
 	   
@@ -152,8 +152,6 @@ public class InstructorController {
     public String processPerfil(HttpSession session, Model model) {
 		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
 		Instructor instructor = instructordao.getInstructorAlias(usuario.getUsuario());
-		System.out.println(instructor);
-		System.out.println(instructor.getDni());
 		model.addAttribute("instructor", instructor );
         return "instructor/perfil"; 
     }
