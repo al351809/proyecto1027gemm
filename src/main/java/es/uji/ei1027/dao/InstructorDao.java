@@ -37,8 +37,8 @@ public class InstructorDao {
 	}
 
     public void updateInstructor(Instructor instructor) {
-        jdbcTemplate.update("UPDATE Instructor SET  nombre=?, email=?, numeroCuenta=?, estado=? WHERE dni=?",
-        		instructor.getNombre(), instructor.getEmail(), instructor.getNumeroCuenta(), instructor.getEstado(), instructor.getDni());
+        jdbcTemplate.update("UPDATE Instructor SET  nombre=?, email=?, numeroCuenta=? WHERE dni=?",
+        		instructor.getNombre(), instructor.getEmail(), instructor.getNumeroCuenta(), instructor.getDni());
     }
     
     public void updateEstado(String dni, String estado) {

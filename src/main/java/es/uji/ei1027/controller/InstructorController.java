@@ -88,6 +88,7 @@ public class InstructorController {
      
      try {
     	instructor.setAlias(usuario.getUsuario());
+    	instructor.setEstado("pendiente");
 		instructordao.addInstructor(instructor);
 	} catch (DuplicateKeyException e) {
 		bindingResult.rejectValue("dni", "obligatorio","El dni ya existe");
