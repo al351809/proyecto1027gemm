@@ -81,7 +81,7 @@ public class ReservaDao {
     
     public List<Reserva> getReservaNombre(String nombreActividad) {
         try {
-            return jdbcTemplate.query("SELECT * from Reserva WHERE nombreActividad=?",
+            return jdbcTemplate.query("SELECT * from Reserva WHERE nombreActividad=? ORDER BY fecha, estadoPago ASC , precioPersona DESC",
                     new ReservaRowMapper(), nombreActividad);
         }
         catch(EmptyResultDataAccessException e) {

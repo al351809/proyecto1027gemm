@@ -22,7 +22,7 @@
     	<a class="nav-link active" style="color:black;" href="/actividad/listarActividades">Actividades</a>
   	</li>
   	<li th:if="${session.user.rol=='instructor'}" class="nav-item">
-   		<a class="nav-link" style="color:black;" href="/actividad/listarActividadesInstructor">Mis Actividades</a>
+   		<a th:if="${instructor.estado=='aceptada'}" class="nav-link" style="color:black;" href="/actividad/listarActividadesInstructor">Mis Actividades</a>
   	</li>
   	<li th:if="${session.user.rol=='cliente'}" class="nav-item">
    		<a class="nav-link" style="color:black;" href="/reserva/reservasCliente">Mis Reservas</a>

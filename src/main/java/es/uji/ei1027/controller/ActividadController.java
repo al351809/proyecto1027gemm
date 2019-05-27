@@ -65,7 +65,9 @@ public class ActividadController {
     	case "cliente":
     		System.out.println("Soy una patata cliente");break;
     }*/
-		
+		DetallesUsuario user = (DetallesUsuario) session.getAttribute("user");
+		Instructor instructor = instructordao.getInstructorAlias(user.getUsuario());
+		model.addAttribute("instructor", instructor);
 		session.setAttribute("nextUrl", null);
 		model.addAttribute("actividad", actividaddao.getActividad());
 		
