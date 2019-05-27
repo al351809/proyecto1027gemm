@@ -95,5 +95,15 @@ public class ActividadDao {
         }
         return fechaDate;
     }
+    
+    public List<Actividad> getActividadNombre( String nombre) {
+        try {
+            return jdbcTemplate.query("SELECT * from Actividad WHERE nombre = ?",
+                    new ActividadRowMapper(), nombre);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Actividad>();
+        }
+    }
 	
 }

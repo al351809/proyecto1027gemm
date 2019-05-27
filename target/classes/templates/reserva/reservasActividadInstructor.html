@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar reservas</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
+</head>
+<body>
+	<div th:replace="fragmentos/navCliente" >...</div>	
+    <h2>Lista de reservas</h2>
+   
+   <div th:if="${#lists.isEmpty(reserva)}">
+         No hay reservas en la base de dades
+    </div>
+    <ul class="nav nav-tabs">
+  	<li class="nav-item">
+    	<a class="nav-link" style="color:black;" href="/actividad/listarActividades">Actividades</a>
+  	</li>
+  	<li class="nav-item">
+   		<a class="nav-link active" style="color:black;" href="/reserva/reservasCliente">Mis Reservas</a>
+  	</li>
+	</ul>
+
+   <table th:unless="${#lists.isEmpty(reserva)}" class="table table-striped">
+     <thead>
+       <tr>
+         <th>Id. reserva</th>
+         <th>Estado de pago</th>
+         <th>Numero de transaccion</th>
+         <th>Numero de asistentes</th>
+         <th>Precio por persona</th>
+         <th>fecha</th>
+         <th>DNI de los clientes</th>
+         <th>Nombre de la actividad</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="reserva: ${reserva}"> 
+         <td th:text="${reserva.idReserva}"></td> 
+         <td th:text="${reserva.estadoPago}"></td>
+         <td th:text="${reserva.numTransaccion}"></td>
+         <td th:text="${reserva.numAsistentes}"></td> 
+         <td th:text="${reserva.precioPersona}"></td>
+         <td th:text="${reserva.fecha}"></td>
+         <td th:text="${reserva.dniCliente}"></td>
+         <td th:text="${reserva.nombreActividad}"></td>
+         <td th:if="${reserva.estadoPago=='pendiente'}"><a th:href="@{/reserva/updatePagado/{idReserva}(idReserva=${reserva.idReserva})}" class="btn btn-warning btn-sm" role="button">Confirmar y cobrar</a> 
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="/paginaprincipal" class="btn btn-primary" role="button">Indice</a>
+</body>
+</html>

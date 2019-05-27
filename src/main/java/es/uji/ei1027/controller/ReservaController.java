@@ -1,6 +1,7 @@
 package es.uji.ei1027.controller;
 
 import java.text.ParseException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.dao.ActividadDao;
 import es.uji.ei1027.dao.ClienteDao;
+import es.uji.ei1027.dao.InstructorDao;
 import es.uji.ei1027.dao.ReservaDao;
 import es.uji.ei1027.model.Actividad;
 import es.uji.ei1027.model.Cliente;
 import es.uji.ei1027.model.DetallesUsuario;
+import es.uji.ei1027.model.Instructor;
 import es.uji.ei1027.model.Reserva;
 
 @Controller	
@@ -28,11 +31,14 @@ public class ReservaController {
 	private ReservaDao reservadao;
 	private ClienteDao clientedao;
 	private ActividadDao actividaddao;
+	private InstructorDao instructordao;
+	
 	@Autowired 
-	public void setReservaDao(ReservaDao reservaDao, ClienteDao clientedao, ActividadDao actividaddao) { 
+	public void setReservaDao(ReservaDao reservaDao, ClienteDao clientedao, ActividadDao actividaddao, InstructorDao instructordao) { 
 	       this.reservadao=reservaDao;
 	       this.clientedao=clientedao;
 	       this.actividaddao=actividaddao;
+	       this.instructordao=instructordao;
 	   }
 	
 	@RequestMapping("/listarReservas")
@@ -113,6 +119,21 @@ public class ReservaController {
 		}
          return "redirect:../listarReservas"; 
     }
+ 
+	 @RequestMapping(value="/updatePagado/{idReserva}", method = RequestMethod.GET) 
+	 public String editReservaPagado(Model model, @PathVariable Integer idReserva) { 
+		 Reserva reserva = reservadao.getReserva(idReserva);
+		 reserva.setEstadoPago("pagado");
+		 try {
+			reservadao.updateReserva(reserva);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 List<Reserva> reservas = reservadao.getReservaNombre(reserva.getNombreActividad());
+	     model.addAttribute("reserva", reservas);
+	     return "reserva/reservasActividadInstructor"; 
+	 }
 	
 	@RequestMapping(value="/delete/{idReserva}")
     public String processDelete(@PathVariable Integer idReserva) {
@@ -137,6 +158,13 @@ public class ReservaController {
 	   model.addAttribute("reserva", reservadao.getReservaDni(cliente.getDni()));
 	   return "reserva/reservasCliente"; 
 	}
-
+	
+	@RequestMapping("/reservasActividadInstructor/{nombre}")
+	public String reservasInstructor(@PathVariable String nombre, HttpSession session, Model model) {
+	   List<Reserva> reservas = reservadao.getReservaNombre(nombre);
+	   model.addAttribute("reserva", reservas);
+	   return "reserva/reservasActividadInstructor"; 
+	}
+	
 }
 

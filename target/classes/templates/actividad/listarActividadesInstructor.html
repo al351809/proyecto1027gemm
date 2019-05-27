@@ -59,6 +59,8 @@
 	         </td>
 	         <td><a th:href="@{/actividad/delete/{nombre}(nombre=${actividad.nombre})}" class="btn btn-danger btn-sm" role="button">Borrar</a>
 	         </td>
+	         <td><a th:href="@{/reserva/reservasActividadInstructor/{nombre}(nombre=${actividad.nombre})}" class="btn btn-warning btn-sm" role="button">Reservas</a>
+	         </td>
 	       </tr>
 	     </tbody>
 	   </table>

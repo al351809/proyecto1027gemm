@@ -78,4 +78,15 @@ public class ReservaDao {
             return new ArrayList<Reserva>();
         }
     }
+    
+    public List<Reserva> getReservaNombre(String nombreActividad) {
+        try {
+            return jdbcTemplate.query("SELECT * from Reserva WHERE nombreActividad=?",
+                    new ReservaRowMapper(), nombreActividad);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Reserva>();
+        }
+    }
+    
 }
