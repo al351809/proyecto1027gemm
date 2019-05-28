@@ -35,8 +35,8 @@
          <th>Imagenes</th>
        </tr>
      </thead>
-     <tbody>
-       <tr th:each="imagen: ${imagenes}">   
+     <tbody th:each="imagen: ${imagenes}">
+       <tr>   
          <td> <img th:src="@{${imagen}}"></td>
        </tr>
        
