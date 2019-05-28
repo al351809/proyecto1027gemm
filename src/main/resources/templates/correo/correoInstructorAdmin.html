@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar Instructores</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
+</head>
+<body>
+   <div><div th:replace="fragmentos/nav">...</div></div>
+   <div style="background-color: #d1f4ff; margin:5px; width:500px; padding:10px;">
+
+	
+   <h1 th:if="${estado == 'aceptada'}" style="color:#7c7c8a;">Se ha aceptado un instructor</h1>
+   <h1 th:if="${estado == 'rechazada'}" style="color:#7c7c8a;">Se ha rechazado un instructor</h1>
+  <div >Se notificara al instructor meidante un correo.</div>
+  </div>
+   <a href="/instructor/listarInstructores" class="btn btn-primary" style="margin-left:5px;" role="button">Atrás</a>
+</body>
+</html>

@@ -124,8 +124,9 @@ public class InstructorController {
 	 @RequestMapping(value="/updateEstado/{dni}/{estado}", method = RequestMethod.GET) 
 	 public String editEstadoInstructor(Model model, @PathVariable String dni, @PathVariable String estado) { 
 	     model.addAttribute("instructor", instructordao.getInstructor(dni));
+	     model.addAttribute("estado", estado);
 	     instructordao.updateEstado(dni, estado);
-	     return "redirect:../../listarInstructores"; 
+	     return "/correo/correoInstructorAdmin"; 
 	 }
   
 	

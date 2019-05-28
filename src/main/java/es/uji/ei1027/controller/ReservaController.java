@@ -132,7 +132,7 @@ public class ReservaController {
 		}
 		 List<Reserva> reservas = reservadao.getReservaNombre(reserva.getNombreActividad());
 	     model.addAttribute("reserva", reservas);
-	     return "reserva/reservasActividadInstructor"; 
+	     return "correo/correoInstructorCliente"; 
 	 }
 	
 	@RequestMapping(value="/delete/{idReserva}")
