@@ -14,7 +14,7 @@
    <div  th:if="${session.user.rol==''}"><div th:replace="fragmentos/navNoLogged" >...</div></div>
    
    <h2>Lista de Imagenes</h2>
-   <div th:if="${#lists.isEmpty(actividad)}">
+   <div th:if="${#lists.isEmpty(imagenes)}">
          No hay imagenes
     </div>
    <ul class="nav nav-tabs">
@@ -29,16 +29,17 @@
   	</li>
 	</ul>
    <div>
-   <table  th:unless="${#lists.isEmpty(actividad)}" class="table table-striped">
+   <table  th:unless="${#lists.isEmpty(imagenes)}" class="table table-striped">
      <thead>
        <tr>
          <th>Imagenes</th>
        </tr>
      </thead>
      <tbody>
-       <tr th:each="imagen: ${imagenes}"> 
-         <td> <img th:src="@{${imagen.imagen}}"></td> 
+       <tr th:each="imagen: ${imagenes}">   
+         <td> <img th:src="@{${imagen}}"></td>
        </tr>
+       
      </tbody>
    </table>
    </div>
