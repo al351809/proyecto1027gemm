@@ -68,11 +68,13 @@
          </td>
          <td  th:if="${session.user.rol=='cliente' and actividad.estado=='abierta' }"><a th:href="@{/reserva/add/{nombre}(nombre=${actividad.nombre})}" class="btn btn-warning btn-sm" role="button">Reservar</a>
          </td>
+         <td><a th:href="@{/imagenes/listarImagenes/{nombre}(nombre=${actividad.nombre})}" class="btn btn-warning btn-sm" role="button">Ver fotos</a>
+         </td>
        </tr>
      </tbody>
    </table>
    </div>
    <a th:if="${session.user.rol=='admin'}" href="add" class="btn btn-primary" role="button">Agregar Actividad</a> 
-   <a href="/paginaprincipal" class="btn btn-primary" role="button">Índice</a>
+   <a href="/paginaprincipal" class="btn btn-primary" role="button">Página principal</a>
 </body>
 </html>

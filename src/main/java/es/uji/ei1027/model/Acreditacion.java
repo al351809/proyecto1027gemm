@@ -5,6 +5,7 @@ public class Acreditacion {
     private String certificado;
     private String dni;
     private String estado;
+    
 	public int getIdcertificado() {
 		return idcertificado;
 	}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar Actividades</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
+</head>
+<body>
+   
+   <div  th:if="${session.user.rol=='admin'}"><div th:replace="fragmentos/nav" >...</div></div>
+   <div th:if="${session.user.rol=='instructor'}"><div th:replace="fragmentos/navInstructor" >...</div></div>
+   <div  th:if="${session.user.rol=='cliente'}"><div th:replace="fragmentos/navCliente" >...</div></div>
+   <div  th:if="${session.user.rol==''}"><div th:replace="fragmentos/navNoLogged" >...</div></div>
+   
+   <h2>Lista de Imagenes</h2>
+   <div th:if="${#lists.isEmpty(actividad)}">
+         No hay imagenes
+    </div>
+   <ul class="nav nav-tabs">
+  	<li class="nav-item">
+    	<a class="nav-link active" style="color:black;" href="/actividad/listarActividades">Actividades</a>
+  	</li>
+  	<li th:if="${session.user.rol=='instructor'}" class="nav-item">
+   		<a th:if="${instructor.estado=='aceptada'}" class="nav-link" style="color:black;" href="/actividad/listarActividadesInstructor">Mis Actividades</a>
+  	</li>
+  	<li th:if="${session.user.rol=='cliente'}" class="nav-item">
+   		<a class="nav-link" style="color:black;" href="/reserva/reservasCliente">Mis Reservas</a>
+  	</li>
+	</ul>
+   <div>
+   <table  th:unless="${#lists.isEmpty(actividad)}" class="table table-striped">
+     <thead>
+       <tr>
+         <th>Imagenes</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="imagen: ${imagenes}"> 
+         <td> <img th:src="@{${imagen.imagen}}"></td> 
+       </tr>
+     </tbody>
+   </table>
+   </div>
+   <a href="/paginaprincipal" class="btn btn-primary" role="button">Página principal</a>
+</body>
+</html>
