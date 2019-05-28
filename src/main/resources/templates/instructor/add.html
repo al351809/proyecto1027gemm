@@ -11,7 +11,7 @@
 	<div th:replace="fragmentos/navNoLogged" >...</div>
     <h2>Registrarse como instructor</h2>    
     <form action="#" th:action="@{/instructor/add}" 
-                     th:object="${instructor}" method="post">
+                     th:object="${instructor}" method="post" enctype="multipart/form-data">
                      
       <div style="width:800px; padding-top:50px;">     
        <div style="width:400px; float:left;" th:object="${usuario}">         
@@ -49,6 +49,10 @@
 	            <td><input type="text" th:field="*{numeroCuenta}" /></td> 
 	            <td th:if="${#fields.hasErrors('numeroCuenta')}" th:errors="*{numeroCuenta}" class="error"></td>
 	        </tr>
+	        <tr>
+	        	<td><input type="file" name="file" id="file" /> </td>
+	        </tr>
+	        
 	        <tr>
 	            <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Instructor" class="btn btn-secondary btn-sm" /><a href="/" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atrás</a></td>
 	        </tr>

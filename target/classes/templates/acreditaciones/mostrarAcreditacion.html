@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Acreditacion</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
+</head>
+<body>
+   <div><div th:replace="fragmentos/nav">...</div></div>
+   <a style="margin:5px;"href="/acreditaciones/listarAcreditaciones" class="btn btn-secondary" role="button">Atras</a>
+	<embed th:src="@{${url}}" width="100%" height="600px" type="application/pdf">
+</body>
+</html>

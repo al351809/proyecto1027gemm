@@ -7,9 +7,9 @@
    <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-   <h1>Lista de Acreditaciones</h1>
+   
    <div th:replace="fragmentos/nav" >...</div>
-   <div th:replace="fragmentos/logininfo" >...</div>
+   <h2>Lista de Acreditaciones</h2>
    <div th:if="${#lists.isEmpty(acreditacion)}">
          No hay acreditaciones disponibles.
     </div>
@@ -25,7 +25,7 @@
      <tbody>
        <tr th:each="acreditacion: ${acreditacion}"> 
          <td th:text="${acreditacion.idcertificado}"></td> 
-         <td th:text="${acreditacion.certificado}"></td>
+         <td><a th:href="@{/acreditaciones/mostrarAcreditacion/{idcertificado}(idcertificado=${acreditacion.idcertificado})}" th:text="${acreditacion.certificado}"></a></td>
          <td th:text="${acreditacion.dni}"></td>
          <td th:text="${acreditacion.estado}"></td>
          <td><a th:href="@{/acreditaciones/update/{idcertificado}(idcertificado=${acreditacion.idcertificado})}" class="btn btn-warning btn-sm" role="button">Edita</a> 
@@ -36,6 +36,6 @@
      </tbody>
    </table>
    <a href="add" class="btn btn-primary" role="button">Agregar Acreditacion</a> 
-   <a href="/" class="btn btn-primary" role="button">Índice</a>
+   <a href="/paginaprincipal" class="btn btn-primary" role="button">Índice</a>
 </body>
 </html>

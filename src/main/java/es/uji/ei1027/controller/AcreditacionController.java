@@ -36,6 +36,22 @@ public class AcreditacionController {
 	   return "acreditaciones/listarAcreditaciones"; 
 	}
 	
+	@RequestMapping("/listarAcreditaciones/{dni}")
+	public String listarAcreditacion(@PathVariable String dni, Model model) {
+	   model.addAttribute("acreditacion", acreditaciondao.getAcreditacionDni(dni));
+	   return "acreditaciones/listarAcreditaciones"; 
+	}
+	
+	@RequestMapping("/mostrarAcreditacion/{idcertificado}")
+	public String mostrarrAcreditacion(@PathVariable Integer idcertificado, Model model) {
+		Acreditacion acreditacion = acreditaciondao.getAcreditacion(idcertificado);
+		String url = acreditacion.getCertificado();
+		String fichero = url.substring(25, url.length());
+		System.out.println(fichero);
+		model.addAttribute("url", fichero);
+	   return "acreditaciones/mostrarAcreditacion"; 
+	}
+	
 	@RequestMapping(value="/add") 
     public String addAcreditacion(Model model) {
         model.addAttribute("acreditacion", new Acreditacion());
