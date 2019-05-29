@@ -21,6 +21,15 @@
   	<li class="nav-item">
     	<a class="nav-link active" style="color:black;" href="/actividad/listarActividades">Actividades</a>
   	</li>
+  	<li th:if="${session.user.rol=='admin'}" class="nav-item">
+   		<a class="nav-link " style="color:black;" href="/cliente/listarClientes">Clientes</a>
+  	</li>
+  	<li th:if="${session.user.rol=='admin'}" class="nav-item">
+   		<a class="nav-link" style="color:black;" href="/instructor/listarInstructores">Instructores</a>
+  	</li>
+  	<li th:if="${session.user.rol=='admin'}" class="nav-item">
+   		<a class="nav-link" style="color:black;" href="/tipoActividad/listarTiposActividad">Tipos Actividades</a>
+  	</li>
   	<li th:if="${session.user.rol=='instructor'}" class="nav-item">
    		<a th:if="${instructor.estado=='aceptada'}" class="nav-link" style="color:black;" href="/actividad/listarActividadesInstructor">Mis Actividades</a>
   	</li>

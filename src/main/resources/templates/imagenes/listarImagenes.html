@@ -29,15 +29,11 @@
   	</li>
 	</ul>
    <div>
+   <h3>Imagenes</h3>
    <table  th:unless="${#lists.isEmpty(imagenes)}" class="table table-striped">
-     <thead>
-       <tr>
-         <th>Imagenes</th>
-       </tr>
-     </thead>
      <tbody th:each="imagen: ${imagenes}">
        <tr>   
-         <td> <img th:src="@{${imagen}}"></td>
+          <span style="margin-left:5px;"><img style="width:400px; height:250px;" th:src="@{${imagen}}"></span>
        </tr>
        
      </tbody>

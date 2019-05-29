@@ -28,11 +28,11 @@ class UserValidator implements Validator {
 	public void validate(Object obj, Errors errors) {
 	  DetallesUsuario detallesUsuario = (DetallesUsuario)obj;
 	  if(detallesUsuario.getUsuario().isEmpty()) {
-		  errors.rejectValue("Usuario", "obligatorio",
+		  errors.rejectValue("usuario", "obligatorio",
                   "Hay que introducir un nombre usuario");
 	  }
 	  if(detallesUsuario.getPassword().isEmpty()) {
-		  errors.rejectValue("Password", "obligatorio",
+		  errors.rejectValue("password", "obligatorio",
                   "Hay que introducir una contraseña");
 	  }
 	}
@@ -61,14 +61,24 @@ public class LoginController {
 	       // Comprova que el login siga correcte 
 		// intentant carregar les dades de l'usuari 
 		if (user.getPassword() == null) {
-			bindingResult.rejectValue("contraseña", "badpw", "Contraseña incorrecta"); 
+			bindingResult.rejectValue("password", "badpw", "Password incorrecta"); 
 			return "login";
 		}
-		// Autenticats correctament. 
-		// Guardem les dades de l'usuari autenticat a la sessió
-		user.setRol(usuarioDao.getUsuario(user.getUsuario()).getRol());
-		session.setAttribute("user", user); 
-		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+		else if(user.getUsuario() == null) {
+			bindingResult.rejectValue("usuario", "baduser", "Usuario incorrecto"); 
+			return "login";
+		}else {
+			// Autenticats correctament. 
+			// Guardem les dades de l'usuari autenticat a la sessió
+			try {
+				user.setRol(usuarioDao.getUsuario(user.getUsuario()).getRol());
+			} catch (NullPointerException e) {
+				bindingResult.rejectValue("usuario", "noData", "Datos incorrectos");
+				return "login";
+			}
+			session.setAttribute("user", user); 
+			//DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+		}
 		
 		String url;
 		//String nextUrl = (String) session.getAttribute("nextUrl");

@@ -33,6 +33,7 @@
 		<p>
             <input type="password" th:field="*{password}" id="password" class="login" name="login" placeholder="Password"/>
             <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            <div class="error" th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"></div>
 		</p>		
 		<input type="submit" value="Acceder" class="logButton" />
 	</form>

@@ -41,12 +41,12 @@ public class ClienteController {
 	          session.setAttribute("nextUrl", "cliente/listarClientes");
 	          return "login";
 	   }
-	   System.out.println(session.getAttribute("user"));
+
 	   DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
-	   System.out.println(usuario.getUsuario());
+	  
 
 	   if (usuario.getRol().equals("admin"))
-		   System.out.println("patata");
+		   
 	   model.addAttribute("cliente", clientedao.getCliente());
 	   return "cliente/listarClientes"; 
 	}

@@ -156,7 +156,7 @@ public class ActividadController {
 	@RequestMapping(value="/delete/{nombre}")
     public String processDelete(@PathVariable String nombre) {
 		actividaddao.deleteActividad(nombre);
-           return "redirect:../listarActividadesInstructor"; 
+           return "redirect:../listarActividades"; 
     }
 	
 	@RequestMapping(value="/delete/{nombre}", method=RequestMethod.POST) 
@@ -165,7 +165,7 @@ public class ActividadController {
      if (bindingResult.hasErrors()) 
             return "actividad/delete";
      actividaddao.deleteActividad(actividad);
-     return "redirect:../listarActividadesInstructor"; 
+     return "redirect:../listarActividades"; 
 	}
 
 }

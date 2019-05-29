@@ -10,10 +10,9 @@
 </head>
 
 <body>
-	<h1>Lista de usuario del sistema</h1>
-	<div th:replace="fragmentos/nav" >...</div>
-	<div th:replace="fragmentos/logininfo" >...</div>
 	
+	<div th:replace="fragmentos/nav" >...</div>
+	<h2>Lista de usuario del sistema</h2>
 	
     <div th:if="${#lists.isEmpty(users)}">
        No hay usuarios
@@ -22,15 +21,17 @@
       <thead>
         <tr>
           <th>Nombre de usuario</th>
+          <th>Rol</th>
         </tr>
       </thead>
       
       <tbody>
         <tr th:each="user: ${users}">
           <td th:text="${user.usuario}"></td>
+          <td th:text="${user.rol}"></td>
         </tr>
       </tbody>
     </table>
-    <a href="/" class="btn btn-primary" role="button">Volver</a>
+    <a href="/paginaprincipal" class="btn btn-primary" role="button">Volver</a>
 </body>
 </html>

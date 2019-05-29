@@ -13,6 +13,26 @@
     <div th:if="${#lists.isEmpty(instructor)}">
          No hay instructores en la base de dades
     </div>
+    
+    <ul class="nav nav-tabs">
+	  	<li th:if="${session.user.rol=='admin'}" class="nav-item">
+	    	<a class="nav-link " style="color:black;" href="/actividad/listarActividades">Actividades</a>
+	  	</li>
+	  	<li th:if="${session.user.rol=='admin'}" class="nav-item">
+	   		<a class="nav-link" style="color:black;" href="/cliente/listarClientes">Clientes</a>
+	  	</li>
+	  	<li th:if="${session.user.rol=='admin'}" class="nav-item">
+	   		<a class="nav-link active" style="color:black;" href="/instructor/listarInstructores">Instructores</a>
+	  	</li>
+	  	<li th:if="${session.user.rol=='admin'}" class="nav-item">
+	   		<a class="nav-link" style="color:black;" href="/tipoActividad/listarTiposActividad">Tipos Actividades</a>
+	  	</li>
+	</ul>
+    
+    
+    
+    
+    
    <table th:unless="${#lists.isEmpty(instructor)}" class="table table-striped">
      <thead>
      	<tr th:if="${session.user.rol != 'admin'}">
