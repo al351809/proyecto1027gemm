@@ -6,6 +6,7 @@ import java.text.ParseException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -121,6 +122,8 @@ public class ActividadController {
 			actividaddao.addActividad(actividad);
 		} catch (ParseException e) {
 			e.printStackTrace();
+		}catch(DuplicateKeyException e2) {
+			e2.printStackTrace();
 		}
 	    
 	  return "actividad/listarActividadesInstructor"; 

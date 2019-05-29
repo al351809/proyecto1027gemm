@@ -117,7 +117,7 @@ public class ReservaController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-         return "redirect:../listarReservas"; 
+         return "redirect:../reservasCliente"; 
     }
  
 	 @RequestMapping(value="/updatePagado/{idReserva}", method = RequestMethod.GET) 
