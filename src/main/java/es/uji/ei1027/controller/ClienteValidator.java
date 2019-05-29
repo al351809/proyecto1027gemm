@@ -21,9 +21,6 @@ public class ClienteValidator implements Validator {
 		 if (cliente.getEmail().trim().equals(""))
 		       errors.rejectValue("email", "obligatorio",
 		                          "Hay que introducir un email");
-		 if (cliente.getFechaNacimiento().trim().equals(""))
-		       errors.rejectValue("fechaNacimiento", "obligatorio",
-		                          "Selecciona una fecha");
 		 	   
 	   }
 	}

@@ -144,19 +144,49 @@ public class InstructorController {
 	@RequestMapping(value="/update/{dni}", method = RequestMethod.GET) 
     public String editInstructor(Model model, @PathVariable String dni) { 
         model.addAttribute("instructor", instructordao.getInstructor(dni));
+        model.addAttribute("acreditacion", new Acreditacion());
         return "instructor/update"; 
     }
 	
  @RequestMapping(value="/update/{dni}", method = RequestMethod.POST) 
-    public String processUpdateSubmit(@PathVariable String dni, 
-                            @ModelAttribute("instructor") Instructor instructor, 
-                            BindingResult bindingResult) {
+    public String processUpdateSubmit(@PathVariable String dni, @ModelAttribute("instructor") Instructor instructor, 
+                            BindingResult bindingResult, @ModelAttribute("acreditacion") Acreditacion acreditacion, BindingResult bindingResult2, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
 	 	InstructorValidator instructorValidator = new InstructorValidator(); 
 		instructorValidator.validate(instructor, bindingResult);
+		
+		//Gestionar el file de la acreditacion como pdf
+		if (file.isEmpty()) {
+
+	        redirectAttributes.addFlashAttribute("message", 
+	                                         "Please select a file to upload");
+	        return "instructor/add";
+	    }
+
+	    try {
+	        // Obtener el fichero y guardarlo
+	        byte[] bytes = file.getBytes();
+	        Path path = Paths.get(uploadDirectory + "pdfs/" 
+	                                      + file.getOriginalFilename());
+	        Files.write(path, bytes);
+
+	        redirectAttributes.addFlashAttribute("message",
+	                "You successfully uploaded '" + path + "'");
+
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    //-------------------------------------------	
+		
          if (bindingResult.hasErrors()) 
              return "instructor/update";
          try {
      		instructordao.updateInstructor(instructor);
+     		
+     		acreditacion.setDni(instructor.getDni());
+    		acreditacion.setEstado("pendiente");
+    		acreditacion.setCertificado(uploadDirectory + "pdfs/" + file.getOriginalFilename());
+    		acreditaciondao.addAcreditacion(acreditacion);
      	} catch (DuplicateKeyException e) {
      		bindingResult.rejectValue("dni", "obligatorio","El dni ya existe");
      		return "instructor/update";

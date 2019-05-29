@@ -124,3 +124,7 @@ select {
 .clase1 table{
 	width:100%;
 }
+
+.updateInstructor th, td {
+  padding-left: 15px;
+}

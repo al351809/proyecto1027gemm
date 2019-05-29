@@ -19,8 +19,8 @@
 	    </div>
 	    <div style="width:400px; float:right;">
 	    <form action="#" th:action="@{/instructor/update/{dni}(dni=${instructor.dni})}" 
-	                     th:object="${instructor}" method="post"> 
-	      <table>
+	                     th:object="${instructor}" method="post" enctype="multipart/form-data"> 
+	      <table class="updateInstructor">
 	      <tr>
 	            <td><label>DNI</label></td>
 	            <td th:text="${instructor.dni}"></td> 
@@ -45,42 +45,49 @@
 	            <td th:if="${#fields.hasErrors('numeroCuenta')}" th:errors="*{numeroCuenta}" class="error"></td>
 	        </tr>
 	        <tr>
-	            <td colspan="2" style="padding-top:10px"><input type="submit" value="Actualitza Instructor" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#myModal"/>
+	        	<td>Nuevo Certificado</td>
+	        	<td><input type="file" name="file" id="file" /> </td>
+	        </tr>
+	        
+	        <tr>
+	            <td colspan="2" style="padding-top:10px"><input type="button" value ="Actualizar Instructor" class="btn btn-secondary btn-sm" data-toggle="modal"data-target="#myModal" />
 	            <a href="/instructor/perfil" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atras</a></td>
 	        </tr>
 	      </table>
+	      
+	        
+		  </div> 
+		    <!-- The Modal -->
+		  <div class="modal" id="myModal">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		      
+		        <!-- Modal Header -->
+		        <div class="modal-header">
+		          <h4 class="modal-title">Actualizacion de perfil</h4>
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        
+		        <!-- Modal body -->
+		        <div class="modal-body">
+		          Se van a actulizar tus datos. Estas seguro que quieres hacerlo?
+		        </div>
+		        
+		        <!-- Modal footer -->
+		        <div class="modal-footer">
+		          <button type="submit" value="Actualitza Instructor" class="btn btn-secondary btn-sm">Aceptar</button>
+		          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar</button>
+		        </div>
+		        
+		      </div>
+		    </div>
+		  </div>  
 	    </form>
     	</div>
    <!-- <a href="/instructor/perfil" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atras</a>  -->
    
    
-   
-  </div> 
-    <!-- The Modal -->
-  <div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Actualizacion de instructor</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          Instructor actualizado con éxito.
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-    
+ 
     
     
 </body>
