@@ -43,6 +43,11 @@ public class AcreditacionDao {
                 acreditacion.getCertificado(), acreditacion.getDni(),
                 acreditacion.getEstado(), acreditacion.getIdcertificado());
     }
+    
+    public void updateAcreditacion(Integer idcertificado, String estado) {
+        jdbcTemplate.update("UPDATE Acreditacion SET estado=? WHERE idcertificado=?",
+                estado, idcertificado);
+    }
 
     public Acreditacion getAcreditacion(int idcertificado) {
         try {

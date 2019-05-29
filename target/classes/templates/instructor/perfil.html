@@ -40,9 +40,11 @@
          <td style="text-transform:capitalize;" th:text="${instructor.estado}"></td> 
          <td><a th:href="@{/instructor/update/{dni}(dni=${instructor.dni})}" class="btn btn-warning btn-sm" role="button">Editar perfil</a> 
          </td>
+         <td><a th:href="@{/acreditaciones/listarAcreditaciones/{dni}(dni=${instructor.dni})}" class="btn btn-warning btn-sm" role="button">Acreditaciones</a> 
+         </td>
        </tr>
      </tbody>
    </table>
-   <a href="/paginaprincipal" class="btn btn-primary" role="button">Índice</a>
+   <a href="/paginaprincipal" class="btn btn-primary" role="button">Atrás</a>
 </body>
 </html>

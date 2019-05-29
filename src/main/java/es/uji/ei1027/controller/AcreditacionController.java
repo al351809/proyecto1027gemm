@@ -86,6 +86,14 @@ public class AcreditacionController {
          return "redirect:../listarAcreditaciones"; 
     }
 	
+	 @RequestMapping(value="/updateEstado/{idcertificado}/{estado}", method = RequestMethod.GET) 
+	 public String editEstadoInstructor(Model model, @PathVariable Integer idcertificado, @PathVariable String estado) { 
+	     model.addAttribute("acreditacion", acreditaciondao.getAcreditacion(idcertificado));
+	     model.addAttribute("estado", estado);
+	     acreditaciondao.updateAcreditacion(idcertificado, estado);
+	     return "/correo/correoInstructorAdmin"; 
+	 }
+	
 	@RequestMapping(value="/delete/{idcertificado}")
     public String processDelete(@PathVariable Integer idcertificado) {
            acreditaciondao.deleteAcreditacion(idcertificado);

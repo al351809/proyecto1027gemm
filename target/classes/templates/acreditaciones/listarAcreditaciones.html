@@ -28,14 +28,17 @@
          <td><a th:href="@{/acreditaciones/mostrarAcreditacion/{idcertificado}(idcertificado=${acreditacion.idcertificado})}" th:text="${acreditacion.certificado}"></a></td>
          <td th:text="${acreditacion.dni}"></td>
          <td th:text="${acreditacion.estado}"></td>
-         <td><a th:href="@{/acreditaciones/update/{idcertificado}(idcertificado=${acreditacion.idcertificado})}" class="btn btn-warning btn-sm" role="button">Edita</a> 
+         <td th:if="${session.user.rol=='admin'}"><a th:href="@{/acreditaciones/updateEstado/{idcertificado}/{estado}(idcertificado=${acreditacion.idcertificado}, estado='aceptada')}" class="btn btn-warning btn-sm" role="button">Aceptar</a>
          </td>
-         <td><a th:href="@{/acreditaciones/delete/{idcertificado}(idcertificado=${acreditacion.idcertificado})}" class="btn btn-danger btn-sm" role="button">Borrar</a>
+         <td th:if="${session.user.rol=='instructor'}"><a th:href="@{/acreditaciones/delete/{idcertificado}(idcertificado=${acreditacion.idcertificado})}" class="btn btn-danger btn-sm" role="button">Borrar</a>
+         </td>
+         <td th:if="${session.user.rol=='admin'}"><a th:href="@{/acreditaciones/updateEstado/{idcertificado}/{estado}(idcertificado=${acreditacion.idcertificado}, estado='rechazada')}" class="btn btn-danger btn-sm" role="button">Rechazar</a>
          </td>
        </tr>
      </tbody>
    </table>
-   <a href="add" class="btn btn-primary" role="button">Agregar Acreditacion</a> 
    <a href="/paginaprincipal" class="btn btn-primary" role="button">Índice</a>
+   <a th:if="${session.user.rol=='instructor'}"  href="/instructor/perfil" class="btn btn-primary" role="button">Atrás</a>
+   <a th:if="${session.user.rol=='admin'}"  href="/instructor/listarInstructores" class="btn btn-primary" role="button">Atrás</a>
 </body>
 </html>
