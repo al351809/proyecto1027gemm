@@ -52,24 +52,19 @@ public class ActividadController {
 	@RequestMapping("/listarActividades")
 	public String pruevaUnaActividad(HttpSession session, Model model) {
 		if (session.getAttribute("user") == null){ 
-	          model.addAttribute("user", new DetallesUsuario()); 
-	          session.setAttribute("nextUrl", "actividad/listarActividades");
-	          return "login";
-	   }
-		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+			DetallesUsuario user = new DetallesUsuario();
+			user.setRol("");
+	        model.addAttribute("user",user );
+	        session.setAttribute("user", user);
+	          
+	   }else{
 		
-		/*switch(usuario.getRol()) {
-    	case "admin":
-    		System.out.println("Soy una patata admin");break;
-    	case "instructor":
-    		System.out.println("Soy una patata instructor");break;
-    	case "cliente":
-    		System.out.println("Soy una patata cliente");break;
-    }*/
 		DetallesUsuario user = (DetallesUsuario) session.getAttribute("user");
 		Instructor instructor = instructordao.getInstructorAlias(user.getUsuario());
 		model.addAttribute("instructor", instructor);
 		session.setAttribute("nextUrl", null);
+		}
+		
 		model.addAttribute("actividad", actividaddao.getActividad());
 		
 	return "actividad/listarActividades"; 
@@ -83,15 +78,6 @@ public class ActividadController {
 	          return "login";
 	   }
 		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
-		
-		/*switch(usuario.getRol()) {
-    	case "admin":
-    		System.out.println("Soy una patata admin");break;
-    	case "instructor":
-    		System.out.println("Soy una patata instructor");break;
-    	case "cliente":
-    		System.out.println("Soy una patata cliente");break;
-    }*/
 		Instructor instructor = instructordao.getInstructorAlias(usuario.getUsuario());
 		session.setAttribute("nextUrl", null);
 		model.addAttribute("actividad", actividaddao.getActividadInstructor(instructor.getDni()));
