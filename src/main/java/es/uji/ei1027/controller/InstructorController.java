@@ -158,24 +158,28 @@ public class InstructorController {
 		if (file.isEmpty()) {
 
 	        redirectAttributes.addFlashAttribute("message", 
-	                                         "Please select a file to upload");
-	        return "instructor/add";
+	                                         "No file");
 	    }
-
-	    try {
-	        // Obtener el fichero y guardarlo
-	        byte[] bytes = file.getBytes();
-	        Path path = Paths.get(uploadDirectory + "pdfs/" 
-	                                      + file.getOriginalFilename());
-	        Files.write(path, bytes);
-
-	        redirectAttributes.addFlashAttribute("message",
-	                "You successfully uploaded '" + path + "'");
-
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	    
+		else {
+		    try {
+		        // Obtener el fichero y guardarlo
+		        byte[] bytes = file.getBytes();
+		        Path path = Paths.get(uploadDirectory + "pdfs/" 
+		                                      + file.getOriginalFilename());
+		        Files.write(path, bytes);
+	
+		        redirectAttributes.addFlashAttribute("message",
+		                "You successfully uploaded '" + path + "'");
+	
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		    
+		    acreditacion.setDni(instructor.getDni());
+			acreditacion.setEstado("pendiente");
+			acreditacion.setCertificado(uploadDirectory + "pdfs/" + file.getOriginalFilename());
+			acreditaciondao.addAcreditacion(acreditacion);
+		} 
 	    //-------------------------------------------	
 		
          if (bindingResult.hasErrors()) 
@@ -183,10 +187,7 @@ public class InstructorController {
          try {
      		instructordao.updateInstructor(instructor);
      		
-     		acreditacion.setDni(instructor.getDni());
-    		acreditacion.setEstado("pendiente");
-    		acreditacion.setCertificado(uploadDirectory + "pdfs/" + file.getOriginalFilename());
-    		acreditaciondao.addAcreditacion(acreditacion);
+     		
      	} catch (DuplicateKeyException e) {
      		bindingResult.rejectValue("dni", "obligatorio","El dni ya existe");
      		return "instructor/update";
