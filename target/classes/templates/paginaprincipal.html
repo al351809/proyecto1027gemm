@@ -10,19 +10,43 @@
 	<div th:if="${session.user.rol=='admin'}"><div th:replace="fragmentos/nav">...</div></div>
 	<div th:if="${session.user.rol=='instructor'}"><div th:replace="fragmentos/navInstructor">...</div></div>
 	<div th:if="${session.user.rol=='cliente'}"><div th:replace="fragmentos/navCliente">...</div></div>
-	<h2>Proves de l'aplicació</h2>
-	<ul>
-		<li><a href="actividad/listarActividades">Listar Actividades</a></li>
-		<li th:if="${session.user.rol=='admin'}"><a href="instructor/listarInstructores">Listar Instructores</a></li>
-		<li th:if="${session==null}"><a href="login">Login</a></li>
-		<li th:if="${session==null}"><a href="cliente/add">Registro cliente</a></li>
-		<li th:if="${session==null}"><a href="instructor/add">Registro instructor</a></li>
-		<li th:if="${session.user.rol=='cliente'}"><a href="cliente/perfil">Mi perfil</a></li>
-		<li th:if="${session.user.rol=='instructor'}"><a href="instructor/perfil">Mi perfil</a></li>
-		<li th:if="${session.user.rol=='cliente'}"><a href="reserva/reservasCliente">Mis reservas</a></li>
-		<li th:if="${session.user.rol=='admin'}"><a href="cliente/listarClientes">Listar clientes</a></li>
-		<li th:if="${session.user.rol=='admin'}"><a href="tipoActividad/listarTiposActividad">Listar tipos de actividad</a></li>
-		
-	</ul>
+	
+	<div style="display:flex;">
+		<div style="margin:5px">
+		<img style="width:650px" src="../static/imagenes/Imagen1.jpg"
+     th:src="@{/imagenes/Imagen1.jpg}" />
+		</div>
+		<div style="margin:5px">
+			<h2>DISFRUTA DE ACTIVIDADES AL AIRE LIBRE</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+			   Vivamus in aliquam lacus, ut suscipit purus. Proin metus ipsum, 
+			   viverra non quam sed, facilisis vestibulum eros. Vestibulum sem velit, 
+			   ornare et quam eget, tincidunt porta tellus. Aliquam diam libero, pulvinar
+			   eu lorem id, porttitor consectetur erat. In hac habitasse platea dictumst. 
+			   Praesent molestie aliquet venenatis. Sed diam velit, mattis vitae fermentum
+			   ut, molestie vitae lorem. Pellentesque tincidunt nibh tempus, euismod massa 
+			   id, consequat justo. Donec id risus varius, pharetra nulla quis, lobortis mauris.
+			   Sed in nibh dui.
+			   <br>
+			   <br>
+			   Tienes muchas actividades para disfrutar <br>
+			   <a style="margin-top:5px;" href="actividad/listarActividades" class="btn btn-primary btn-sm" role="button">Ver Actividades</a>
+			   </p>
+		</div>
+	</div>
+	
+	<!-- Footer -->
+	<footer class="page-footer" style="background:#e6e6e6;">
+
+  		<!-- Copyright -->
+  		<div class="footer-copyright text-center py-3">Plataforma de actividades de aventura TooPots | 964 00 00 00 | al@uji.es | Calle falsa 123
+    		
+  		</div>
+  		<!-- Copyright -->
+
+		</footer>
+	<!-- Footer -->
+	
+	
 </body>
 </html> 
