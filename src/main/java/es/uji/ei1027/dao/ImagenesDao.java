@@ -33,6 +33,10 @@ import es.uji.ei1027.model.Instructor;
 	    public void deleteImagen(Imagenes imagen) {
 	        jdbcTemplate.update("DELETE from Instructor where imagen=?", imagen.getImagen());
 	    }
+	    
+	    public void deleteImagenActividad(String nombre) {
+	        jdbcTemplate.update("DELETE from Imagenes where nombre=?", nombre);
+	    }
 	  
 	    public void updateImagen(Imagenes imagen) {
 	        jdbcTemplate.update("UPDATE Instructor SET  nombre=?, imagen=?",

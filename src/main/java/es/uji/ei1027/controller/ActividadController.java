@@ -4,6 +4,7 @@ package es.uji.ei1027.controller;
 import java.text.ParseException;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.dao.ActividadDao;
+import es.uji.ei1027.dao.ImagenesDao;
 import es.uji.ei1027.dao.InstructorDao;
 import es.uji.ei1027.model.Actividad;
 import es.uji.ei1027.model.DetallesUsuario;
@@ -32,6 +34,7 @@ public class ActividadController {
 	private ActividadDao actividaddao;
 	private ActividadService actividadService;
 	private InstructorDao instructordao;
+	private ImagenesDao imagenesdao;
 	
 	@Autowired
 	public void setActividadService(ActividadService actividadService) {
@@ -47,6 +50,11 @@ public class ActividadController {
 	@Autowired
 	public void setInstructorDao(InstructorDao instructorDao) {
 		this.instructordao = instructorDao;
+	}
+	
+	@Autowired
+	public void setImagenesDao(ImagenesDao imagenesDao) {
+		this.imagenesdao = imagenesDao;
 	}
 	
 	@RequestMapping("/listarActividades")
@@ -117,14 +125,14 @@ public class ActividadController {
 
 	
 	@RequestMapping(value="/update/{nombre}", method = RequestMethod.GET) 
-    public String editActividad(Model model, @PathVariable String nombre) { 
+    public String editActividad(HttpSession session,Model model, @PathVariable String nombre) { 
         model.addAttribute("actividad", actividaddao.getActividad(nombre));
         model.addAttribute("nombre", actividadService.getTiposActividad());
         return "actividad/update"; 
     }
 	
 	@RequestMapping(value="/update/{nombre}", method = RequestMethod.POST) 
-    public String processUpdateSubmit(@PathVariable String nombre, 
+    public String processUpdateSubmit(HttpSession session, @PathVariable String nombre, 
                             @ModelAttribute("actividad") Actividad actividad, 
                             BindingResult bindingResult) {
 		ActividadValidator actividadValidator = new ActividadValidator(); 
@@ -136,21 +144,28 @@ public class ActividadController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-      return "redirect:../listarActividadesInstructor"; 
+         DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+        if (usuario.getRol().equals("admin"))
+        	return "redirect:../listarActividades";
+        else
+        	return "redirect:../listarActividadesInstructor"; 
     }
 	
 	@RequestMapping(value="/delete/{nombre}")
     public String processDelete(@PathVariable String nombre) {
+		imagenesdao.deleteImagenActividad(nombre);
 		actividaddao.deleteActividad(nombre);
            return "redirect:../listarActividades"; 
     }
 	
 	@RequestMapping(value="/delete/{nombre}", method=RequestMethod.POST) 
-	public String processDeleteSubmit(@ModelAttribute("actividad") Actividad actividad,
+	public String processDeleteSubmit(@PathVariable String nombre, @ModelAttribute("actividad") Actividad actividad,
 			BindingResult bindingResult) {  
      if (bindingResult.hasErrors()) 
             return "actividad/delete";
+     
      actividaddao.deleteActividad(actividad);
+     
      return "redirect:../listarActividades"; 
 	}
 

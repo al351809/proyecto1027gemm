@@ -10,7 +10,10 @@
      <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-    <h2><b>Nuevos datos de la actividad</b></h2>
+
+    <div  th:if="${session.user.rol=='admin'}"><div th:replace="fragmentos/nav" >...</div></div>
+    <div th:if="${session.user.rol=='instructor'}"><div th:replace="fragmentos/navInstructor" >...</div></div>
+    <h2>Nuevos datos de la actividad</h2>
     <form action="#" th:action="@{/actividad/update/{nombre}(nombre=${actividad.nombre})}" 
                      th:object="${actividad}" method="post"> 
       <table>
