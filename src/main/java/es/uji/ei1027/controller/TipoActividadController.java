@@ -46,6 +46,7 @@ public class TipoActividadController {
 	
 	@RequestMapping(value="/delete/{nombre}")
     public String processDelete(@PathVariable String nombre) {
+		System.out.println(nombre);
 		tipoActividaddao.deleteTipoActividad(nombre);
            return "redirect:../listarTiposActividad"; 
     }

@@ -91,7 +91,7 @@ public class AcreditacionController {
 	     model.addAttribute("acreditacion", acreditaciondao.getAcreditacion(idcertificado));
 	     model.addAttribute("estado", estado);
 	     acreditaciondao.updateAcreditacion(idcertificado, estado);
-	     return "/correo/correoInstructorAdmin"; 
+	     return "/correo/correoInstructorAcreditacion"; 
 	 }
 	
 	@RequestMapping(value="/delete/{idcertificado}")

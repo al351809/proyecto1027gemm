@@ -4,6 +4,9 @@
    <title>Gestionar Actividades</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
    <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
@@ -73,15 +76,54 @@
          <td th:text="${actividad.estado}"></td>
          <td><a th:href="@{/actividad/update/{nombre}(nombre=${actividad.nombre})}" th:if="${session.user.rol=='admin'}" class="btn btn-warning btn-sm" role="button">Edita</a> 
          </td>
-         <td><a th:href="@{/actividad/delete/{nombre}(nombre=${actividad.nombre})}" th:if="${session.user.rol=='admin'}" class="btn btn-danger btn-sm" role="button">Borrar</a>
+         <td><button type="button" th:if="${session.user.rol=='admin'}" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">Borrar</button>
          </td>
          <td  th:if="${session.user.rol=='cliente' and actividad.estado=='abierta' }"><a th:href="@{/reserva/add/{nombre}(nombre=${actividad.nombre})}" class="btn btn-warning btn-sm" role="button">Reservar</a>
          </td>
          <td><a th:href="@{/imagenes/listarImagenes/{nombre}(nombre=${actividad.nombre})}" class="btn btn-warning btn-sm" role="button">Ver fotos</a>
          </td>
+       
+       
+            
+     <!-- The Modal -->
+		  <div class="modal" id="myModal">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		      
+		        <!-- Modal Header -->
+		        <div class="modal-header">
+		          <h4 class="modal-title">Borrar Actividad</h4>
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        
+		        <!-- Modal body -->
+		        <div class="modal-body">
+		          CUIDADDO!. Se va a BORRAR una actividad. Estas seguro que quieres hacerlo?
+		        </div>
+		        
+		        <!-- Modal footer -->
+		        <div class="modal-footer">
+		          <a th:href="@{/actividad/delete/{nombre}(nombre=${actividad.nombre})}"  class="btn btn-danger btn-sm" role="button">Borrar</a>
+		          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+		        </div>
+		      </div>
+		    </div>
+		  </div>  
+       
        </tr>
      </tbody>
+
+   
+     
+     
    </table>
+   
+   
+    
+   
+   
+   
+   
    </div>
    <a th:if="${session.user.rol=='admin'}" href="add" class="btn btn-primary" role="button">Agregar Actividad</a> 
    <a th:if="${session.user.rol !=''}" href="/paginaprincipal" class="btn btn-primary" role="button">Página principal</a>
