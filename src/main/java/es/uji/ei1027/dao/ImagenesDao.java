@@ -26,12 +26,12 @@ import es.uji.ei1027.model.Instructor;
 	    }
 
 	    public void addImagen(Imagenes imagen) {
-	        jdbcTemplate.update("INSERT INTO Instructor VALUES(?, ?)",
+	        jdbcTemplate.update("INSERT INTO imagenes VALUES(?, ?)",
 	                imagen.getNombre(), imagen.getImagen());
 	    }
 
 	    public void deleteImagen(Imagenes imagen) {
-	        jdbcTemplate.update("DELETE from Instructor where imagen=?", imagen.getImagen());
+	        jdbcTemplate.update("DELETE from imagenes where imagen=?", imagen.getImagen());
 	    }
 	    
 	    public void deleteImagenActividad(String nombre) {
@@ -39,12 +39,12 @@ import es.uji.ei1027.model.Instructor;
 	    }
 	  
 	    public void updateImagen(Imagenes imagen) {
-	        jdbcTemplate.update("UPDATE Instructor SET  nombre=?, imagen=?",
+	        jdbcTemplate.update("UPDATE imagenes SET  nombre=?, imagen=?",
 	        		imagen.getNombre(), imagen.getImagen());
 	    }
 	    
 	    public void updateImagen(String imagenVieja, String imagenNueva) {
-	    	jdbcTemplate.update("UPDATE Instructor SET imagen=? WHERE imagen=?", imagenNueva, imagenVieja);
+	    	jdbcTemplate.update("UPDATE imagenes SET imagen=? WHERE imagen=?", imagenNueva, imagenVieja);
 	    }
 	    
 	    public List<Imagenes> getImagenes(String nombre) {

@@ -39,7 +39,7 @@
      </tbody>
    </table>
    </div>
-   <a href="/paginaprincipal" class="btn btn-primary" role="button">Página principal</a>
+   <a th:if="${actividad.dni == instructor.dni}" th:href="@{/imagenes/update/{nombre}(nombre=${actividad.nombre})}" class="btn btn-primary" role="button">Subir imagen</a>
    <a href="/actividad/listarActividades" class="btn btn-primary" role="button">Atrás</a>
 </body>
 </html>
