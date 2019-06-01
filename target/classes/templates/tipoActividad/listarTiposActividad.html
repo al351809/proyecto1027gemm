@@ -45,11 +45,10 @@
          <td th:text="${tipoActividad.nivel}"></td>
          <td><a th:href="@{/tipoActividad/delete/{nombre}(nombre=${tipoActividad.nombre})}" th:if="${session.user.rol=='admin'}" class="btn btn-warning btn-sm" role="button">Edita</a>
          </td> 
-         <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">Borrar</button></td>
-         
+         <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" th:attr="data-target='#myModal'+${tipoActividad.nombre }">Borrar</button></td>
                   
          <!-- The Modal -->
-		  <div class="modal" id="myModal">
+		  <div class="modal" th:id="myModal+${tipoActividad.nombre }">
 		    <div class="modal-dialog">
 		      <div class="modal-content">
 		      
@@ -61,7 +60,7 @@
 		        
 		        <!-- Modal body -->
 		        <div class="modal-body">
-		        <label th:text="${tipoActividad.nombre}"></label>
+				<label th:text="${tipoActividad.nombre}"></label>
 		          CUIDADDO!. Se va a BORRAR un tipo actividad. Estas seguro que quieres hacerlo?
 		        </div>
 		        
