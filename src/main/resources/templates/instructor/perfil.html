@@ -29,8 +29,8 @@
      </thead>
      <tbody>
        <tr th:each="instructor: ${instructor}"> 
-       <td><img style="width:40px" src="../static/imagenes/instructor_icono.png"
-     th:src="@{/imagenes/instructor_icono.png}" />
+       <td><img style="width:40px"
+     th:src="@{${instructor.foto}}" />
        	 </td>
          <td th:text="${instructor.dni}"></td>
           <td th:text="${instructor.alias}"></td>
@@ -39,6 +39,8 @@
          <td th:text="${instructor.numeroCuenta}"></td>
          <td style="text-transform:capitalize;" th:text="${instructor.estado}"></td> 
          <td><a th:href="@{/instructor/update/{dni}(dni=${instructor.dni})}" class="btn btn-warning btn-sm" role="button">Editar perfil</a> 
+         </td>
+         <td><a th:href="@{/instructor/updateFoto/{dni}(dni=${instructor.dni})}" class="btn btn-warning btn-sm" role="button">Cambiar foto</a> 
          </td>
          <td><a th:href="@{/acreditaciones/listarAcreditaciones/{dni}(dni=${instructor.dni})}" class="btn btn-warning btn-sm" role="button">Acreditaciones</a> 
          </td>

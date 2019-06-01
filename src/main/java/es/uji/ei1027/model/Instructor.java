@@ -8,7 +8,7 @@ public class Instructor {
 	private String email;
 	private String numeroCuenta;
 	private String estado;
-	
+	private String foto;
 	
 	
 	public String getDni() {
@@ -60,6 +60,16 @@ public class Instructor {
 		this.estado = estado;
 	}
 	
+	
+	
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 	@Override
 	public String toString() {
 		return "Instructor [dni=" + dni + ", nombre=" + nombre + ", email=" + email

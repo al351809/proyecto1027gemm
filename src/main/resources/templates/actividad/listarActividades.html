@@ -125,7 +125,6 @@
    
    
    </div>
-   <a th:if="${session.user.rol=='admin'}" href="add" class="btn btn-primary" role="button">Agregar Actividad</a> 
    <a th:if="${session.user.rol !=''}" href="/paginaprincipal" class="btn btn-primary" role="button">Página principal</a>
    <a th:if="${session.user.rol ==''}" href="/" class="btn btn-primary" role="button">Página principal</a>
 </body>

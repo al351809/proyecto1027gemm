@@ -138,7 +138,7 @@ public class InstructorController {
 		usuariodao.deleteUsuario(usuario);
 		return "instructor/add";
 	}
-     return "/"; 
+     return "redirect:perfil"; 
 	}
 	
 	@RequestMapping(value="/update/{dni}", method = RequestMethod.GET) 
@@ -153,7 +153,6 @@ public class InstructorController {
                             BindingResult bindingResult, @ModelAttribute("acreditacion") Acreditacion acreditacion, BindingResult bindingResult2, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
 	 	InstructorValidator instructorValidator = new InstructorValidator(); 
 		instructorValidator.validate(instructor, bindingResult);
-		
 		//Gestionar el file de la acreditacion como pdf
 		if (file.isEmpty()) {
 
@@ -195,6 +194,50 @@ public class InstructorController {
          return "redirect:../perfil"; 
     }
  
+ @RequestMapping(value="/updateFoto/{dni}", method = RequestMethod.GET) 
+ public String editInstructorFoto(Model model, @PathVariable String dni) { 
+     model.addAttribute("instructor", instructordao.getInstructor(dni));
+     model.addAttribute("acreditacion", new Acreditacion());
+     return "instructor/updateFoto"; 
+ }
+ 
+ 
+ @RequestMapping(value="/updateFoto/{dni}", method = RequestMethod.POST) 
+ public String processUpdateSubmitFoto(@PathVariable String dni, @ModelAttribute("instructor") Instructor instructor, 
+                         BindingResult bindingResult, @ModelAttribute("acreditacion") Acreditacion acreditacion, BindingResult bindingResult2, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+	
+		//Gestionar el file de la acreditacion como pdf
+		if (file.isEmpty()) {
+
+	        redirectAttributes.addFlashAttribute("message", 
+	                                         "No file");
+	    }
+		else {
+		    try {
+		        // Obtener el fichero y guardarlo
+		        byte[] bytes = file.getBytes();
+		        Path path = Paths.get(uploadDirectory + "imagenes/" 
+		                                      + file.getOriginalFilename());
+		        Files.write(path, bytes);
+	
+		        redirectAttributes.addFlashAttribute("message",
+		                "You successfully uploaded '" + path + "'");
+	
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		    
+		    instructor.setFoto(uploadDirectory + "imagenes/" + file.getOriginalFilename());
+			instructordao.updateFoto(instructor.getDni(), instructor.getFoto());
+		} 
+	    //-------------------------------------------	
+		
+      if (bindingResult.hasErrors()) 
+          return "instructor/update";
+  	
+      return "redirect:../perfil"; 
+ }
+ 
 	 @RequestMapping(value="/updateEstado/{dni}/{estado}", method = RequestMethod.GET) 
 	 public String editEstadoInstructor(Model model, @PathVariable String dni, @PathVariable String estado) { 
 	     model.addAttribute("instructor", instructordao.getInstructor(dni));
@@ -226,8 +269,14 @@ public class InstructorController {
 	
 	@RequestMapping("/perfil")
     public String processPerfil(HttpSession session, Model model) {
+		if (session.getAttribute("user") == null){ 
+	          model.addAttribute("user", new DetallesUsuario()); 
+	          session.setAttribute("nextUrl", "instructor/perfil");
+	          return "login";
+	       }
 		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
 		Instructor instructor = instructordao.getInstructorAlias(usuario.getUsuario());
+		System.out.println(instructor.getFoto());
 		model.addAttribute("instructor", instructor );
         return "instructor/perfil"; 
     }

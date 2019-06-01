@@ -49,8 +49,8 @@
      </thead>
      <tbody th:if="${session.user.rol == 'admin'}">
        <tr th:each="instructor: ${instructor}"> 
-       	 <td><img style="width:40px" src="../static/imagenes/instructor_icono.png"
-     th:src="@{/imagenes/instructor_icono.png}" />
+       	 <td><img style="width:40px"
+     th:src="@{${instructor.foto}}" />
        	 </td>
          <td th:text="${instructor.dni}"></td> 
          <td th:text="${instructor.nombre}"></td>

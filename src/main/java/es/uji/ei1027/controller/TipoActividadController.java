@@ -40,7 +40,12 @@ public class TipoActividadController {
 	TipoactividadValidator.validate(tipoActividad, bindingResult);
      if (bindingResult.hasErrors()) 
             return "tipoActividad/add";
-     tipoActividaddao.addTipoActividad(tipoActividad);
+     
+     try {
+		tipoActividaddao.addTipoActividad(tipoActividad);
+	} catch (Exception e) {
+		return "tipoActividad/avisoNuevaActividad";
+	}
      return "redirect:listarTiposActividad"; 
 	}
 	

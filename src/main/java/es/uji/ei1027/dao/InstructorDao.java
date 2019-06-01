@@ -1,6 +1,7 @@
 package es.uji.ei1027.dao;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -44,11 +45,24 @@ public class InstructorDao {
     public void updateEstado(String dni, String estado) {
     	jdbcTemplate.update("UPDATE Instructor SET estado=? WHERE dni=?", estado, dni);
     }
+    
+    public void updateFoto(String dni, String foto) {
+    	jdbcTemplate.update("UPDATE Instructor SET foto=? WHERE dni=?", foto, dni);
+    }
 
     public Instructor getInstructor(String dni) {
+    	Instructor instructor = new Instructor();
+    	
         try {
-				return jdbcTemplate.queryForObject("SELECT * from Instructor WHERE dni=?",
-				        new InstructorRowMapper(), dni);
+        	
+        	instructor = jdbcTemplate.queryForObject("SELECT * from Instructor WHERE dni=?",
+			        new InstructorRowMapper(), dni);
+        	
+        	String foto = instructor.getFoto();
+        	if(foto != null)
+        		instructor.setFoto(foto.substring(25, foto.length()));
+        	
+			return instructor;
         }
         catch(EmptyResultDataAccessException e) {
             return null;
@@ -56,9 +70,19 @@ public class InstructorDao {
     }
 
     public List<Instructor> getInstructor() {
+    	List<Instructor> instructors = new LinkedList<Instructor>();
         try {
-            return jdbcTemplate.query("SELECT * from Instructor",
+        	
+        	instructors = jdbcTemplate.query("SELECT * from Instructor",
                     new InstructorRowMapper());
+        	
+        	for(Instructor inst : instructors) {
+        		String foto = inst.getFoto();
+        		if(foto != null)
+        			inst.setFoto(foto.substring(25, foto.length()));
+        	}
+        	
+            return instructors;
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Instructor>();
@@ -66,9 +90,16 @@ public class InstructorDao {
     }
     
     public Instructor getInstructorAlias(String alias) {
+    	Instructor instructor = new Instructor();
         try {
-				return jdbcTemplate.queryForObject("SELECT * from Instructor WHERE alias=?",
+				instructor= jdbcTemplate.queryForObject("SELECT * from Instructor WHERE alias=?",
 				        new InstructorRowMapper(), alias);
+				
+				String foto = instructor.getFoto();
+				if(foto != null)
+					instructor.setFoto(foto.substring(25, foto.length()));
+	        	
+				return instructor;
         }
         catch(EmptyResultDataAccessException e) {
             return null;

@@ -18,7 +18,7 @@
 	    	
 	    </div>
 	    <div style="width:400px; float:right;">
-	    <form action="#" th:action="@{/instructor/update/{dni}(dni=${instructor.dni})}" 
+	    <form action="#" th:action="@{/instructor/updateFoto/{dni}(dni=${instructor.dni})}" 
 	                     th:object="${instructor}" method="post" enctype="multipart/form-data"> 
 	      <table class="updateInstructor">
 	      <tr>
@@ -30,22 +30,7 @@
 	            <td th:text="${instructor.alias}"></td> 
 	        </tr>
 	        <tr>
-	            <td><label>Nombre</label></td>
-	            <td><input type="text" th:field="*{nombre}" /></td>
-	        </tr>
-	
-	        <tr>
-	            <td><label>Email</label></td>
-	            <td><input type="text" th:field="*{email}" /></td>
-	            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
-	        </tr>
-	        <tr>
-	            <td><label>Numero de cuenta</label></td>
-	            <td><input type="text" th:field="*{numeroCuenta}" /></td> 
-	            <td th:if="${#fields.hasErrors('numeroCuenta')}" th:errors="*{numeroCuenta}" class="error"></td>
-	        </tr>
-	        <tr>
-	        	<td>Nuevo Certificado</td>
+	        	<td>Nueva foto</td>
 	        	<td><input type="file" name="file" id="file" /> </td>
 	        </tr>
 	        
@@ -64,13 +49,13 @@
 		      
 		        <!-- Modal Header -->
 		        <div class="modal-header">
-		          <h4 class="modal-title">Actualizacion de perfil</h4>
+		          <h4 class="modal-title">Actualizacion de foto</h4>
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        </div>
 		        
 		        <!-- Modal body -->
 		        <div class="modal-body">
-		          Se van a actulizar tus datos. Estas seguro que quieres hacerlo?
+		          Se va a actulizar tu foto. Estas seguro que quieres hacerlo?
 		        </div>
 		        
 		        <!-- Modal footer -->
@@ -85,9 +70,5 @@
 		  
 	    </form>
     	</div> 
-   
- 
-    
-    
 </body>
 </html>

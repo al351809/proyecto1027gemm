@@ -16,6 +16,7 @@ public class InstructorRowMapper implements RowMapper<Instructor> {
         instructor.setEmail(rs.getString("email"));
         instructor.setNumeroCuenta(rs.getString("numeroCuenta"));
         instructor.setEstado(rs.getString("estado"));
+        instructor.setFoto(rs.getString("foto"));
     
         return instructor;
     }
