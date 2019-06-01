@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Borrado erroneo</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
+</head>
+<body>
+   <div ><div th:replace="fragmentos/navInstructor">...</div></div>
+   <div style="background-color: #ea9a9a; margin:5px; width:500px; padding:10px;">
+
+	
+   <h1 style="color:#525252;">No se ha podido borrar</h1>
+  <div >La actividad tiene resevas por lo que no se ha borrado.</div>
+  </div>
+ 	<a href="/actividad/listarActividades" class="btn btn-primary" style="margin-left:5px;" role="button">Atrás</a>
+</body>
+</html>

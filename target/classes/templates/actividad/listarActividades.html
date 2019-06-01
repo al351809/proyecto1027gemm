@@ -76,7 +76,7 @@
          <td th:text="${actividad.estado}"></td>
          <td><a th:href="@{/actividad/update/{nombre}(nombre=${actividad.nombre})}" th:if="${session.user.rol=='admin'}" class="btn btn-warning btn-sm" role="button">Edita</a> 
          </td>
-         <td><button type="button" th:if="${session.user.rol=='admin'}" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">Borrar</button>
+         <td><button type="button" th:if="${session.user.rol=='admin'}" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" th:attr="data-target='#myModal'+${actividad.nombre}">Borrar</button>
          </td>
          <td  th:if="${session.user.rol=='cliente' and actividad.estado=='abierta' }"><a th:href="@{/reserva/add/{nombre}(nombre=${actividad.nombre})}" class="btn btn-warning btn-sm" role="button">Reservar</a>
          </td>
@@ -86,7 +86,7 @@
        
             
      <!-- The Modal -->
-		  <div class="modal" id="myModal">
+		  <div class="modal" th:id="myModal+${actividad.nombre }">
 		    <div class="modal-dialog">
 		      <div class="modal-content">
 		      
@@ -98,7 +98,7 @@
 		        
 		        <!-- Modal body -->
 		        <div class="modal-body">
-		          CUIDADDO!. Se va a BORRAR una actividad. Estas seguro que quieres hacerlo?
+		          CUIDADDO!. Se va a BORRAR la actividad:<b><span th:text="${actividad.nombre}"></span></b>. Estas seguro que quieres hacerlo?
 		        </div>
 		        
 		        <!-- Modal footer -->

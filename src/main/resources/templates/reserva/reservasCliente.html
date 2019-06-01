@@ -48,13 +48,14 @@
          <td th:text="${reserva.fecha}"></td>
          <td th:text="${reserva.dniCliente}"></td>
          <td th:text="${reserva.nombreActividad}"></td>
-         <td><a th:href="@{/reserva/update/{idReserva}(idReserva=${reserva.idReserva})}" class="btn btn-warning btn-sm" role="button">Editar mi reserva</a> 
+         <td ><a th:if="${reserva.estadoPago!='pagado'}" th:href="@{/reserva/update/{idReserva}(idReserva=${reserva.idReserva})}" class="btn btn-warning btn-sm" role="button">Editar mi reserva</a> 
+         <span th:if="${reserva.estadoPago=='pagado'}">Ya esta pagado</span>
          </td>
-         <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">Cancelar</button>
+         <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" th:attr="data-target='#myModal'+${reserva.idReserva}">Cancelar</button>
          </td>
          
          <!-- The Modal -->
-		  <div class="modal" id="myModal">
+		  <div class="modal" th:id="myModal+${reserva.idReserva}">
 		    <div class="modal-dialog">
 		      <div class="modal-content">
 		      

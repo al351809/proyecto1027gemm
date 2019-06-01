@@ -8,7 +8,9 @@
      <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-    <h2><b>Nuevos datos de la reserva</b></h2>
+	<div th:if="${session.user.rol=='cliente'}"><div th:replace="fragmentos/navCliente">...</div></div>
+	
+    <h2>Nuevos datos de la reserva</h2>
     <form action="#" th:action="@{/reserva/update/{idReserva}(idReserva=${reserva.idReserva})}" 
                      th:object="${reserva}" method="post"> 
       <table>
@@ -17,11 +19,11 @@
             <td th:text="${reserva.estadoPago}"></td> 
         </tr>
         <tr>
-            <td><label>Numero de transaccion</label></td>
+            <td><label>Número de transacción</label></td>
             <td><input type="text" th:field="*{numTransaccion}" /></td> 
         </tr>
         <tr>
-            <td><label>Numero de asistentes</label></td>
+            <td><label>Número de asistentes</label></td>
             <td><input type="text" th:field="*{numAsistentes}" /></td> 
         </tr>
         <tr>
@@ -29,7 +31,7 @@
             <td th:text="${reserva.precioPersona}"></td> 
         </tr>
         <tr>
-            <td><label>fecha</label></td>
+            <td><label>Fecha</label></td>
             <td><input type="date" th:field="*{fecha}" /></td> 
             <td th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}" class="error"></td>
         </tr>

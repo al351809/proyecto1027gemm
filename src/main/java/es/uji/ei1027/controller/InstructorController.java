@@ -138,7 +138,7 @@ public class InstructorController {
 		usuariodao.deleteUsuario(usuario);
 		return "instructor/add";
 	}
-     return "redirect:listarInstructores"; 
+     return "/"; 
 	}
 	
 	@RequestMapping(value="/update/{dni}", method = RequestMethod.GET) 

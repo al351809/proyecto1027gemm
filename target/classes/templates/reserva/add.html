@@ -8,7 +8,8 @@
      <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-    <h2><b>Nueva reserva</b></h2>
+	<div th:if="${session.user.rol=='cliente'}"><div th:replace="fragmentos/navCliente">...</div></div>
+    <h2>Nueva reserva</h2>
     <form action="#" th:action="@{/reserva/add/{nombre}(nombre=${actividad.nombre})}"
                      th:object="${reserva}" method="post"> 
       <table>

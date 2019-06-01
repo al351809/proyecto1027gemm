@@ -47,7 +47,6 @@ public class AcreditacionController {
 		Acreditacion acreditacion = acreditaciondao.getAcreditacion(idcertificado);
 		String url = acreditacion.getCertificado();
 		String fichero = url.substring(25, url.length());
-		System.out.println(fichero);
 		model.addAttribute("url", fichero);
 	   return "acreditaciones/mostrarAcreditacion"; 
 	}

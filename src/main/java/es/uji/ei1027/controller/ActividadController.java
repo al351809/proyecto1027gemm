@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import es.uji.ei1027.dao.ActividadDao;
 import es.uji.ei1027.dao.ImagenesDao;
 import es.uji.ei1027.dao.InstructorDao;
+import es.uji.ei1027.dao.ReservaDao;
 import es.uji.ei1027.model.Actividad;
 import es.uji.ei1027.model.DetallesUsuario;
 import es.uji.ei1027.model.Instructor;
@@ -35,6 +36,7 @@ public class ActividadController {
 	private ActividadService actividadService;
 	private InstructorDao instructordao;
 	private ImagenesDao imagenesdao;
+	private ReservaDao reservadao;
 	
 	@Autowired
 	public void setActividadService(ActividadService actividadService) {
@@ -55,6 +57,11 @@ public class ActividadController {
 	@Autowired
 	public void setImagenesDao(ImagenesDao imagenesDao) {
 		this.imagenesdao = imagenesDao;
+	}
+	
+	@Autowired
+	public void setReservaDao(ReservaDao reservaDao) {
+		this.reservadao = reservaDao;
 	}
 	
 	@RequestMapping("/listarActividades")
@@ -152,9 +159,13 @@ public class ActividadController {
     }
 	
 	@RequestMapping(value="/delete/{nombre}")
-    public String processDelete(@PathVariable String nombre) {
-		imagenesdao.deleteImagenActividad(nombre);
-		actividaddao.deleteActividad(nombre);
+    public String processDelete(HttpSession session, @PathVariable String nombre) {
+		if(reservadao.getReservaActividad(nombre).isEmpty()){
+			imagenesdao.deleteImagenActividad(nombre);
+			actividaddao.deleteActividad(nombre);
+		}else {
+			return "actividad/avisoBorrarActividad";
+		}
            return "redirect:../listarActividades"; 
     }
 	
@@ -168,5 +179,6 @@ public class ActividadController {
      
      return "redirect:../listarActividades"; 
 	}
+	
 
 }

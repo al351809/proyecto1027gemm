@@ -60,13 +60,13 @@
 	         <td th:text="${actividad.estado}"></td>
 	         <td><a th:href="@{/actividad/update/{nombre}(nombre=${actividad.nombre})}" class="btn btn-warning btn-sm" role="button">Edita</a> 
 	         </td>
-	         <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">Borrar</button>
+	         <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" th:attr="data-target='#myModal'+${actividad.nombre}">Borrar</button>
 	         </td>
 	         <td><a th:href="@{/reserva/reservasActividadInstructor/{nombre}(nombre=${actividad.nombre})}" class="btn btn-warning btn-sm" role="button">Reservas</a>
 	         </td>
 	         
 	          <!-- The Modal -->
-		  <div class="modal" id="myModal">
+		  <div class="modal" th:id="myModal+${actividad.nombre }">
 		    <div class="modal-dialog">
 		      <div class="modal-content">
 		      
@@ -76,9 +76,9 @@
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        </div>
 		        
-		        <!-- Modal body -->
+		        <!-- Modal body -->		        
 		        <div class="modal-body">
-		          CUIDADO! Se va a BORRAR la actividad. Estas seguro que quieres hacerlo?
+		          CUIDADO! Se va a BORRAR la actividad:<b><span th:text="${actividad.nombre}"></span></b>. Estas seguro que quieres hacerlo?
 		        </div>
 		        
 		        <!-- Modal footer -->

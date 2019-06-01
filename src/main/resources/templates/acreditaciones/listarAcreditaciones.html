@@ -4,6 +4,9 @@
    <title>Gestionar Acreditaciones</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
    <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
@@ -30,10 +33,50 @@
          <td th:text="${acreditacion.estado}"></td>
          <td th:if="${session.user.rol=='admin'}"><a th:href="@{/acreditaciones/updateEstado/{idcertificado}/{estado}(idcertificado=${acreditacion.idcertificado}, estado='aceptada')}" class="btn btn-warning btn-sm" role="button">Aceptar</a>
          </td>
-         <td th:if="${session.user.rol=='instructor'}"><a th:href="@{/acreditaciones/delete/{idcertificado}(idcertificado=${acreditacion.idcertificado})}" class="btn btn-danger btn-sm" role="button">Borrar</a>
+         <td th:if="${session.user.rol=='instructor'}"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" th:attr="data-target='#myModal'+${acreditacion.idcertificado}">Borrar</button>
          </td>
          <td th:if="${session.user.rol=='admin'}"><a th:href="@{/acreditaciones/updateEstado/{idcertificado}/{estado}(idcertificado=${acreditacion.idcertificado}, estado='rechazada')}" class="btn btn-danger btn-sm" role="button">Rechazar</a>
          </td>
+         
+         
+         
+          <!-- The Modal -->
+		  <div class="modal" th:id="myModal+${acreditacion.idcertificado}">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		      
+		        <!-- Modal Header -->
+		        <div class="modal-header">
+		          <h4 class="modal-title">Borrar Certificado</h4>
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        
+		        <!-- Modal body -->		        
+		        <div class="modal-body">
+		         Se va a BORRAR el certificado. Estas seguro que quieres hacerlo?
+		        </div>
+		        
+		        <!-- Modal footer -->
+		        <div class="modal-footer">
+		          <a th:href="@{/acreditaciones/delete/{idcertificado}(idcertificado=${acreditacion.idcertificado})}" class="btn btn-danger btn-sm" role="button">Borrar</a>
+		          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+		        </div>
+		      </div>
+		    </div>
+		  </div>  
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
        </tr>
      </tbody>
    </table>
