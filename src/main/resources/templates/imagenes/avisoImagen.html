@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Error imagen</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
+</head>
+<body>
+   <div><div th:replace="fragmentos/navInstructor">...</div></div>
+   <div style="background-color: #d1f4ff; margin:5px; width:500px; padding:10px;">
+
+	
+   <h1 style="color:#7c7c8a;">No se ha podido subir la foto</h1>
+  <div >Es posible que ya este subida o tenga el mismo nombre que otra.</div>
+  </div>
+   <a href="/imagenes/listarImagenes" class="btn btn-primary" style="margin-left:5px;" role="button">Atrás</a>
+</body>
+</html>

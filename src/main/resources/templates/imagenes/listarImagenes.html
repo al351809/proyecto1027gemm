@@ -33,7 +33,7 @@
    <table  th:unless="${#lists.isEmpty(imagenes)}" class="table table-striped">
      <tbody th:each="imagen: ${imagenes}">
        <tr>   
-          <span style="margin-left:5px;"><img style="width:400px; height:250px;" th:src="@{${imagen}}"></span>
+          <span style="margin-left:5px;margin-bottom:5px;"><img style="width:400px; height:250px;" th:src="@{${imagen}}"></span>
        </tr>
        
      </tbody>

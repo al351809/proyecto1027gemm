@@ -1,6 +1,7 @@
 package es.uji.ei1027.dao;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -48,9 +49,19 @@ import es.uji.ei1027.model.Instructor;
 	    }
 	    
 	    public List<Imagenes> getImagenes(String nombre) {
+	    	List<Imagenes> imagenes = new LinkedList<Imagenes>();
 	        try {
-	            return jdbcTemplate.query("SELECT * from Imagenes WHERE nombre=?",
+	            imagenes = jdbcTemplate.query("SELECT * from Imagenes WHERE nombre=?",
 	                    new ImagenesRowMapper(), nombre);
+	            
+	            for(Imagenes img:imagenes) {
+	            	String imagen = img.getImagen();
+	            	if(imagen != null)
+	            		img.setImagen(imagen.substring(25, imagen.length()));
+	            }
+	            
+	            
+	            return imagenes;
 	        }
 	        catch(EmptyResultDataAccessException e) {
 	            return new ArrayList<Imagenes>();

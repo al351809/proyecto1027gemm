@@ -66,6 +66,7 @@ public class ActividadController {
 	
 	@RequestMapping("/listarActividades")
 	public String pruevaUnaActividad(HttpSession session, Model model) {
+		
 		if (session.getAttribute("user") == null){ 
 			DetallesUsuario user = new DetallesUsuario();
 			user.setRol("");
@@ -73,7 +74,6 @@ public class ActividadController {
 	        session.setAttribute("user", user);
 	          
 	   }else{
-		
 		DetallesUsuario user = (DetallesUsuario) session.getAttribute("user");
 		Instructor instructor = instructordao.getInstructorAlias(user.getUsuario());
 		model.addAttribute("instructor", instructor);
