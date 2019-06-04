@@ -88,7 +88,7 @@ public class ClienteController {
 		usuariodao.deleteUsuario(usuario);
 		return "cliente/add";
 	}
-     return "redirect:listarClientes"; 
+     return "redirect:../"; 
 	}
 	
 	@RequestMapping(value="/update/{dni}", method = RequestMethod.GET) 

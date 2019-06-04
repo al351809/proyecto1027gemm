@@ -7,8 +7,10 @@
    <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-   <div><div th:replace="fragmentos/nav">...</div></div>
-   <a style="margin:5px;"href="/acreditaciones/listarAcreditaciones" class="btn btn-secondary" role="button">Atras</a>
+   <div th:if="${session.user.rol=='admin'}"><div th:replace="fragmentos/nav">...</div></div>
+   <div th:if="${session.user.rol=='instructor'}"><div th:replace="fragmentos/navInstructor">...</div></div>
+   <a th:if="${session.user.rol=='admin'}" style="margin:5px;"href="/acreditaciones/listarAcreditaciones" class="btn btn-secondary" role="button">Atras</a>
+   <a th:if="${session.user.rol=='instructor'}" style="margin:5px;"href="/instructor/perfil" class="btn btn-secondary" role="button">Atras</a>
 	<embed th:src="@{${url}}" width="100%" height="600px" type="application/pdf">
 </body>
 </html>
