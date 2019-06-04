@@ -11,7 +11,7 @@
 	<div th:if="${session.user.rol=='instructor'}"><div th:replace="fragmentos/navInstructor">...</div></div>
 	<div th:if="${session.user.rol=='cliente'}"><div th:replace="fragmentos/navCliente">...</div></div>
 	
-	<div style="display:flex;">
+	<div style="display:flex; margin-top:100px;">
 		<div style="margin:5px">
 		<img style="width:650px" src="../static/imagenes/Imagen1.jpg"
      th:src="@{/imagenes/Imagen1.jpg}" />
@@ -29,6 +29,16 @@
 			   Sed in nibh dui.
 			   <br>
 			   <br>
+			   Quisque condimentum finibus pretium. Etiam bibendum lectus a egestas placerat. Aliquam
+			    venenatis maximus arcu vel molestie. Cras pulvinar bibendum arcu sit amet egestas. 
+			    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+			    Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec dignissim est sed mi 
+			    dapibus, eu interdum diam aliquam. Morbi rhoncus volutpat pretium. Curabitur quis scelerisque dui, 
+			    ultrices facilisis lacus. Quisque faucibus velit non leo sodales, sed elementum magna iaculis. Vestibulum
+			    id orci nisi. Nullam accumsan laoreet lectus a consectetur. Duis mollis imperdiet lorem eget tincidunt. 
+			    Sed vitae bibendum sem, vel luctus mi. Nunc nec accumsan lacus, id pretium arcu.
+			   <br>
+			   <br>
 			   Tienes muchas actividades para disfrutar <br>
 			   <a style="margin-top:5px;" href="actividad/listarActividades" class="btn btn-primary btn-sm" role="button">Ver Actividades</a>
 			   </p>
@@ -36,7 +46,7 @@
 	</div>
 	
 	<!-- Footer -->
-	<footer class="page-footer" style="background:#e6e6e6;">
+	<footer class="page-footer" style="background:#e6e6e6;position:fixed;left:0;bottom:0; width:100%; ">
 
   		<!-- Copyright -->
   		<div class="footer-copyright text-center py-3">Plataforma de actividades de aventura TooPots | 964 00 00 00 | al@uji.es | Calle falsa 123
