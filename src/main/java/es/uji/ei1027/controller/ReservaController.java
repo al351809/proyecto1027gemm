@@ -77,13 +77,21 @@ public class ReservaController {
     }
 	
 	@RequestMapping(value="/add/{nombre}", method=RequestMethod.POST) 
-	public String processAddReservaActividadSubmit(HttpSession session, @PathVariable String nombre, @ModelAttribute("reserva") Reserva reserva, BindingResult bindingResult) {  
+	public String processAddReservaActividadSubmit(HttpSession session, @PathVariable String nombre, @ModelAttribute("reserva") Reserva reserva, BindingResult bindingResult,  Model model) { 
+		ReservaValidator reservaValidator = new ReservaValidator();
+		reservaValidator.validate(reserva, bindingResult);
+		Actividad actividad = actividaddao.getActividad(nombre);
+		model.addAttribute("actividad", actividad);
+		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+		Cliente cliente = clientedao.getClienteAlias(usuario.getUsuario());
+		model.addAttribute("dni", cliente.getDni());
+		
      if (bindingResult.hasErrors()) 
             return "reserva/add";
      try {
-    	DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
- 		Cliente cliente = clientedao.getClienteAlias(usuario.getUsuario());
-    	Actividad actividad = actividaddao.getActividad(nombre);
+    	usuario = (DetallesUsuario) session.getAttribute("user");
+ 		cliente = clientedao.getClienteAlias(usuario.getUsuario());
+    	actividad = actividaddao.getActividad(nombre);
     	reserva.setDniCliente(cliente.getDni());
     	reserva.setEstadoPago("pendiente");
     	reserva.setNombreActividad(actividad.getNombre());

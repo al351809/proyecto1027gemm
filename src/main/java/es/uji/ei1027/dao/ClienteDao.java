@@ -44,11 +44,9 @@ public class ClienteDao {
 	}
 
     public void updateCliente(Cliente cliente) throws ParseException {
-    	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-    	java.util.Date date = sdf1.parse(cliente.getFechaNacimiento());
-    	java.sql.Date fecha = new java.sql.Date(date.getTime());
-        jdbcTemplate.update("UPDATE Cliente SET nombre=?, alias=?, email=?, sexo=?, fechaNacimiento=? WHERE dni=?",
-                cliente.getNombre(), cliente.getAlias(), cliente.getEmail(), cliente.getSexo(), fecha, cliente.getDni());
+    	
+        jdbcTemplate.update("UPDATE Cliente SET nombre=?, alias=?, email=?, sexo=? WHERE dni=?",
+                cliente.getNombre(), cliente.getAlias(), cliente.getEmail(), cliente.getSexo(), cliente.getDni());
     }
 
     public Cliente getCliente(String dni) {

@@ -20,10 +20,12 @@
         <tr>
             <td><label>Numero de transaccion</label></td>
             <td><input type="text" th:field="*{numTransaccion}" /></td> 
+            <td th:if="${#fields.hasErrors('numTransaccion')}" th:errors="*{numTransaccion}" class="error"></td>
         </tr>
         <tr>
             <td><label>Numero de asistentes</label></td>
             <td><input type="text" th:field="*{numAsistentes}" /></td> 
+            <td th:if="${#fields.hasErrors('numAsistentes')}" th:errors="*{numAsistentes}" class="error"></td>
         </tr>
         <tr>
             <td><label>Precio por persona</label></td>

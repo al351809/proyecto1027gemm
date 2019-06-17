@@ -22,9 +22,11 @@ public class ClienteValidator implements Validator {
 		       errors.rejectValue("email", "obligatorio",
 		                          "Hay que introducir un email");
 		 
-		 if (cliente.getFechaNacimiento().trim().equals(""))
-		       errors.rejectValue("fechaNacimiento", "obligatorio",
-		                          "Hay que introducir una fecha");
+		/*
+		 * if (cliente.getFechaNacimiento().trim().equals(""))
+		 * errors.rejectValue("fechaNacimiento", "obligatorio",
+		 * "Hay que introducir una fecha");
+		 */
 		 	   
 	   }
 		 	   

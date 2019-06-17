@@ -98,11 +98,18 @@ public class ClienteController {
     }
 	
     @RequestMapping(value="/update/{dni}", method = RequestMethod.POST) 
-    public String processUpdateSubmit(@PathVariable String dni, 
+    public String processUpdateSubmit(HttpSession session, @PathVariable String dni, 
                             @ModelAttribute("cliente") Cliente cliente, 
                             BindingResult bindingResult) {
 	 	ClienteValidator clienteValidator = new ClienteValidator(); 
 	 	clienteValidator.validate(cliente, bindingResult);
+	 	
+	 	DetallesUsuario user = (DetallesUsuario) session.getAttribute("user");
+	 	
+	 	cliente.setAlias(user.getUsuario());
+	 	
+	 	
+	 	System.out.println(cliente.getAlias());
          if (bindingResult.hasErrors()) 
              return "cliente/update";
          try {
@@ -116,6 +123,7 @@ public class ClienteController {
      		bindingResult.rejectValue("dni", "obligatorio","El dni ya existe");
      		return "cliente/update";
      	}
+        System.out.println(cliente.getAlias());
          return "redirect:../perfil"; 
     }
 	
