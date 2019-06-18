@@ -13,15 +13,11 @@
     <form action="#" th:action="@{/reserva/add/{nombre}(nombre=${actividad.nombre})}"
                      th:object="${reserva}" method="post"> 
       <table>
-        <tr>
-            <td><label>Estado de pago</label></td>
-            <td th:text="pendiente"></td> 
+     	<tr>
+            <td><label>Nombre de la actividad</label></td>
+            <td th:text="${actividad.nombre}"></td>
         </tr>
         <tr>
-            <td><label>Numero de transaccion</label></td>
-            <td><input type="text" th:field="*{numTransaccion}" /></td> 
-            <td th:if="${#fields.hasErrors('numTransaccion')}" th:errors="*{numTransaccion}" class="error"></td>
-        </tr>
         <tr>
             <td><label>Numero de asistentes</label></td>
             <td><input type="text" th:field="*{numAsistentes}" /></td> 
@@ -32,17 +28,8 @@
             <td th:text="${actividad.precio}"></td> 
         </tr>
         <tr>
-            <td><label>Fecha</label></td>
-            <td><input type="date" th:field="*{fecha}" /></td> 
-            <td th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>DNI del cliente</label></td>
-            <td th:text="${dni}"></td>
-        </tr>
-        <tr>
-            <td><label>Nombre de la actividad</label></td>
-            <td th:text="${actividad.nombre}"></td>
+            <td><label>Fecha de la actividad</label></td>
+            <td th:text="${actividad.fecha}"></td>
         </tr>
         <tr>
             <td colspan="2" style="padding-top:10px"><input type="submit" value="Agregar Reserva" class="btn btn-secondary btn-sm" />

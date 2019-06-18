@@ -28,8 +28,8 @@ public class ReservaDao {
     	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
     	java.util.Date date = sdf1.parse(reserva.getFecha());
     	java.sql.Date fecha = new java.sql.Date(date.getTime()); 
-        jdbcTemplate.update("INSERT INTO Reserva VALUES(NEXTVAL('reserva_idreserva_seq'), ?, ?, ?, ?, ?, ?, ?)",
-                reserva.getEstadoPago(), reserva.getNumTransaccion(), reserva.getNumAsistentes(), reserva.getPrecioPersona(), fecha, reserva.getDniCliente(), reserva.getNombreActividad());
+        jdbcTemplate.update("INSERT INTO Reserva VALUES(NEXTVAL('reserva_idreserva_seq'), ?, ?, ?, ?, ?, ?, NEXTVAL('reserva_numtransaccion_seq'))",
+                reserva.getEstadoPago(), reserva.getNumAsistentes(), reserva.getPrecioPersona(), fecha, reserva.getDniCliente(), reserva.getNombreActividad());
     }
 
     public void deleteReserva(Reserva reserva) {
@@ -41,12 +41,9 @@ public class ReservaDao {
 		
 	}
 
-    public void updateReserva(Reserva reserva) throws ParseException {
-    	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-    	java.util.Date date = sdf1.parse(reserva.getFecha());
-    	java.sql.Date fecha = new java.sql.Date(date.getTime()); 
-        jdbcTemplate.update("UPDATE Reserva SET  estadoPago=?, numTransaccion=?, numAsistentes=?, precioPersona=?, fecha=?, dniCliente=?, nombreActividad=? WHERE idreserva=?",
-        		reserva.getEstadoPago(), reserva.getNumTransaccion(), reserva.getNumAsistentes(), reserva.getPrecioPersona(), fecha, reserva.getDniCliente(), reserva.getNombreActividad(), reserva.getIdReserva());
+    public void updateReserva(Reserva reserva) throws ParseException { 
+        jdbcTemplate.update("UPDATE Reserva SET  estadoPago=?, numAsistentes=?, precioPersona=?, dniCliente=?, nombreActividad=? WHERE idreserva=?",
+        		reserva.getEstadoPago(), reserva.getNumAsistentes(), reserva.getPrecioPersona(), reserva.getDniCliente(), reserva.getNombreActividad(), reserva.getIdReserva());
     }
 
     public Reserva getReserva(int idReserva) {

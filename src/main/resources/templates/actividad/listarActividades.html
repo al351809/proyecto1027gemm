@@ -45,7 +45,6 @@
      <thead>
        <tr>
          <th>Nombre</th>
-         <th>DNI</th>
          <th>Descripcion</th>
          <th>Duracion</th>
          <th>Fecha</th>
@@ -62,7 +61,6 @@
      <tbody>
        <tr th:each="actividad: ${actividad}"> 
          <td th:text="${actividad.nombre}"></td> 
-         <td th:text="${actividad.dni}"></td> 
          <td th:text="${actividad.descripcion}"></td>
          <td th:text="${actividad.duracion}"></td>
          <td th:text="${actividad.fecha}"></td>

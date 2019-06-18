@@ -14,13 +14,9 @@
     <form action="#" th:action="@{/reserva/update/{idReserva}(idReserva=${reserva.idReserva})}" 
                      th:object="${reserva}" method="post"> 
       <table>
-		 <tr>
-            <td><label>Estado de pago</label></td>
-            <td th:text="${reserva.estadoPago}"></td> 
-        </tr>
         <tr>
-            <td><label>Número de transacción</label></td>
-            <td><input type="text" th:field="*{numTransaccion}" /></td> 
+            <td><label>Nombre de la actividad</label></td>
+            <td th:text="${reserva.nombreActividad}"></td> 
         </tr>
         <tr>
             <td><label>Número de asistentes</label></td>
@@ -31,17 +27,8 @@
             <td th:text="${reserva.precioPersona}"></td> 
         </tr>
         <tr>
-            <td><label>Fecha</label></td>
-            <td><input type="date" th:field="*{fecha}" /></td> 
-            <td th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}" class="error"></td>
-        </tr>
-        <tr>
-            <td><label>DNI del cliente</label></td>
-            <td th:text="${reserva.dniCliente}"></td>
-        </tr>
-        <tr>
-            <td><label>Nombre de la actividad</label></td>
-            <td th:text="${reserva.nombreActividad}"></td> 
+            <td><label>Fecha de la actividad</label></td>
+            <td th:text="${reserva.fecha}"></td> 
         </tr>
         <tr>
             <td colspan="2" style="padding-top:10px"><input type="submit" value="Editar Reserva" class="btn btn-secondary btn-sm" />

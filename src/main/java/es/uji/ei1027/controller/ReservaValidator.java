@@ -15,12 +15,6 @@ public class ReservaValidator implements Validator {
 	  public void validate(Object obj, Errors errors) {
 		 Reserva reserva = (Reserva)obj;
 		 
-		 if(reserva.getFecha().trim().equals(""))
-			 errors.rejectValue("fecha", "obligatorio", "Introduce una fecha válida");
-		 
-		 if(reserva.getNumTransaccion() <=0)
-			 errors.rejectValue("numTransaccion", "obligatorio", "Número invalido");
-		 
 		 if(reserva.getNumAsistentes() <=0)
 			 errors.rejectValue("numAsistentes", "obligatorio", "Minimo un asistente");
 		 

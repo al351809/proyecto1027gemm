@@ -15,9 +15,9 @@ package es.uji.ei1027.controller;
 	  @Override
 	  public void validate(Object obj, Errors errors) {
 		 Actividad actividad = (Actividad)obj;
-		 if (actividad.getNombre().trim().equals(""))
+		 if (actividad.getNombre().trim().equals("") || actividad.getNombre().contains(" "))
 		       errors.rejectValue("nombre", "obligatorio",
-		                          "Hay que introducir un nombre");
+		                          "Hay que introducir un nombre valido, no se permiten espacios");
 		 
 		 if(actividad.getFecha().trim().equals(""))
 			 errors.rejectValue("fecha", "obligatorio","Introduce una fecha válida");

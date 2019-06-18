@@ -96,6 +96,7 @@ public class ReservaController {
     	reserva.setEstadoPago("pendiente");
     	reserva.setNombreActividad(actividad.getNombre());
     	reserva.setPrecioPersona(Integer.parseInt(actividad.getPrecio()));
+    	reserva.setFecha(actividad.getFecha());
 		reservadao.addReserva(reserva);
 	} catch (ParseException e) {
 		e.printStackTrace();

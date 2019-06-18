@@ -22,11 +22,6 @@
             <td><span th:text="${actividad.nombre}"></span></td>
         </tr>
         <tr>
-            <td><label>DNI</label></td>
-            <td><input type="text" th:field="*{dni}" /></td>
-            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="error"></td> 
-        </tr>
-        <tr>
             <td><label>Descripcion</label></td>
             <td><input type="text" th:field="*{descripcion}" /></td>
         </tr>
