@@ -11,7 +11,18 @@
 </head>
 <body>
    
-   <div th:replace="fragmentos/nav" >...</div>
+   	<div  th:if="${session.user.rol=='admin'}"><div th:replace="fragmentos/nav" >...</div></div>
+	<div  th:if="${session.user.rol=='instructor'}"><div th:replace="fragmentos/navInstructor" >...</div></div>
+	<div  th:if="${session.user.rol=='cliente'}"><div th:replace="fragmentos/navCliente" >...</div></div>
+	<div  th:if="${session.user.rol==''}"><div th:replace="fragmentos/navNoLogged" >...</div></div>
+	
+	<div th:if="${session.user.rol=='cliente' || session.user.rol==''}">
+	<b>No puedes acceder a esta página</b><br>
+	<a href="/paginaprincipal" class="btn btn-primary" role="button">Índice</a>
+	</div>
+	
+	
+	<div th:if="${session.user.rol=='admin' || session.user.rol=='instructor'}">
    <h2>Lista de Acreditaciones</h2>
    <div th:if="${#lists.isEmpty(acreditacion)}">
          No hay acreditaciones disponibles.
@@ -83,5 +94,6 @@
    <a href="/paginaprincipal" class="btn btn-primary" role="button">Índice</a>
    <a th:if="${session.user.rol=='instructor'}"  href="/instructor/perfil" class="btn btn-primary" role="button">Atrás</a>
    <a th:if="${session.user.rol=='admin'}"  href="/instructor/listarInstructores" class="btn btn-primary" role="button">Atrás</a>
+   </div>
 </body>
 </html>

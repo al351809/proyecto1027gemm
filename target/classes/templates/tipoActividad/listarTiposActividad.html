@@ -11,6 +11,16 @@
 </head>
 <body>
 	<div  th:if="${session.user.rol=='admin'}"><div th:replace="fragmentos/nav" >...</div></div>
+	<div  th:if="${session.user.rol=='instructor'}"><div th:replace="fragmentos/navInstructor" >...</div></div>
+	<div  th:if="${session.user.rol=='cliente'}"><div th:replace="fragmentos/navCliente" >...</div></div>
+	<div  th:if="${session.user.rol==''}"><div th:replace="fragmentos/navNoLogged" >...</div></div>
+	<div th:if="${session.user.rol!='admin'}">
+	<b>No puedes acceder a esta página</b><br>
+	<a href="/paginaprincipal" class="btn btn-primary" role="button">Índice</a>
+	</div>
+	
+	
+	<div th:if="${session.user.rol=='admin'}">
    <h2>Lista de Tipos de Actividades</h2>
    <div th:if="${#lists.isEmpty(tipoActividad)}">
          No hay datos disponibles.
@@ -76,5 +86,6 @@
    </div>
    <a href="add" class="btn btn-primary" role="button">Agregar</a> 
    <a href="/paginaprincipal" class="btn btn-primary" role="button">Índice</a>
+   </div>
 </body>
 </html>

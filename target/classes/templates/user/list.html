@@ -14,6 +14,10 @@
 	<div th:replace="fragmentos/nav" >...</div>
 	<h2>Lista de usuario del sistema</h2>
 	
+	<div th:if="${session.user.rol!='admin'}">
+		<b>No puedes acceder a esta página.</b>
+	</div>
+	<div th:if="${session.user.rol=='admin'}">
     <div th:if="${#lists.isEmpty(users)}">
        No hay usuarios
     </div>
@@ -32,6 +36,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
     <a href="/paginaprincipal" class="btn btn-primary" role="button">Volver</a>
 </body>
 </html>
