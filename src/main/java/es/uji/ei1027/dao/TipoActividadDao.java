@@ -24,25 +24,25 @@ public class TipoActividadDao {
     }
 
     public void addTipoActividad(TipoActividad tipoActividad) {
-        jdbcTemplate.update("INSERT INTO TipoActividad VALUES(?, ?)",
-                tipoActividad.getNombre(), tipoActividad.getNivel());
+        jdbcTemplate.update("INSERT INTO TipoActividad VALUES(?, ?, ?)",
+                tipoActividad.getNombreCompleto(), tipoActividad.getNombre(), tipoActividad.getNivel());
     }
 
     public void deleteTipoActividad(TipoActividad tipoActividad) {
-        jdbcTemplate.update("DELETE from TipoActividad where nombre=?", tipoActividad.getNombre());
+        jdbcTemplate.update("DELETE from TipoActividad where nombreactividad=?", tipoActividad.getNombreCompleto());
     }
     
-    public void deleteTipoActividad(String nombre) {
-		jdbcTemplate.update("DELETE from TipoActividad where nombre=?", nombre);
+    public void deleteTipoActividad(String nombreactividad) {
+		jdbcTemplate.update("DELETE from TipoActividad where nombreactividad=?", nombreactividad);
 		
 	}
 
     //No hemos hecho el update porque no es necesario.
 
-    public TipoActividad getTipoActividad(String nombre) {
+    public TipoActividad getTipoActividad(String nombreactividad) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * from TipoActividad WHERE nombre=?",
-                    new TipoActividadRowMapper(), nombre);
+            return jdbcTemplate.queryForObject("SELECT * from TipoActividad WHERE nombreactividad=?",
+                    new TipoActividadRowMapper(), nombreactividad);
         }
         catch(EmptyResultDataAccessException e) {
             return null;

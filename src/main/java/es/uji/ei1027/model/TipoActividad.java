@@ -2,8 +2,18 @@ package es.uji.ei1027.model;
 
 public class TipoActividad {
 	
+	private String nombreCompleto;
 	private String nombre;
 	private String nivel;
+	
+	public String getNombreCompleto() {
+		return nombreCompleto;
+	}
+	
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}

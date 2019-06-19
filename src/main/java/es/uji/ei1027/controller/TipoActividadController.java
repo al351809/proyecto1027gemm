@@ -42,6 +42,7 @@ public class TipoActividadController {
             return "tipoActividad/add";
      
      try {
+    	tipoActividad.setNombreCompleto(tipoActividad.getNombre()+"/"+tipoActividad.getNivel());
 		tipoActividaddao.addTipoActividad(tipoActividad);
 	} catch (Exception e) {
 		return "tipoActividad/avisoNuevaActividad";
@@ -49,10 +50,10 @@ public class TipoActividadController {
      return "redirect:listarTiposActividad"; 
 	}
 	
-	@RequestMapping(value="/delete/{nombre}")
-    public String processDelete(@PathVariable String nombre) {
+	@RequestMapping(value="/delete/{nombreactividad}")
+    public String processDelete(@PathVariable String nombreactividad) {
 		
-		tipoActividaddao.deleteTipoActividad(nombre);
+		tipoActividaddao.deleteTipoActividad(nombreactividad);
            return "redirect:../listarTiposActividad"; 
     }
 	

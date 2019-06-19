@@ -19,8 +19,11 @@ public class ActividadSvc implements ActividadService {
 	public List<String> getTiposActividad() {
 		List<TipoActividad> tipoActividad = tipoActividaddao.getTipoActividad();
 		 List<String> nombre = tipoActividad.stream()
-		           .map(TipoActividad::getNombre)
+		           .map(TipoActividad::getNombreCompleto)
 		           .collect(Collectors.toList());
+		 
+		 
+		 
 		   return nombre;
 	}
 

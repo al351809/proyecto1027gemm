@@ -64,7 +64,7 @@
         </tr>
         <tr>
             <td><label>Tipo</label></td> 
-            <td><select id="tipo" th:field="*{tipo}">
+            <td><select style="text-transform:capitalize" id="tipo" th:field="*{tipo}">
        			<option th:each="tipo : ${nombre}"
                	th:value="${tipo}"
                	th:text="${tipo}"></option>
