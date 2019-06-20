@@ -46,7 +46,11 @@
 	        </tr>
 	        <tr>
 	            <td><label>Sexo</label></td>
-	            <td><input type="text" th:field="*{sexo}" /></td> 
+	            <td><select name="sexos" class="form_control" type="text" th:field="*{sexo}" >
+				<option value="hombre">Hombre</option>
+				<option value="mujer">Mujer</option>
+				<option value="otro">Otro</option>
+				</select></td> 
 	        </tr>
 	        <tr>
 	            <td><label>Fecha de nacimiento</label></td>

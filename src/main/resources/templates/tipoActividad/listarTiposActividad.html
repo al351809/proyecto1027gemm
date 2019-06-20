@@ -51,8 +51,8 @@
      </thead>
      <tbody>
        <tr th:each="tipoActividad: ${tipoActividad}"> 
-         <td th:text="${tipoActividad.nombre}"></td> 
-         <td th:text="${tipoActividad.nivel}"></td> 
+         <td style="text-transform:capitalize" th:text="${tipoActividad.nombre}"></td> 
+         <td style="text-transform:capitalize" th:text="${tipoActividad.nivel}"></td> 
          <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" th:attr="data-target='#myModal'+${tipoActividad.nombre }">Borrar</button></td>
                   
          <!-- The Modal -->

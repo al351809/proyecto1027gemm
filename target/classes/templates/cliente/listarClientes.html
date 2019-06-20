@@ -52,9 +52,9 @@
      <tbody>
        <tr th:each="cliente: ${cliente}"> 
          <td th:text="${cliente.dni}"></td> 
-         <td th:text="${cliente.nombre}"></td>
+         <td style="text-transform:capitalize" th:text="${cliente.nombre}"></td>
          <td th:text="${cliente.email}"></td> 
-         <td th:text="${cliente.sexo}"></td>
+         <td style="text-transform:capitalize" th:text="${cliente.sexo}"></td>
          <td th:text="${cliente.fechaNacimiento}"></td>         
          <td><a th:if="${session.user.rol=='cliente'}" th:href="@{/cliente/update/{dni}(dni=${cliente.dni})}" class="btn btn-warning btn-sm" role="button">Edita</a> 
          </td>

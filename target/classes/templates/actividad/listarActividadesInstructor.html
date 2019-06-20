@@ -44,7 +44,7 @@
 	     </thead>
 	     <tbody>
 	       <tr th:each="actividad: ${actividad}"> 
-	         <td th:text="${actividad.nombre}"></td>  
+	         <td style="text-transform:capitalize" th:text="${actividad.nombre}"></td>  
 	         <td th:text="${actividad.descripcion}"></td>
 	         <td th:text="${actividad.duracion}"></td>
 	         <td th:text="${actividad.fecha}"></td>
@@ -54,8 +54,8 @@
 	         <td th:text="${actividad.lugar}"></td>
 	         <td th:text="${actividad.puntoEncuentro}"></td>
 	         <td th:text="${actividad.textoCliente}"></td>
-	         <td th:text="${actividad.tipo}"></td>
-	         <td th:text="${actividad.estado}"></td>
+	         <td style="text-transform:capitalize" th:text="${actividad.tipo}"></td>
+	         <td style="text-transform:capitalize" th:text="${actividad.estado}"></td>
 	         <td><a th:href="@{/actividad/update/{nombre}(nombre=${actividad.nombre})}" class="btn btn-warning btn-sm" role="button">Edita</a> 
 	         </td>
 	         <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" th:attr="data-target='#myModal'+${actividad.nombre}">Borrar</button>

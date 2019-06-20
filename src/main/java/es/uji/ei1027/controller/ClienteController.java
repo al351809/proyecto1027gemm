@@ -108,8 +108,6 @@ public class ClienteController {
 	 	
 	 	cliente.setAlias(user.getUsuario());
 	 	
-	 	
-	 	System.out.println(cliente.getAlias());
          if (bindingResult.hasErrors()) 
              return "cliente/update";
          try {
@@ -123,7 +121,7 @@ public class ClienteController {
      		bindingResult.rejectValue("dni", "obligatorio","El dni ya existe");
      		return "cliente/update";
      	}
-        System.out.println(cliente.getAlias());
+        
          return "redirect:../perfil"; 
     }
 	

@@ -32,7 +32,7 @@
       <tbody>
         <tr th:each="user: ${users}">
           <td th:text="${user.usuario}"></td>
-          <td th:text="${user.rol}"></td>
+          <td style="text-transform:capitalize" th:text="${user.rol}"></td>
         </tr>
       </tbody>
     </table>

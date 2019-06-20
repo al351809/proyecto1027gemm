@@ -27,7 +27,7 @@
          <td th:text="${cliente.alias}"></td> 
          <td th:text="${cliente.nombre}"></td>
          <td th:text="${cliente.email}"></td> 
-         <td th:text="${cliente.sexo}"></td>
+         <td style="text-transform:capitalize" th:text="${cliente.sexo}"></td>
          <td th:text="${cliente.fechaNacimiento}"></td>         
          <td><a th:href="@{/cliente/update/{dni}(dni=${cliente.dni})}" class="btn btn-warning btn-sm" role="button">Editar mi perfil</a> 
          </td>

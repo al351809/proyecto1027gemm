@@ -276,7 +276,6 @@ public class InstructorController {
 	       }
 		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
 		Instructor instructor = instructordao.getInstructorAlias(usuario.getUsuario());
-		System.out.println(instructor.getFoto());
 		model.addAttribute("instructor", instructor );
         return "instructor/perfil"; 
     }

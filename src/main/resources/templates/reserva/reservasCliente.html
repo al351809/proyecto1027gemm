@@ -37,8 +37,8 @@
      </thead>
      <tbody>
        <tr th:each="reserva: ${reserva}"> 
-         <td th:text="${reserva.nombreActividad}"></td>
-         <td th:text="${reserva.estadoPago}"></td>
+         <td style="text-transform:capitalize" th:text="${reserva.nombreActividad}"></td>
+         <td style="text-transform:capitalize" th:text="${reserva.estadoPago}"></td>
          <td th:text="${reserva.numAsistentes}"></td> 
          <td th:text="${reserva.precioPersona}"></td>
          <td th:text="${reserva.fecha}"></td>
