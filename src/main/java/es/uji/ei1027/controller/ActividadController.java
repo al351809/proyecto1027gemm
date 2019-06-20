@@ -104,8 +104,6 @@ public class ActividadController {
 	public String addActiv(HttpSession session, Model model) {
 		model.addAttribute("actividad", new Actividad());
 		model.addAttribute("nombre", actividadService.getTiposActividad());
-		String n = actividadService.getTiposActividad().get(0);
-		System.out.println(n);
 	   return "actividad/add";
 	}
 	
