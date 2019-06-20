@@ -11,6 +11,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei1027.model.TipoActividad;
+import es.uji.ei1027.model.TiposdeActividad;
+import es.uji.ei1027.model.TiposdeNiveles;
 
 @Repository
 public class TipoActividadDao {
@@ -56,6 +58,26 @@ public class TipoActividadDao {
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<TipoActividad>();
+        }
+    }
+    
+    public List<TiposdeActividad> getTiposdeActividad() {
+        try {
+            return jdbcTemplate.query("SELECT * from TiposdeActividad",
+                    new TiposdeActividadRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<TiposdeActividad>();
+        }
+    }
+    
+    public List<TiposdeNiveles> getTiposdeNivel() {
+        try {
+            return jdbcTemplate.query("SELECT * from Tiposnivel",
+                    new TiposdeNivelesRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<TiposdeNiveles>();
         }
     }
 

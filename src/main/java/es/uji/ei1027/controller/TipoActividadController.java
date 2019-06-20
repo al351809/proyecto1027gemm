@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.dao.TipoActividadDao;
 import es.uji.ei1027.model.TipoActividad;
+import es.uji.ei1027.service.ActividadService;
 
 @Controller	
 @RequestMapping("/tipoActividad")
 public class TipoActividadController {
 	
 	private TipoActividadDao tipoActividaddao;
+	private ActividadService actividadService;
+	
 	@Autowired 
 	public void setTipoActividadDao(TipoActividadDao tipoActividadDao) { 
 	       this.tipoActividaddao=tipoActividadDao;
@@ -25,12 +28,20 @@ public class TipoActividadController {
 	@RequestMapping("/listarTiposActividad")
 	public String pruevaUnTipoActividad(Model model) {
 	   model.addAttribute("tipoActividad", tipoActividaddao.getTipoActividad());
+	   
 	   return "tipoActividad/listarTiposActividad"; 
+	}
+	
+	@Autowired
+	public void setActividadService(ActividadService actividadService) {
+		this.actividadService = actividadService;
 	}
 	
 	@RequestMapping(value="/add") 
     public String addTipoActividad(Model model) {
         model.addAttribute("tipoActividad", new TipoActividad());
+        model.addAttribute("nombre", actividadService.getTiposdeActidad());
+        model.addAttribute("tipo", actividadService.getTiposdeNivel());
         return "tipoActividad/add";
     }
 	
