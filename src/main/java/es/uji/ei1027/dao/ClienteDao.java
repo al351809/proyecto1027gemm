@@ -50,9 +50,14 @@ public class ClienteDao {
     }
 
     public Cliente getCliente(String dni) {
+    	Cliente cliente;
         try {
-            return jdbcTemplate.queryForObject("SELECT * from Cliente WHERE dni=?",
+            cliente = jdbcTemplate.queryForObject("SELECT * from Cliente WHERE dni=?",
                     new ClienteRowMapper(), dni);
+            String fecha = cliente.getFechaNacimiento();
+            cliente.setFechaNacimiento(cambiarFecha(fecha));
+            
+            return cliente;
         }
         catch(EmptyResultDataAccessException e) {
             return null;
@@ -60,9 +65,15 @@ public class ClienteDao {
     }
 
     public List<Cliente> getCliente() {
+    	List<Cliente> lista;
         try {
-            return jdbcTemplate.query("SELECT * from Cliente",
+            lista = jdbcTemplate.query("SELECT * from Cliente",
                     new ClienteRowMapper());
+            for(Cliente cliente:lista) {
+            	cliente.setFechaNacimiento(cambiarFecha(cliente.getFechaNacimiento()));
+            }
+            
+            return lista;
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Cliente>();
@@ -70,16 +81,25 @@ public class ClienteDao {
     }
     
     public Cliente getClienteAlias(String alias) {
-    	
+    	Cliente cliente;
     	 try {
-             return jdbcTemplate.queryForObject("SELECT * from Cliente WHERE alias=?",
+             cliente =  jdbcTemplate.queryForObject("SELECT * from Cliente WHERE alias=?",
                      new ClienteRowMapper(), alias);
+             
+             cliente.setFechaNacimiento(cambiarFecha(cliente.getFechaNacimiento()));
+             
+             return cliente;
          }
          catch(EmptyResultDataAccessException e) {
              return null;
-         }
-    	
-    	
+         }	
+    }
+    
+    public String cambiarFecha(String fecha) {
+         String [] parts = fecha.split("-");
+         String nuevaFecha = parts[2]+"-"+parts[1]+"-"+parts[0];
+         
+         return nuevaFecha;
     }
 
 }

@@ -25,10 +25,15 @@ public class ReservaDao {
     }
 
     public void addReserva(Reserva reserva) throws ParseException {
+    	String fechaAntigua = reserva.getFecha();
+    	String [] parts = fechaAntigua.split("-");
+        String nuevaFecha = parts[2]+"-"+parts[1]+"-"+parts[0];
+        reserva.setFecha(nuevaFecha);
     	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
     	java.util.Date date = sdf1.parse(reserva.getFecha());
     	java.sql.Date fecha = new java.sql.Date(date.getTime()); 
-        jdbcTemplate.update("INSERT INTO Reserva VALUES(NEXTVAL('reserva_idreserva_seq'), ?, ?, ?, ?, ?, ?, NEXTVAL('reserva_numtransaccion_seq'))",
+
+        jdbcTemplate.update("INSERT INTO Reserva VALUES(NEXTVAL('reserva_idreserva_seq'), ?, NEXTVAL('reserva_numtransaccion_seq'), ?, ?, ?, ?, ?)",
                 reserva.getEstadoPago(), reserva.getNumAsistentes(), reserva.getPrecioPersona(), fecha, reserva.getDniCliente(), reserva.getNombreActividad());
     }
 
@@ -47,9 +52,14 @@ public class ReservaDao {
     }
 
     public Reserva getReserva(int idReserva) {
+    	Reserva reserva;
         try {
-            return jdbcTemplate.queryForObject("SELECT * from Reserva WHERE idreserva=?",
+            reserva = jdbcTemplate.queryForObject("SELECT * from Reserva WHERE idreserva=?",
                     new ReservaRowMapper(), idReserva);
+            
+            reserva.setFecha(cambiarFecha(reserva.getFecha()));
+            
+            return reserva;
         }
         catch(EmptyResultDataAccessException e) {
             return null;
@@ -57,9 +67,16 @@ public class ReservaDao {
     }
 
     public List<Reserva> getReserva() {
+    	List<Reserva> lista;
         try {
-            return jdbcTemplate.query("SELECT * from Reserva",
+            lista = jdbcTemplate.query("SELECT * from Reserva",
                     new ReservaRowMapper());
+            
+            for(Reserva reserva : lista) {
+            	reserva.setFecha(cambiarFecha(reserva.getFecha()));
+            }
+            
+            return lista;
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Reserva>();
@@ -67,9 +84,16 @@ public class ReservaDao {
     }
     
     public List<Reserva> getReservaDni(String dni) {
+    	List<Reserva> lista;
         try {
-            return jdbcTemplate.query("SELECT * from Reserva WHERE dniCliente=?",
+            lista = jdbcTemplate.query("SELECT * from Reserva WHERE dniCliente=?",
                     new ReservaRowMapper(), dni);
+            
+            for(Reserva reserva:lista) {
+            	reserva.setFecha(cambiarFecha(reserva.getFecha()));
+            }
+
+            return lista;
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Reserva>();
@@ -77,9 +101,17 @@ public class ReservaDao {
     }
     
     public List<Reserva> getReservaNombre(String nombreActividad) {
+    	List<Reserva> lista;
         try {
-            return jdbcTemplate.query("SELECT * from Reserva WHERE nombreActividad=? ORDER BY fecha, estadoPago ASC , precioPersona DESC",
+            lista = jdbcTemplate.query("SELECT * from Reserva WHERE nombreActividad=? ORDER BY fecha, estadoPago ASC , precioPersona DESC",
                     new ReservaRowMapper(), nombreActividad);
+            
+            for(Reserva reserva:lista) {
+            	reserva.setFecha(cambiarFecha(reserva.getFecha()));
+            }
+
+            return lista;
+            
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Reserva>();
@@ -87,13 +119,27 @@ public class ReservaDao {
     }
     
     public List<Reserva> getReservaActividad(String nombreActividad) {
+    	List<Reserva> lista;
         try {
-            return jdbcTemplate.query("SELECT * from Reserva WHERE nombreactividad=?",
+            lista = jdbcTemplate.query("SELECT * from Reserva WHERE nombreactividad=?",
                     new ReservaRowMapper(), nombreActividad);
+            
+            for(Reserva reserva:lista) {
+            	reserva.setFecha(cambiarFecha(reserva.getFecha()));
+            }
+
+            return lista;
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Reserva>();
         }
     }
+    
+    public String cambiarFecha(String fecha) {
+        String [] parts = fecha.split("-");
+        String nuevaFecha = parts[2]+"-"+parts[1]+"-"+parts[0];
+        
+        return nuevaFecha;
+   }
     
 }

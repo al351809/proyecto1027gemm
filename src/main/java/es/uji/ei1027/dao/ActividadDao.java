@@ -45,6 +45,10 @@ public class ActividadDao {
 	}
 
     public void updateActividad(Actividad actividad) throws ParseException {
+    	String fechaAntigua = actividad.getFecha();
+    	String [] parts = fechaAntigua.split("-");
+        String nuevaFecha = parts[2]+"-"+parts[1]+"-"+parts[0];
+        actividad.setFecha(nuevaFecha);
     	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
     	java.util.Date date = sdf1.parse(actividad.getFecha());
     	java.sql.Date fecha = new java.sql.Date(date.getTime()); 
@@ -53,9 +57,14 @@ public class ActividadDao {
     }
 
     public Actividad getActividad(String nombre) {
-        try {
-            return jdbcTemplate.queryForObject("SELECT * from Actividad WHERE nombre=?",
+    	Actividad actividad;
+        try { 
+            actividad = jdbcTemplate.queryForObject("SELECT * from Actividad WHERE nombre=?",
                     new ActividadRowMapper(), nombre);
+            
+            actividad.setFecha(cambiarFecha(actividad.getFecha()));
+            
+            return actividad;
         }
         catch(EmptyResultDataAccessException e) {
             return null;
@@ -63,9 +72,17 @@ public class ActividadDao {
     }
     
     public List<Actividad> getActividadInstructor(String dni) {
+    	List<Actividad> lista;
         try {
-            return jdbcTemplate.query("SELECT * from Actividad WHERE dni=?",
+            lista = jdbcTemplate.query("SELECT * from Actividad WHERE dni=?",
                     new ActividadRowMapper(), dni);
+            
+            for(Actividad actividad: lista) {
+            	actividad.setFecha(cambiarFecha(actividad.getFecha()));
+            }
+            
+            
+            return lista;
         }
         catch(EmptyResultDataAccessException e) {
             return null;
@@ -73,9 +90,37 @@ public class ActividadDao {
     }
 
     public List<Actividad> getActividad() {
+    	List<Actividad> lista;
         try {
-            return jdbcTemplate.query("SELECT * from Actividad",
+            lista = jdbcTemplate.query("SELECT * from Actividad",
                     new ActividadRowMapper());
+            
+            for(Actividad actividad: lista) {
+            	actividad.setFecha(cambiarFecha(actividad.getFecha()));
+            }
+            
+            
+            return lista;
+            
+            
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Actividad>();
+        }
+    }
+    
+    public List<Actividad> getActividadNombre( String nombre) {
+    	List<Actividad> lista;
+        try {
+            lista = jdbcTemplate.query("SELECT * from Actividad WHERE nombre = ?",
+                    new ActividadRowMapper(), nombre);
+            
+            for(Actividad actividad: lista) {
+            	actividad.setFecha(cambiarFecha(actividad.getFecha()));
+            }
+            
+            
+            return lista;
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Actividad>();
@@ -96,14 +141,14 @@ public class ActividadDao {
         return fechaDate;
     }
     
-    public List<Actividad> getActividadNombre( String nombre) {
-        try {
-            return jdbcTemplate.query("SELECT * from Actividad WHERE nombre = ?",
-                    new ActividadRowMapper(), nombre);
-        }
-        catch(EmptyResultDataAccessException e) {
-            return new ArrayList<Actividad>();
-        }
-    }
+
+    
+    public String cambiarFecha(String fecha) {
+        String [] parts = fecha.split("-");
+        String nuevaFecha = parts[2]+"-"+parts[1]+"-"+parts[0];
+        
+        return nuevaFecha;
+   }
+    
 	
 }

@@ -147,6 +147,10 @@ public class ActividadController {
          if (bindingResult.hasErrors()) 
              return "actividad/update";
          try {
+        	 DetallesUsuario user = (DetallesUsuario) session.getAttribute("user");
+     		 Instructor instructor = instructordao.getInstructorAlias(user.getUsuario());
+     		 actividad.setDni(instructor.getDni());
+        	 System.out.println(actividad.getDni());
 			actividaddao.updateActividad(actividad);
 		} catch (ParseException e) {
 			e.printStackTrace();

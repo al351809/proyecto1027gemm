@@ -121,6 +121,7 @@ public class ReservaController {
         	 Reserva reservaVieja = reservadao.getReserva(idReserva);
         	 reserva.setDniCliente(reservaVieja.getDniCliente());
         	 reserva.setEstadoPago(reservaVieja.getEstadoPago());
+        	 reserva.setPrecioPersona(reservaVieja.getPrecioPersona());
         	 reserva.setNombreActividad(reservaVieja.getNombreActividad());
 			reservadao.updateReserva(reserva);
 		} catch (ParseException e) {
