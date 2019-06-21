@@ -27,6 +27,7 @@ import es.uji.ei1027.dao.UsuarioDao;
 import es.uji.ei1027.model.Acreditacion;
 import es.uji.ei1027.model.DetallesUsuario;
 import es.uji.ei1027.model.Instructor;
+import es.uji.ei1027.service.ActividadService;
 
 @Controller	
 @RequestMapping("/instructor")
@@ -39,6 +40,8 @@ public class InstructorController {
 	private InstructorDao instructordao;
 	private UsuarioDao usuariodao;
 	private AcreditacionDao acreditaciondao;
+	private ActividadService actividadService;
+	
 	@Autowired 
 	public void setInstructorDao(InstructorDao instructorDao) { 
 	       this.instructordao=instructorDao;
@@ -53,6 +56,11 @@ public class InstructorController {
 	public void setAcreditacionDao(AcreditacionDao acreditacionDao) { 
 	       this.acreditaciondao=acreditacionDao;
 	   }
+	
+	@Autowired
+	public void setActividadService(ActividadService actividadService) {
+		this.actividadService = actividadService;
+	}
 	
 	@RequestMapping("/listarInstructores")
 	public String pruevaUnInstructor(HttpSession session, Model model) {
@@ -75,6 +83,7 @@ public class InstructorController {
         model.addAttribute("instructor", new Instructor());
         model.addAttribute("usuario", new DetallesUsuario());
         model.addAttribute("acreditacion", new Acreditacion());
+        model.addAttribute("nombre", actividadService.getTiposdeActidad());
         return "instructor/add";
     }
 	
@@ -145,6 +154,7 @@ public class InstructorController {
     public String editInstructor(Model model, @PathVariable String dni) { 
         model.addAttribute("instructor", instructordao.getInstructor(dni));
         model.addAttribute("acreditacion", new Acreditacion());
+        model.addAttribute("nombre", actividadService.getTiposdeActidad());
         return "instructor/update"; 
     }
 	
@@ -177,6 +187,7 @@ public class InstructorController {
 		    acreditacion.setDni(instructor.getDni());
 			acreditacion.setEstado("pendiente");
 			acreditacion.setCertificado(uploadDirectory + "pdfs/" + file.getOriginalFilename());
+			acreditacion.setTipo(acreditacion.getTipo());
 			acreditaciondao.addAcreditacion(acreditacion);
 		} 
 	    //-------------------------------------------	

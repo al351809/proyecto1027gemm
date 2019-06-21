@@ -5,6 +5,7 @@ public class Acreditacion {
     private String certificado;
     private String dni;
     private String estado;
+    private String tipo;
     
 	public int getIdcertificado() {
 		return idcertificado;
@@ -31,11 +32,20 @@ public class Acreditacion {
 	public void setEstado(String i) {
 		this.estado = i;
 	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 	@Override
 	public String toString() {
 		return "Acreditacion [idcertificado=" + idcertificado + ", certificado=" + certificado + ", dni=" + dni
-				+ ", estado=" + estado + "]";
+				+ ", estado=" + estado + ", tipo=" + tipo + "]";
 	}
+
+	
 	
     
 }

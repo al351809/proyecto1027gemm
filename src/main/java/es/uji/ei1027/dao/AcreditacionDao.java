@@ -25,8 +25,8 @@ public class AcreditacionDao {
     }
 
     public void addAcreditacion(Acreditacion acreditacion) {
-        jdbcTemplate.update("INSERT INTO Acreditacion VALUES(NEXTVAL('acreditacion_idcertificado_seq'),?, ?, ?)",
-                acreditacion.getCertificado(), acreditacion.getDni(), acreditacion.getEstado());
+        jdbcTemplate.update("INSERT INTO Acreditacion VALUES(NEXTVAL('acreditacion_idcertificado_seq'),?, ?, ?, ?)",
+                acreditacion.getCertificado(), acreditacion.getDni(), acreditacion.getEstado(), acreditacion.getTipo());
     }
 
     public void deleteAcreditacion(Acreditacion acreditacion) {
@@ -39,9 +39,9 @@ public class AcreditacionDao {
 	}
 
     public void updateAcreditacion(Acreditacion acreditacion) {
-        jdbcTemplate.update("UPDATE Acreditacion SET  certificado=?, dni=?, estado=? WHERE idcertificado=?",
+        jdbcTemplate.update("UPDATE Acreditacion SET  certificado=?, dni=?, estado=?, tipo=? WHERE idcertificado=?",
                 acreditacion.getCertificado(), acreditacion.getDni(),
-                acreditacion.getEstado(), acreditacion.getIdcertificado());
+                acreditacion.getEstado(), acreditacion.getTipo(), acreditacion.getIdcertificado());
     }
     
     public void updateAcreditacion(Integer idcertificado, String estado) {

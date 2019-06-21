@@ -44,11 +44,19 @@
 	            <td><input type="text" th:field="*{numeroCuenta}" /></td> 
 	            <td th:if="${#fields.hasErrors('numeroCuenta')}" th:errors="*{numeroCuenta}" class="error"></td>
 	        </tr>
+	        <div th:object="${acreditacion}">
 	        <tr>
 	        	<td>Nuevo Certificado</td>
 	        	<td><input type="file" name="file" id="file" /> </td>
 	        </tr>
-	        
+	        <tr>
+	        	<td>Tipo</td>
+	        	<td><select style="text-transform:capitalize" id="tipo" th:field="*{tipo}">
+       			<option th:each="tipo : ${nombre}"
+               	th:value="${tipo}"
+               	th:text="${tipo}"></option></select></td>
+	        </tr>
+	        </div>
 	        <tr>
 	            <td colspan="2" style="padding-top:10px"><input type="button" value ="Actualizar Instructor" class="btn btn-secondary btn-sm" data-toggle="modal"data-target="#myModal" />
 	            <a href="/instructor/perfil" class="btn btn-secondary btn-sm" role="button" style="margin-left:10px">Atras</a></td>

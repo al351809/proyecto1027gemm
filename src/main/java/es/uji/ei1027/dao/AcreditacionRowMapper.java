@@ -14,6 +14,7 @@ public final class AcreditacionRowMapper implements RowMapper<Acreditacion> {
         acreditacion.setCertificado(rs.getString("certificado"));
         acreditacion.setDni(rs.getString("dni"));
         acreditacion.setEstado(rs.getString("estado"));
+        acreditacion.setTipo(rs.getString("tipo"));
         return acreditacion;
     }
 }
