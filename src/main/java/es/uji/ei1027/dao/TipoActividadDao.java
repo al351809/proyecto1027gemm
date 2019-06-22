@@ -88,7 +88,7 @@ public class TipoActividadDao {
     	List<String> listaNombreActividad = new LinkedList<String>();;
         try {
         	for (String tipo : listadeTipos) {
-        		nombresActividad = jdbcTemplate.query("SELECT nombreactividad from TipoActividad WHERE nombre=?",
+        		nombresActividad = jdbcTemplate.query("SELECT * from TipoActividad WHERE nombre=?",
                     new TipoActividadRowMapper(), tipo);
         		for (TipoActividad nombreActividad : nombresActividad) {
         			
