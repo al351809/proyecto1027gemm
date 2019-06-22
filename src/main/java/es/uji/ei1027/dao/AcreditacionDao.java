@@ -78,4 +78,14 @@ public class AcreditacionDao {
             return new ArrayList<Acreditacion>();
         }
     }
+    
+    public List<Acreditacion> getAcreditacionDniEstado(String dni) {
+        try {
+            return jdbcTemplate.query("SELECT * from Acreditacion WHERE dni=? and estado='aceptada'",
+                    new AcreditacionRowMapper(), dni);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Acreditacion>();
+        }
+    }
 }

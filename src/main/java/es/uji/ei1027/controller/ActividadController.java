@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import es.uji.ei1027.dao.AcreditacionDao;
 import es.uji.ei1027.dao.ActividadDao;
 import es.uji.ei1027.dao.ImagenesDao;
 import es.uji.ei1027.dao.InstructorDao;
@@ -37,6 +38,7 @@ public class ActividadController {
 	private InstructorDao instructordao;
 	private ImagenesDao imagenesdao;
 	private ReservaDao reservadao;
+	private AcreditacionDao acreditaciondao;
 	
 	@Autowired
 	public void setActividadService(ActividadService actividadService) {
@@ -62,6 +64,11 @@ public class ActividadController {
 	@Autowired
 	public void setReservaDao(ReservaDao reservaDao) {
 		this.reservadao = reservaDao;
+	}
+	
+	@Autowired
+	public void setAcreditacionDao(AcreditacionDao acreditacionDao) {
+		this.acreditaciondao = acreditacionDao;
 	}
 	
 	@RequestMapping("/listarActividades")
@@ -104,6 +111,8 @@ public class ActividadController {
 	public String addActiv(HttpSession session, Model model) {
 		model.addAttribute("actividad", new Actividad());
 		model.addAttribute("nombre", actividadService.getTiposActividad());
+		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
+		model.addAttribute("acreditacion", acreditaciondao.getAcreditacionDniEstado(instructordao.getInstructorAlias(usuario.getUsuario()).getDni()));
 	   return "actividad/add";
 	}
 	
