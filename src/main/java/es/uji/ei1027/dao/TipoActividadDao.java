@@ -1,6 +1,7 @@
 package es.uji.ei1027.dao;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -10,6 +11,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import es.uji.ei1027.model.Acreditacion;
 import es.uji.ei1027.model.TipoActividad;
 import es.uji.ei1027.model.TiposdeActividad;
 import es.uji.ei1027.model.TiposdeNiveles;
@@ -78,6 +80,27 @@ public class TipoActividadDao {
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<TiposdeNiveles>();
+        }
+    }
+    
+    public List<String> getNombreActividad( List <String> listadeTipos) {
+    	List<TipoActividad> nombresActividad;
+    	List<String> listaNombreActividad = new LinkedList<String>();;
+        try {
+        	for (String tipo : listadeTipos) {
+        		nombresActividad = jdbcTemplate.query("SELECT nombreactividad from TipoActividad WHERE nombre=?",
+                    new TipoActividadRowMapper(), tipo);
+        		for (TipoActividad nombreActividad : nombresActividad) {
+        			
+        			listaNombreActividad.add(nombreActividad.getNombreCompleto());
+        			
+        		}
+        		
+        	}
+        	return listaNombreActividad;
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<String>();
         }
     }
 

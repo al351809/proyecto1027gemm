@@ -2,6 +2,7 @@ package es.uji.ei1027.controller;
 
 
 import java.text.ParseException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
@@ -21,9 +22,11 @@ import es.uji.ei1027.dao.ActividadDao;
 import es.uji.ei1027.dao.ImagenesDao;
 import es.uji.ei1027.dao.InstructorDao;
 import es.uji.ei1027.dao.ReservaDao;
+import es.uji.ei1027.dao.TipoActividadDao;
 import es.uji.ei1027.model.Actividad;
 import es.uji.ei1027.model.DetallesUsuario;
 import es.uji.ei1027.model.Instructor;
+import es.uji.ei1027.model.TipoActividad;
 import es.uji.ei1027.service.ActividadService;
 
 
@@ -34,6 +37,7 @@ import es.uji.ei1027.service.ActividadService;
 public class ActividadController {
 
 	private ActividadDao actividaddao;
+	private TipoActividadDao tipoactividaddao;
 	private ActividadService actividadService;
 	private InstructorDao instructordao;
 	private ImagenesDao imagenesdao;
@@ -64,6 +68,11 @@ public class ActividadController {
 	@Autowired
 	public void setReservaDao(ReservaDao reservaDao) {
 		this.reservadao = reservaDao;
+	}
+	
+	@Autowired
+	public void setTipoActividadDao(TipoActividadDao tipoactividadDao) {
+		this.tipoactividaddao = tipoactividadDao;
 	}
 	
 	@Autowired
@@ -112,7 +121,14 @@ public class ActividadController {
 		model.addAttribute("actividad", new Actividad());
 		model.addAttribute("nombre", actividadService.getTiposActividad());
 		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
-		model.addAttribute("acreditacion", acreditaciondao.getAcreditacionDniEstado(instructordao.getInstructorAlias(usuario.getUsuario()).getDni()));
+		List <String> listaTipos = acreditaciondao.getAcreditacionDniEstado(instructordao.getInstructorAlias(usuario.getUsuario()).getDni());
+		System.out.println(listaTipos);
+		//model.addAttribute("acreditacion", acreditaciondao.getAcreditacionDniEstado(instructordao.getInstructorAlias(usuario.getUsuario()).getDni()));
+		List <String> listaDeNombres = tipoactividaddao.getNombreActividad(listaTipos);
+		System.out.println(listaDeNombres);
+		model.addAttribute("acreditacion", listaDeNombres);
+		
+		
 	   return "actividad/add";
 	}
 	
