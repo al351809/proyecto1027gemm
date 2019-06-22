@@ -122,10 +122,7 @@ public class ActividadController {
 		model.addAttribute("nombre", actividadService.getTiposActividad());
 		DetallesUsuario usuario = (DetallesUsuario) session.getAttribute("user");
 		List <String> listaTipos = acreditaciondao.getAcreditacionDniEstado(instructordao.getInstructorAlias(usuario.getUsuario()).getDni());
-		System.out.println(listaTipos);
-		//model.addAttribute("acreditacion", acreditaciondao.getAcreditacionDniEstado(instructordao.getInstructorAlias(usuario.getUsuario()).getDni()));
 		List <String> listaDeNombres = tipoactividaddao.getNombreActividad(listaTipos);
-		System.out.println(listaDeNombres);
 		model.addAttribute("acreditacion", listaDeNombres);
 		
 		

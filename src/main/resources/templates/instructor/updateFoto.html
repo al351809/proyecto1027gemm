@@ -21,14 +21,7 @@
 	    <form action="#" th:action="@{/instructor/updateFoto/{dni}(dni=${instructor.dni})}" 
 	                     th:object="${instructor}" method="post" enctype="multipart/form-data"> 
 	      <table class="updateInstructor">
-	      <tr>
-	            <td><label>DNI</label></td>
-	            <td th:text="${instructor.dni}"></td> 
-	        </tr>
-	        <tr>
-	            <td><label>Alias</label></td>
-	            <td th:text="${instructor.alias}"></td> 
-	        </tr>
+
 	        <tr>
 	        	<td>Nueva foto</td>
 	        	<td><input type="file" name="file" id="file" /> </td>
