@@ -11,6 +11,7 @@ import es.uji.ei1027.model.Acreditacion;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Repository // En Spring els DAOs van anotats amb @Repository
@@ -79,13 +80,22 @@ public class AcreditacionDao {
         }
     }
     
-    public List<Acreditacion> getAcreditacionDniEstado(String dni) {
+    public List<String> getAcreditacionDniEstado(String dni) {
+    	List<Acreditacion> lista;
         try {
-            return jdbcTemplate.query("SELECT * from Acreditacion WHERE dni=? and estado='aceptada'",
+            lista = jdbcTemplate.query("SELECT * from Acreditacion WHERE dni=? and estado='aceptada'",
                     new AcreditacionRowMapper(), dni);
+            
+            List<String> listaTipos = new LinkedList<String>();
+            for(Acreditacion acred:lista) {
+            	listaTipos.add(acred.getTipo());
+            }
+            
+            return listaTipos;
+            
         }
         catch(EmptyResultDataAccessException e) {
-            return new ArrayList<Acreditacion>();
+            return new ArrayList<String>();
         }
     }
 }
