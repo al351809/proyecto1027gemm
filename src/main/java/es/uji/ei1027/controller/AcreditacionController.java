@@ -85,7 +85,7 @@ public class AcreditacionController {
          acreditaciondao.updateAcreditacion(acreditacion);
          return "redirect:../listarAcreditaciones"; 
     }
-	
+	 
 	 @RequestMapping(value="/updateEstado/{idcertificado}/{estado}", method = RequestMethod.GET) 
 	 public String editEstadoInstructor(Model model, @PathVariable Integer idcertificado, @PathVariable String estado) { 
 	     model.addAttribute("acreditacion", acreditaciondao.getAcreditacion(idcertificado));
@@ -97,7 +97,7 @@ public class AcreditacionController {
 	@RequestMapping(value="/delete/{idcertificado}")
     public String processDelete(@PathVariable Integer idcertificado) {
            acreditaciondao.deleteAcreditacion(idcertificado);
-           return "redirect:../listarAcreditaciones"; 
+           return "redirect:../../instructor/perfil"; 
     }
 	
 	@RequestMapping(value="/delete/{idcertificado}", method=RequestMethod.POST) 
@@ -106,7 +106,7 @@ public class AcreditacionController {
      if (bindingResult.hasErrors()) 
             return "acreditacion/delete";
      acreditaciondao.deleteAcreditacion(acreditacion);
-     return "redirect:../listarAcreditaciones"; 
+     return "redirect:../../instructor/perfil"; 
 	}
 	
 	
