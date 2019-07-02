@@ -30,18 +30,14 @@
    <table th:unless="${#lists.isEmpty(acreditacion)}" class="table table-striped">
      <thead>
        <tr>
-         <th>Id. Certificado</th>
          <th>Certificado</th>
-         <th>DNI</th>
          <th>Estado</th>
          <th>Tipo</th>
        </tr>
      </thead>
      <tbody>
        <tr th:each="acreditacion: ${acreditacion}"> 
-         <td th:text="${acreditacion.idcertificado}"></td> 
          <td><a th:href="@{/acreditaciones/mostrarAcreditacion/{idcertificado}(idcertificado=${acreditacion.idcertificado})}" th:text="${acreditacion.certificado}"></a></td>
-         <td th:text="${acreditacion.dni}"></td>
          <td style="text-transform:capitalize" th:text="${acreditacion.estado}"></td>
          <td style="text-transform:capitalize" th:text="${acreditacion.tipo}"></td>
          <td th:if="${session.user.rol=='admin'}"><a th:href="@{/acreditaciones/updateEstado/{idcertificado}/{estado}(idcertificado=${acreditacion.idcertificado}, estado='aceptada')}" class="btn btn-warning btn-sm" role="button">Aceptar</a>
